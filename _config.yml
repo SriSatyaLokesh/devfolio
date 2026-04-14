@@ -5,6 +5,7 @@ url: "https://srisatyalokesh.github.io"
 
 # Build settings
 markdown: kramdown
+permalink: /blog/:title/
 sass:
   sass_dir: _sass
   style: compressed
