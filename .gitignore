@@ -8,3 +8,5 @@ _site/
 node_modules/
 *.gem
 *.lock
+adapters/
+.DS_Store
