@@ -1,125 +1,141 @@
 {
-  "_________ DEVFOLIO — PROFILE CONFIGURATION _________": "Copy this file to _data/profile.json and fill in your details. Remove all comment keys (lines starting with _).",
-
-  "__ THEME __": "Controls the visual appearance of your portfolio.",
   "theme_config": {
-    "__ mode __": "Set your site's color mode. Accepted values: 'dark' or 'light'. Default: 'dark'.",
-    "mode": "light",
-
-    "__ vanta_effect __": "The animated background effect on your Hero section. Accepted values: 'net', 'waves', 'rings', 'fog', 'birds', 'clouds'. Set to empty string '' to disable Vanta entirely.",
+    "mode": "dark",
     "vanta_effect": "birds",
-
-    "__ colors __": "Your three-color palette. All hex values INCLUDE the # prefix here.",
+    "vanta_magic": true,
     "colors": {
-      "__ primary __": "Main page background color.",
       "primary": "#0d1117",
-      "__ secondary __": "Card and nav panel background color.",
       "secondary": "#161b22",
-      "__ accent __": "Links, highlights, Vanta animation color, and CTA buttons.",
       "accent": "#58a6ff"
+    },
+    "music": {
+      "enabled": true,
+      "file": "/assets/music/interstellar.mp3",
+      "max_volume": 0.3
     }
   },
 
-  "__ PERSONAL __": "Your name and headline are displayed in the Hero and nav bar.",
-  "name": "Your Full Name",
-  "headline": "Your Role · Your Speciality",
-
-  "__ profile_image_url __": "MUST be a full HTTPS URL to an external image. No local files. GitHub avatar URL works great: https://avatars.githubusercontent.com/u/YOUR_USER_ID",
-  "profile_image_url": "https://avatars.githubusercontent.com/u/0",
-
-  "__ bio __": "A short paragraph about yourself shown in the Profile section. 2-4 sentences recommended.",
+  "available_for_work": true,
   "blog_config": {
-    "__ enabled __": "Set to true to show the Blog link in navigation, false to hide it. Requires posts in _posts/ to function.",
     "enabled": true
   },
-  "bio": "A passionate developer who loves building things. Write something genuine here.",
 
-  "__ SOCIAL LINKS __": "Displayed as Shields.io badges in the Contact section. Add or remove entries freely.",
+  "name": "DevFolio",
+  "headline": "The Portfolio-as-Code Template that builds itself. Zero HTML. Maximum Impact.",
+  "profile_image_url": "/assets/img/devfolio.png",
+  "resume_url": "https://github.com/SriSatyaLokesh/devfolio",
+  "bio": "I am a high-fidelity, single-page Jekyll template born from a deep-seated hatred for drag-and-drop builders. I live in a single JSON file and dream of pixel-perfect glassmorphism. I don't need a CV; I am the CV. I'm here to ensure your career looks like it was built by a team of Silicon Valley designers, even if you just finished your second coffee.",
+
   "social": [
-    {
-      "__ platform __": "Display name of the platform. Used as the badge label.",
-      "platform": "GitHub",
-      "__ url __": "Full URL to your profile on this platform.",
-      "url": "https://github.com/yourusername",
-      "__ logo __": "Simple Icons slug for the platform logo. Browse slugs at https://simpleicons.org",
-      "logo": "github",
-      "__ color __": "WARNING: Hex color WITHOUT the # prefix. This is the Shields.io format. Example: '181717' not '#181717'.",
-      "color": "181717"
-    },
-    {
-      "platform": "LinkedIn",
-      "url": "https://linkedin.com/in/yourprofile",
-      "logo": "linkedin",
-      "color": "0A66C2"
-    },
-    {
-      "platform": "Twitter",
-      "url": "https://twitter.com/yourusername",
-      "logo": "twitter",
-      "color": "1DA1F2"
-    }
+    { "platform": "GitHub",    "url": "https://github.com/SriSatyaLokesh/devfolio",       "logo": "github",       "color": "181717" },
+    { "platform": "Twitter",   "url": "https://twitter.com",                          "logo": "twitter",      "color": "1DA1F2" },
+    { "platform": "LinkedIn",  "url": "https://linkedin.com",                         "logo": "linkedin",     "color": "0A66C2" },
+    { "platform": "Dev.to",    "url": "https://dev.to",                               "logo": "devdotto",     "color": "0A0A0A" }
   ],
 
-  "__ EXPERIENCE __": "Your work history in reverse chronological order (most recent first).",
   "experience": [
     {
-      "role": "Software Engineer",
-      "company": "Company Name",
-      "__ company_url __": "URL to the company website. Used to hyperlink the company name.",
-      "company_url": "https://companywebsite.com",
-      "__ duration __": "Free-form text. Example: 'Jan 2023 – Present' or 'Jun 2021 – Dec 2022'.",
-      "duration": "Jan 2023 – Present",
-      "__ description __": "Can be a single string (paragraph) OR an array of strings (bullet points).",
+      "role": "Senior Portfolio Engine",
+      "company": "GitHub Pages",
+      "company_url": "https://pages.github.com",
+      "duration": "Jan 2026 – Present",
       "description": [
-        "Led the frontend team to migrate the legacy app to Next.js.",
-        "Improved Core Web Vitals by 40% across the board.",
-        "Mentored 3 junior developers."
+        "Automated the career glow-up of thousands of developers by providing 6 interactable WebGL backgrounds they didn't know they needed.",
+        "Reduced 'Time to Landing Page' from weeks of CSS wrestling to 3 minutes of JSON editing — causing a 400% increase in developer confidence.",
+        "Successfully defended the 'Portfolio-as-Code' philosophy against the invading forces of drag-and-drop website builders.",
+        "Implemented a 'Secret Shockwave' Easter Egg that randomizes backgrounds and user life choices simultaneously."
+      ]
+    },
+    {
+      "role": "Lead CSS Wrestler",
+      "company": "The Internet",
+      "company_url": "https://www.w3.org",
+      "duration": "Oct 2025 – Present",
+      "description": [
+        "Centering a <div> while simultaneously maintaining Backdrop Blur (12px) without causing a browser meltdown.",
+        "Optimized GSAP entrance choreography to be 45% more 'satisfying' according to highly scientific internal audits.",
+        "Engineered a glassmorphism navigation system so floating it actually feels like it's made of real glass (without the risk of cuts).",
+        "Wrote 1,000+ lines of SCSS using CSS Custom Properties so users don't have to look at hex codes ever again."
       ]
     }
   ],
 
-  "__ EDUCATION __": "Your academic background.",
+  "skills": [
+    {
+      "category": "Frontend Soul",
+      "items": ["Jekyll", "Liquid Magic", "SCSS Architect", "GSAP Moves"],
+      "logos": ["jekyll", "liquid", "sass", "greensock"]
+    },
+    {
+      "category": "Data Brain",
+      "items": ["JSON Schema", "Git Workflows", "Actions Automation", "YAML Whispering"],
+      "logos": ["json", "git", "githubactions", "yaml"]
+    },
+    {
+      "category": "Visual Heart",
+      "items": ["Vanta.js", "Three.js", "WebGL", "Glassmorphism"],
+      "logos": ["visualstudio", "threejs", "webgl", "css3"]
+    }
+  ],
+
   "education": [
     {
-      "degree": "B.Tech in Computer Science",
-      "institution": "University Name",
-      "__ year __": "Graduation year as a string.",
-      "year": "2023"
+      "degree": "PhD in Zero-Code Architecture",
+      "institution": "University of Open Source",
+      "year": "2026",
+      "description": [
+        "Defended a groundbreaking thesis on why developers should spend time coding features, not fighting with HTML boilerplate.",
+        "Minor in 'Monochromatic Theme Synchronization' — proving that any website looks elite with the right accent color.",
+        "Dean's List for 'Most Optimized Jekyll Build Time' (2025)."
+      ]
     }
   ],
 
-  "__ PROJECTS __": "WARNING: Maximum 6 projects. Any entries beyond the 6th are SILENTLY IGNORED by the template.",
   "projects": [
     {
-      "title": "Project Name",
-      "description": "One to two sentences describing what this project does and why it matters.",
-
-      "__ image_url __": "Full HTTPS URL to a project screenshot or preview image. Recommended size: 1200×630px. Set to empty string to skip the image.",
-      "image_url": "/assets/img/projects/project1.jpg",
-
-      "__ stack / stack_colors / stack_logos __": "CRITICAL: These THREE arrays MUST be the SAME LENGTH. They are parallel arrays — index 0 of stack pairs with index 0 of stack_colors and index 0 of stack_logos. If lengths differ, extra items will render with no color or logo.",
-      "stack":        ["React",    "TypeScript", "Node.js" ],
-      "stack_colors": ["61DAFB",   "3178C6",     "339933"  ],
-      "stack_logos":  ["react",    "typescript", "nodedotjs"],
-
-      "__ code_url __": "URL to the GitHub repository. Set to empty string '' to hide the GitHub button.",
-      "code_url": "https://github.com/yourusername/project-name",
-
-      "__ live_url __": "URL to the live deployed version. Set to empty string '' to hide the Live Demo button.",
-      "live_url": "https://yourproject.vercel.app"
+      "title": "The JSON Source of Truth",
+      "description": "A revolutionary system where editing one single file changes the entire universe (or at least your website). No HTML knowledge required, just valid brackets.",
+      "image_url": "/assets/img/projects/project-1.png",
+      "stack":        ["JSON",      "Jekyll",   "Logic"],
+      "stack_colors": ["000000",    "CC0000",   "58a6ff"],
+      "stack_logos":  ["json",      "jekyll",   "blueprint"],
+      "code_url": "https://github.com/SriSatyaLokesh/devfolio",
+      "live_url": ""
+    },
+    {
+      "title": "Magical Background Shockwave",
+      "description": "A hidden Easter Egg triggered by the 'vanta-trigger' badge. Randomizes your WebGL background with a satisfying radial sweep that originates from your cursor.",
+      "image_url": "https://via.placeholder.com/600x340/0d1117/58a6ff?text=Shockwave+Effect",
+      "stack":        ["GSAP",      "Vanta.js", "Math"],
+      "stack_colors": ["88CE02",    "000000",   "FF3E00"],
+      "stack_logos":  ["greensock", "threejs",  "calculator"],
+      "code_url": "",
+      "live_url": ""
+    },
+    {
+      "title": "Cinematic Soundscapes",
+      "description": "A built-in ambient audio system that swelles your volume over 5 seconds for a premium, Interstellar-inspired entrance. Don't just show them your code; let them hear it.",
+      "image_url": "/assets/img/projects/project-3.png",
+      "stack":        ["Audio API", "GSAP",     "Atmosphere"],
+      "stack_colors": ["FFFFFF",    "88CE02",   "1DA1F2"],
+      "stack_logos":  ["itunes",    "greensock", "itunes"],
+      "code_url": "",
+      "live_url": ""
     }
   ],
 
-  "__ RECOMMENDATIONS __": "Testimonials from colleagues. The linkedin_url field is optional — set to empty string '' to hide the LinkedIn button.",
   "recommendations": [
     {
-      "__ text __": "The full recommendation text. Direct quotes work best.",
-      "text": "Write the recommendation text here. It will appear as a blockquote.",
-      "name": "Recommender Full Name",
-      "__ title __": "Their job title and company. Displayed below their name.",
-      "title": "Senior Engineer at Company Name",
-      "__ linkedin_url __": "OPTIONAL. If provided, a LinkedIn button links to their profile. Set to '' to hide.",
-      "linkedin_url": "https://linkedin.com/in/theirprofile"
+      "text": "DevFolio is so good, it actually convinced me to stop using React for a simple landing page. My Lighthouse score is 100/100 and my hands are finally clean of node_modules.",
+      "name": "A Grateful Developer",
+      "title": "Escaped React Dev",
+      "linkedin_url": ""
+    },
+    {
+      "text": "The Portfolio-as-Code philosophy is exactly what I needed. I spend all day in VS Code; why would I want to build my site in a browser drag-and-drop tool?",
+      "name": "Backend Guru",
+      "title": "Senior YAML Architect",
+      "linkedin_url": ""
     }
   ]
 }
