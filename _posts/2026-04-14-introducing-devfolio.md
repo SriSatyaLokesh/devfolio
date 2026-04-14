@@ -3,6 +3,8 @@ layout: post
 title: "DevFolio: The Portfolio-as-Code Revolution"
 date: 2026-04-13 08:00:00 +0530
 description: "Why I built a template that treats your professional identity like a high-performance system."
+image: "assets/img/blog-revolution.png"
+featured: true
 ---
 
 Welcome to the future of developer branding. **DevFolio** isn’t just another template; it’s a philosophical shift in how we maintain our professional presence online.

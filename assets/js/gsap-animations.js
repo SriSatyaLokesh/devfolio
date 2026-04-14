@@ -171,12 +171,50 @@ document.addEventListener("DOMContentLoaded", function () {
     contactTl.fromTo(".contact__cta-col > *", 
                { y: 20, opacity: 0 },
                { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: "power2.out", clearProps: "all" })
-             }, "-=0.3")
              .from(".contact__email-btn", { 
                 y: 20, 
                 opacity: 0, 
                 duration: 0.8 
              }, "-=0.5");
+
+    // ─── BLOG GRID (Editorial Stagger) ────────────────────────────────────
+    gsap.fromTo(".blog-card", 
+      { 
+        y: 80, 
+        opacity: 0,
+        rotateX: -10,
+        scale: 0.95
+      },
+      {
+        scrollTrigger: {
+          trigger: ".blog-grid",
+          start: "top 85%",
+          toggleActions: "play none none none"
+        },
+        y: 0, 
+        opacity: 1,
+        rotateX: 0,
+        scale: 1,
+        duration: 1.4,
+        stagger: 0.2,
+        ease: "expo.out",
+        clearProps: "all"
+      }
+    );
+
+    // ─── READING PROGRESS INDICATOR ───────────────────────────────────────
+    if (document.querySelector(".post")) {
+      gsap.to("#reading-progress", {
+        width: "100%",
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".post",
+          start: "top var(--nav-height)",
+          end: "bottom bottom",
+          scrub: true
+        }
+      });
+    }
 
     return () => {
       // Cleanup matchMedia listeners if necessary
