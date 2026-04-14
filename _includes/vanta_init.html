@@ -1,0 +1,154 @@
+{% assign vanta = site.data.profile.theme_config.vanta_effect | default: 'net' | downcase %}
+{% assign is_p5 = "cells,dots,halo,trunk" | split: "," contains vanta %}
+
+<!-- Load Vanta Dependencies -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+{% if is_p5 %}
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+{% endif %}
+
+<!-- Load the specific Vanta effect from CDN -->
+<script defer src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.{{ vanta }}.min.js"></script>
+
+<script>
+  window.initVanta = function() {
+    if (window.DEV_FOLIO_VANTA) {
+      window.DEV_FOLIO_VANTA.destroy();
+    }
+
+    // Surgical color helper for Vanta/Three.js
+    const colorToNum = (hex) => {
+      if (!hex) return 0x000000;
+      return parseInt(hex.replace("#", "0x"), 16);
+    };
+
+    const effectKey = '{{ vanta | upcase }}';
+    const accentStr = "{{ site.data.profile.theme_config.colors.accent | default: '#58a6ff' }}";
+    const primaryStr = "{{ site.data.profile.theme_config.colors.primary | default: '#0d1117' }}";
+    
+    // Theme detection
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const bgStr = isLight ? '#f0f4f8' : primaryStr;
+
+    // Numeric versions
+    const accent = colorToNum(accentStr);
+    const bg = colorToNum(bgStr);
+
+    let config = {
+      el: "#hero",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      backgroundColor: bg,
+      color: accent
+    };
+
+    // Precision tuning for every effect
+    switch(effectKey) {
+      case 'BIRDS':
+        config.color1 = accent;
+        config.color2 = accent; // Force monochromatic
+        config.colorMode = "lerp";
+        config.birdSize = 1.2;
+        break;
+      case 'WAVES':
+        config.color = accent;
+        config.backgroundColor = bg;
+        config.shininess = isLight ? 50 : 150; 
+        config.waveHeight = 35.0;
+        config.waveSpeed = 1.0;
+        config.zoom = 0.8;
+        break;
+      case 'FOG':
+        config.highlightColor = accent;
+        config.midtoneColor = accent;
+        config.lowlightColor = accent;
+        config.baseColor = bg;
+        break;
+      case 'NET':
+        config.color = accent;
+        config.backgroundColor = bg;
+        break;
+      case 'DOTS':
+        config.color = accent;
+        config.color2 = accent;
+        config.backgroundColor = bg;
+        config.size = 3.0;
+        config.spacing = 35.0;
+        break;
+      case 'CELLS':
+        config.color1 = accent;
+        config.color2 = accent;
+        break;
+      case 'CLOUDS':
+      case 'CLOUDS2':
+        // Clouds/Clouds2 are explicitly exempted from monochromatic force per user request
+        if (isLight) {
+          config.skyColor = 0x68b2e3;
+          config.cloudColor = 0xadc1d6;
+          config.cloudShadowColor = 0x183550;
+          config.sunColor = 0xff9919;
+          config.sunGlareColor = 0xff6633;
+          config.sunlightColor = 0xff9933;
+        } else {
+          config.skyColor = colorToNum(effectKey === 'CLOUDS2' ? '#0d1117' : bgStr);
+          config.cloudColor = colorToNum('#334155');
+          config.cloudShadowColor = colorToNum('#1e293b');
+          config.sunColor = accent;
+        }
+        config.speed = 1.2;
+        if (effectKey === 'CLOUDS2' && !isLight) {
+          config.lightColor = accent;
+        }
+        break;
+      case 'TOPOLOGY':
+        config.color = accent;
+        config.backgroundColor = bg;
+        config.speed = 6.0;
+        break;
+      case 'RINGS':
+        // Rings is explicitly exempted but follows accent where applicable
+        config.color = accent;
+        config.backgroundColor = bg;
+        break;
+      case 'HALO':
+        const haloBgStr = isLight ? '#94a3b8' : bgStr;
+        config.backgroundColor = colorToNum(haloBgStr);
+        config.baseColor = colorToNum(haloBgStr);
+        config.color2 = accent;
+        config.color = accent;
+        config.amplitudeFactor = 2.0;
+        break;
+      default:
+        break;
+    }
+
+    try {
+      if (typeof VANTA !== 'undefined' && typeof VANTA[effectKey] === 'function') {
+        const instance = VANTA[effectKey](config);
+        
+        // Post-init hijacking to force monochromatic sync on problematic effects
+        if (effectKey === 'RINGS' || effectKey === 'HALO') {
+          if (instance.colors) instance.colors = [accent, accent];
+          if (instance.options) {
+            instance.options.color = accent;
+            instance.options.color2 = accent;
+          }
+          if (typeof instance.restart === 'function') instance.restart();
+        }
+        
+        window.DEV_FOLIO_VANTA = instance;
+      } else {
+        if (effectKey !== 'NET' && typeof VANTA !== 'undefined' && typeof VANTA.NET === 'function') {
+           window.DEV_FOLIO_VANTA = VANTA.NET(config);
+        }
+      }
+    } catch(err) {
+      console.error("Vanta initialization failed:", err);
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', window.initVanta);
+</script>
