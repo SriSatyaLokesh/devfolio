@@ -1,0 +1,27 @@
+title: DevFolio
+description: Portfolio-as-Code — A Jekyll developer portfolio template. Fork, fill JSON, deploy.
+baseurl: "/devfolio"
+url: "https://srisatyalokesh.github.io"
+
+# Build settings
+markdown: kramdown
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# Exclude from build output
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - AGENTS.md
+  - CONTRIBUTING.md
+  - PROJECT_RULES.md
+  - SUPERPOWER-STYLE.md
+  - docs/
+  - skills/
+  - .agent/
+  - .gemini/
+  - adapters/
+  - node_modules/
+  - vendor/
