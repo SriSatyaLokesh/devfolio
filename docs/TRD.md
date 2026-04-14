@@ -202,23 +202,25 @@ The `_includes/vanta_init.html` file dynamically reads the effect name and accen
 
 ```html
 <!-- _includes/vanta_init.html -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.{{ site.data.profile.theme_config.vanta_effect | default: 'net' }}.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.{{ vanta }}.min.js"></script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const effect = "{{ site.data.profile.theme_config.vanta_effect | default: 'net' | upcase }}";
+  window.initVanta = function() {
+    const effect = window._VANTA_OVERRIDE || "{{ vanta | upcase }}";
     VANTA[effect]({
       el: "#hero",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      color: "{{ site.data.profile.theme_config.colors.accent }}",
-      backgroundColor: "{{ site.data.profile.theme_config.colors.primary }}"
+      // ... configuration ...
     });
-  });
+  };
+
+  // ─── MAGIC EASTER EGG (Triggered by Badge Dbl-Click) ───────────────────
+  window.randomizeVanta = async function() {
+    // 1. Calculate shockwave center relative to #vanta-trigger
+    // 2. Animate .hero__magic-wave via radial clip-path expansion
+    // 3. Swap Vanta effect dynamically via script injection
+    // 4. Re-initialize Vanta context
+  };
 </script>
 ```
 
@@ -351,6 +353,13 @@ nav {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+// Hero CTAs - Flat Elite Restore Design
+.hero__cta {
+  box-shadow: none !important; // Explicitly shadowless for premium look
+  filter: none !important;     // No hover glows
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 ```
 
