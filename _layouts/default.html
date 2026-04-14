@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ site.data.profile.theme_config.mode | default: 'dark' }}">
+  {% include head.html %}
+  <body>
+    {% include nav.html %}
+    <main>
+      {{ content }}
+    </main>
+    {% include footer.html %}
+    {% assign vanta = site.data.profile.theme_config.vanta_effect %}
+    {% if vanta and vanta != "" %}
+      {% include vanta_init.html %}
+    {% endif %}
+
+    <!-- Interactions -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="{{ '/assets/js/smooth-scroll.js' | prepend: site.baseurl }}"></script>
+    <script defer src="{{ '/assets/js/gsap-animations.js' | prepend: site.baseurl }}"></script>
+  </body>
+</html>

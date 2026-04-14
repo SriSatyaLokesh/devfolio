@@ -1,0 +1,30 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="{{ site.description }}" />
+<title>{{ site.data.profile.name }} | Portfolio</title>
+
+<!-- FOUC Prevention: inject CSS variables and initial theme before stylesheet loads -->
+<style>
+  :root {
+    --color-primary:   {{ site.data.profile.theme_config.colors.primary   | default: '#0d1117' }};
+    --color-secondary: {{ site.data.profile.theme_config.colors.secondary | default: '#161b22' }};
+    --color-accent:    {{ site.data.profile.theme_config.colors.accent    | default: '#58a6ff' }};
+  }
+</style>
+<script>
+  // Apply saved theme preference before any paint to prevent FOUC
+  (function() {
+    var saved = localStorage.getItem('devfolio-theme');
+    var jsonDefault = '{{ site.data.profile.theme_config.mode | default: "dark" }}';
+    var theme = saved || jsonDefault;
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<!-- Google Fonts: Space Grotesk + Archivo -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="{{ '/assets/css/main.css' | prepend: site.baseurl }}" />
