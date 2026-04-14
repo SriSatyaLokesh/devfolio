@@ -1,0 +1,68 @@
+---
+layout: default
+---
+
+<section class="section-wrapper blog-index">
+  <div class="container">
+    <div class="section-header">
+      <h1 class="section-title">Insights & Articles</h1>
+      <p class="section-subtitle">Deep dives into architecture, full-stack restoration, and portfolio engineering.</p>
+    </div>
+
+    <div class="blog-grid">
+      {% for post in site.posts %}
+        {% assign idx = forloop.index %}
+        {% assign items_count = site.posts | size %}
+        
+        {% capture bento_class %}
+          {% if items_count == 1 %}
+            span-12
+          {% elsif items_count == 2 %}
+            span-6
+          {% else %}
+            {% cycle 'span-8', 'span-4', 'span-12', 'span-6', 'span-6' %}
+          {% endif %}
+        {% endcapture %}
+        {% assign bento_class = bento_class | strip %}
+
+        <article class="blog-card blog-card--{{ bento_class }} interactive-glow">
+          <a href="{{ post.url | relative_url }}" class="blog-card__link">
+            <div class="blog-card__content">
+              <div class="blog-card__meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}" class="blog-card__date">
+                  {{ post.date | date: "%B %d, %Y" }}
+                </time>
+                <span class="blog-card__reading-time">
+                  {% assign words = post.content | number_of_words %}
+                  {% if words < 360 %}
+                    1 min read
+                  {% else %}
+                    {{ words | divided_by: 180 }} min read
+                  {% endif %}
+                </span>
+              </div>
+              <h2 class="blog-card__title">{{ post.title }}</h2>
+              <p class="blog-card__excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+              
+              <div class="blog-card__footer">
+                <span class="blog-card__cta">Read Article</span>
+                <svg class="icon icon--arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                  <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+                </svg>
+              </div>
+            </div>
+          </a>
+        </article>
+      {% endfor %}
+    </div>
+
+    <div class="blog-index__back">
+      <a href="{{ '/' | relative_url }}" class="btn btn--secondary">
+        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+          <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Back to Portfolio
+      </a>
+    </div>
+  </div>
+</section>
