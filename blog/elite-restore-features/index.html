@@ -18,6 +18,10 @@
     --color-primary:   #0d1117;
     --color-secondary: #161b22;
     --color-accent:    #58a6ff;
+    
+    /* Derived Tokens (Liquid + CSS) */
+    --color-accent-subtle: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    --color-border-glamour: color-mix(in srgb, var(--color-accent) 25%, var(--color-border, #30363d));
   }
 </style>
 <script>
@@ -197,17 +201,6 @@
           
           
             <article class="blog-card blog-card--span-4">
-              <a href="/devfolio/blog/vanta-performance/" class="blog-card__link">
-                <div class="blog-card__content interactive-glow">
-                  <div class="blog-card__image-wrap">
-                    <img src="/devfolio/assets/img/blog-vanta-performance.png" alt="Vanta.js Performance: Engineering Motion" class="blog-card__image" loading="lazy">
-                  </div>
-                  <h4 class="blog-card__title">Vanta.js Performance: Engineering Motion</h4>
-                </div>
-              </a>
-            </article>
-          
-            <article class="blog-card blog-card--span-4">
               <a href="/devfolio/blog/introducing-devfolio/" class="blog-card__link">
                 <div class="blog-card__content interactive-glow">
                   <div class="blog-card__image-wrap">
@@ -225,6 +218,17 @@
                     <img src="/devfolio/assets/img/blog-design-2026.png" alt="Foundational Design: Architecting for 2026" class="blog-card__image" loading="lazy">
                   </div>
                   <h4 class="blog-card__title">Foundational Design: Architecting for 2026</h4>
+                </div>
+              </a>
+            </article>
+          
+            <article class="blog-card blog-card--span-4">
+              <a href="/devfolio/blog/mastering-portfolio-as-code-configuration-guide/" class="blog-card__link">
+                <div class="blog-card__content interactive-glow">
+                  <div class="blog-card__image-wrap">
+                    <img src="/devfolio/assets/img/devfolio.png" alt="The Master Guide to Portfolio-as-Code Configuration" class="blog-card__image" loading="lazy">
+                  </div>
+                  <h4 class="blog-card__title">The Master Guide to Portfolio-as-Code Configuration</h4>
                 </div>
               </a>
             </article>

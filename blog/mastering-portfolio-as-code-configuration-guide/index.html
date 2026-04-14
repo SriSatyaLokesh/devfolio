@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Portfolio-as-Code — A Jekyll developer portfolio template. Fork, fill JSON, deploy." />
+<title>DevFolio | Portfolio</title>
+
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="/devfolio/assets/img/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/devfolio/assets/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/devfolio/assets/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="/devfolio/assets/img/favicon/site.webmanifest">
+<link rel="shortcut icon" href="/devfolio/assets/img/favicon/favicon.ico">
+
+<!-- FOUC Prevention: inject CSS variables and initial theme before stylesheet loads -->
+<style>
+  :root {
+    --color-primary:   #0d1117;
+    --color-secondary: #161b22;
+    --color-accent:    #58a6ff;
+    
+    /* Derived Tokens (Liquid + CSS) */
+    --color-accent-subtle: color-mix(in srgb, var(--color-accent) 15%, transparent);
+    --color-border-glamour: color-mix(in srgb, var(--color-accent) 25%, var(--color-border, #30363d));
+  }
+</style>
+<script>
+  // Apply saved theme preference before any paint to prevent FOUC
+  (function() {
+    var saved = localStorage.getItem('devfolio-theme');
+    var jsonDefault = 'dark';
+    var theme = saved || jsonDefault;
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<!-- Google Fonts: Space Grotesk + Archivo -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="/devfolio/assets/css/main.css" />
+
+  <body>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="container nav__inner">
+    <a href="/devfolio/#hero" class="nav__brand">
+      
+        <img src="/devfolio/assets/img/devfolio.png" alt="Logo" class="nav__logo-img">
+      
+    </a>
+
+    <ul class="nav__links" role="list" id="nav-links">
+      <div class="nav__indicator"></div>
+      <li><a href="/devfolio/#profile"         class="nav__link">About</a></li>
+      <li><a href="/devfolio/#experience"      class="nav__link">Experience</a></li>
+      <li><a href="/devfolio/#education"       class="nav__link">Education</a></li>
+      <li><a href="/devfolio/#skills"          class="nav__link">Skills</a></li>
+      <li><a href="/devfolio/#projects"        class="nav__link">Projects</a></li>
+      <li><a href="/devfolio/#contact"         class="nav__link">Contact</a></li>
+      
+        <li><a href="/devfolio/blog/" class="nav__link">Blog</a></li>
+      
+    </ul>
+
+    <div class="nav__actions">
+      <!-- Cinematic Sound Toggle -->
+      
+      <button
+        id="sound-toggle"
+        class="nav__sound-toggle"
+        onclick="window.toggleSound()"
+        aria-label="Toggle background music"
+        title="Toggle Sound"
+      >
+        <div class="wavelength">
+          <span class="wavelength__bar"></span>
+          <span class="wavelength__bar"></span>
+          <span class="wavelength__bar"></span>
+          <span class="wavelength__bar"></span>
+        </div>
+      </button>
+      
+
+      <!-- Dark/Light mode toggle -->
+      <button
+        id="theme-toggle"
+        class="nav__theme-toggle"
+        aria-label="Toggle dark/light mode"
+        title="Toggle theme"
+      >
+        <!-- Sun icon (light mode) -->
+        <svg class="icon icon--sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <!-- Moon icon (dark mode) -->
+        <svg class="icon icon--moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="nav-toggle"
+        class="nav__hamburger"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="nav-links"
+      >
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+        <span class="hamburger__bar"></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+    <main>
+      <div class="reading-progress" aria-hidden="true">
+  <div class="reading-progress__bar" id="reading-progress"></div>
+</div>
+
+<article class="post">
+  <header class="post-hero">
+    <div class="container container--immersive">
+      
+        <div class="post-featured-image interactive-glow">
+          <img src="/devfolio/assets/img/devfolio.png" alt="The Master Guide to Portfolio-as-Code Configuration" loading="lazy">
+        </div>
+      
+
+      <div class="post-meta">
+        <span class="badge">Article</span>
+        <time datetime="2026-04-14T18:30:00+00:00" class="post-date">
+          April 14, 2026
+        </time>
+        <span class="post-reading-time">
+          
+          
+            7 min read
+          
+        </span>
+      </div>
+      <h1 class="post-title">The Master Guide to Portfolio-as-Code Configuration</h1>
+      
+        <p class="post-description">A comprehensive deep-dive into the DevFolio engine. Learn how to orchestrate every pixel, interaction, and cinematic effect using a single profile.json file.</p>
+      
+    </div>
+  </header>
+
+  <div class="container container--immersive">
+    <div class="post-content card glass">
+      <h1 id="introduction-the-era-of-software-driven-identity">Introduction: The Era of Software-Driven Identity</h1>
+
+<p>DevFolio isn’t just a website template; it’s a high-fidelity engine designed to represent you as a top-tier engineer. By moving away from brittle HTML structures to a <strong>Portfolio-as-Code</strong> model, you ensure your professional identity is version-controlled, scalable, and effortlessly beautiful.</p>
+
+<p>In this master guide, we will dissect every single configuration block within <code class="language-plaintext highlighter-rouge">_data/profile.json</code>.</p>
+
+<hr />
+
+<h2 id="1-the-aesthetic-brain-theme_config">1. The Aesthetic Brain: <code class="language-plaintext highlighter-rouge">theme_config</code></h2>
+
+<p>This block controls the visual “soul” of your portfolio. It manages WebGL backgrounds, the dynamic color system, and cinematic audio.</p>
+
+<h3 id="global-colors">Global Colors</h3>
+<p>The <code class="language-plaintext highlighter-rouge">colors</code> object defines the trio that permeates the site.</p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">primary</code></strong>: The foundation background.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">secondary</code></strong>: The glassmorphic panel and card background.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">accent</code></strong>: The “brand” color used for buttons, underlines, timeline dots, and highlights.</li>
+</ul>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"colors"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nl">"primary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#0a0a0c"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"secondary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#121216"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"accent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"#C084FC"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="cinematic-audio">Cinematic Audio</h3>
+<p>Enable a tiered volume ramp that breathes life into your site on entry.</p>
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">enabled</code></strong>: Toggle audio on/off.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">file</code></strong>: Path to your audio asset (e.g., <code class="language-plaintext highlighter-rouge">./assets/music/interstellar.mp3</code>).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">max_volume</code></strong>: The peak volume (0.0 to 1.0).</li>
+</ul>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"music"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+  </span><span class="nl">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./assets/music/interstellar.mp3"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"max_volume"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<hr />
+
+<h2 id="2-personal-branding--seo">2. Personal Branding &amp; SEO</h2>
+
+<p>The root-level fields define who you are to both humans and search engines.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sri Satya Lokesh"</span><span class="err">,</span><span class="w">
+</span><span class="nl">"headline"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lead Engineer &amp; AI Architect"</span><span class="err">,</span><span class="w">
+</span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"srisatyalokesh@duck.com"</span><span class="err">,</span><span class="w">
+</span><span class="nl">"profile_image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"assets/img/profile.png"</span><span class="err">,</span><span class="w">
+</span><span class="nl">"resume_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"assets/resume.pdf"</span><span class="err">,</span><span class="w">
+</span><span class="nl">"bio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lead Engineer with 7+ years of expertise in architecting scalable platforms..."</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">email</code></strong>: Crucial for the contact section. It maps directly to a one-click copy-to-clipboard button.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">bio</code></strong>: Supports multi-paragraph text. This is your primary “About” content.</li>
+</ul>
+
+<hr />
+
+<h2 id="3-social-connectivity">3. Social Connectivity</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">social</code> array populates your floating nav and contact section. It uses <strong>Simple Icons</strong> for a clean, professional look.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"social"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w"> 
+    </span><span class="nl">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GitHub"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/SriSatyaLokesh"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"github"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"181717"</span><span class="w"> 
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w"> 
+    </span><span class="nl">"platform"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LinkedIn"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://linkedin.com/in/srisatyalokesh"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"logo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"linkedin"</span><span class="p">,</span><span class="w"> 
+    </span><span class="nl">"color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0A66C2"</span><span class="w"> 
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">logo</code></strong>: The slug name from <a href="https://simpleicons.org">SimpleIcons.org</a>.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">color</code></strong>: The hex value (without <code class="language-plaintext highlighter-rouge">#</code>) used for the Shields.io badge highlights.</li>
+</ul>
+
+<hr />
+
+<h2 id="4-the-career-timeline-experience--education">4. The Career Timeline: <code class="language-plaintext highlighter-rouge">experience</code> &amp; <code class="language-plaintext highlighter-rouge">education</code></h2>
+
+<p>These sections utilize a structured timeline layout. Each entry creates a “Glass Panel” that lifts on hover.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"experience"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lead Engineer"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"company"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dhan AI"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"company_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://dhan.ai"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"duration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2024 – Present"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"Architected a multi-tenant chatbot automation platform supporting 350K+ customers."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Mentored a team of 18+ engineers across two technical verticals."</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Optimized event-driven notification systems using Kafka and Redis."</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">description</code></strong>: An array of strings. Each string becomes a bullet point in the list.</li>
+</ul>
+
+<hr />
+
+<h2 id="5-the-tech-bento-skills">5. The Tech Bento: <code class="language-plaintext highlighter-rouge">skills</code></h2>
+
+<p>Your skills are organized into categories, rendering as a “Bento” style grid.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"skills"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Architectural Brain"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"System Design"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Kafka"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Redis"</span><span class="p">,</span><span class="w"> </span><span class="s2">"Kafka"</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"logos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"googlesheets"</span><span class="p">,</span><span class="w"> </span><span class="s2">"apachekafka"</span><span class="p">,</span><span class="w"> </span><span class="s2">"redis"</span><span class="p">,</span><span class="w"> </span><span class="s2">"apachekafka"</span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">items</code></strong>: The text labels for your skills.</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">logos</code></strong>: Matching Simple Icon slugs. Note: The icons will subtly take on your <code class="language-plaintext highlighter-rouge">accent</code> color on hover.</li>
+</ul>
+
+<hr />
+
+<h2 id="6-the-6-project-showcase">6. The 6-Project Showcase</h2>
+
+<p>The <code class="language-plaintext highlighter-rouge">projects</code> array is the highlight of your craftsmanship. <strong>Note</strong>: The template is design-optimized for exactly 6 projects.</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DevFolio"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A high-fidelity Portfolio-as-Code template for developers..."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"./assets/img/devfolio.png"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"stack"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Jekyll"</span><span class="p">,</span><span class="w"> </span><span class="s2">"SCSS"</span><span class="p">,</span><span class="w"> </span><span class="s2">"GSAP"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"stack_colors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"CC0000"</span><span class="p">,</span><span class="w"> </span><span class="s2">"1572B6"</span><span class="p">,</span><span class="w"> </span><span class="s2">"88CE02"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"stack_logos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"jekyll"</span><span class="p">,</span><span class="w"> </span><span class="s2">"css3"</span><span class="p">,</span><span class="w"> </span><span class="s2">"greensock"</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"code_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://github.com/SriSatyaLokesh/devfolio"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"live_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://srisatyalokesh.github.io/devfolio/"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<ul>
+  <li><strong><code class="language-plaintext highlighter-rouge">stack_colors</code></strong>: HEX values (no <code class="language-plaintext highlighter-rouge">#</code>) that will be used to generate the tech badges at the bottom of the card.</li>
+</ul>
+
+<hr />
+
+<h2 id="7-elite-design-presets-10-curated-palettes">7. Elite Design Presets: 10 Curated Palettes</h2>
+
+<p>Don’t spend hours guessing. Use these tested combinations to achieve instant “Elite” status:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Palette Name</th>
+      <th style="text-align: left">Primary</th>
+      <th style="text-align: left">Secondary</th>
+      <th style="text-align: left">Accent</th>
+      <th style="text-align: left">Effect Pair</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><strong>Amethyst Night</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#0a0a0c</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#121216</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#C084FC</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">birds</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Volcano Lead</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#050505</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#1a0505</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#FF4500</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">net</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Cyber Monolith</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#010101</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#0f0f12</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#EAB308</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">rings</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Forest Guard</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#0a0c0a</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#121612</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#10B981</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">waves</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Carbon Blue</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#0d1117</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#161b22</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#58a6ff</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">net</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Midnight Rose</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#0c0a0a</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#161212</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#F43F5E</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">fog</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Deep Nebula</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#0a0a14</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#121220</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#8B5CF6</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">clouds</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Electric Slate</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#0f172a</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#1e293b</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#38BDF8</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">net</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Industrial Gold</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#000000</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#111111</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#F59E0B</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">halo</code></td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><strong>Matte Crimson</strong></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#080808</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#141414</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">#EF4444</code></td>
+      <td style="text-align: left"><code class="language-plaintext highlighter-rouge">rings</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="conclusion-final-checklist">Conclusion: Final Checklist</h2>
+
+<p>Before you deploy your new high-fidelity profile:</p>
+<ol>
+  <li><strong>Validate your JSON</strong>: Ensure every brace and comma is correct.</li>
+  <li><strong>Toggle <code class="language-plaintext highlighter-rouge">vanta_magic</code></strong>: Double-click your “Available for work” badge to see the shockwave.</li>
+  <li><strong>Check Socials</strong>: Ensure your Simple Icon slugs match their official naming.</li>
+</ol>
+
+<p>Happy building, Lead Engineer.</p>
+
+    </div>
+
+    <footer class="post-footer">
+      <div class="post-recommendations">
+        <h3 class="post-recommendations__title">Explore More Insights</h3>
+        <div class="blog-grid blog-grid--mini">
+          
+          
+            <article class="blog-card blog-card--span-4">
+              <a href="/devfolio/blog/elite-restore-features/" class="blog-card__link">
+                <div class="blog-card__content interactive-glow">
+                  <div class="blog-card__image-wrap">
+                    <img src="/devfolio/assets/img/blog-restoration.png" alt="Exploring Elite Restoration: GSAP, Vanta, and Glassmorphism" class="blog-card__image" loading="lazy">
+                  </div>
+                  <h4 class="blog-card__title">Exploring Elite Restoration: GSAP, Vanta, and Glassmorphism</h4>
+                </div>
+              </a>
+            </article>
+          
+            <article class="blog-card blog-card--span-4">
+              <a href="/devfolio/blog/introducing-devfolio/" class="blog-card__link">
+                <div class="blog-card__content interactive-glow">
+                  <div class="blog-card__image-wrap">
+                    <img src="/devfolio/assets/img/blog-revolution.png" alt="DevFolio: The Portfolio-as-Code Revolution" class="blog-card__image" loading="lazy">
+                  </div>
+                  <h4 class="blog-card__title">DevFolio: The Portfolio-as-Code Revolution</h4>
+                </div>
+              </a>
+            </article>
+          
+            <article class="blog-card blog-card--span-4">
+              <a href="/devfolio/blog/vanta-performance/" class="blog-card__link">
+                <div class="blog-card__content interactive-glow">
+                  <div class="blog-card__image-wrap">
+                    <img src="/devfolio/assets/img/blog-vanta-performance.png" alt="Vanta.js Performance: Engineering Motion" class="blog-card__image" loading="lazy">
+                  </div>
+                  <h4 class="blog-card__title">Vanta.js Performance: Engineering Motion</h4>
+                </div>
+              </a>
+            </article>
+          
+        </div>
+      </div>
+      <div class="post-pagination">
+        
+          <a href="/devfolio/blog/vanta-performance/" class="post-pagination__link post-pagination__link--prev">
+            <span class="label">Previous Article</span>
+            <span class="title">Vanta.js Performance: Engineering Motion</span>
+          </a>
+        
+
+        
+      </div>
+
+      <div class="post-back">
+        <a href="/devfolio/blog/" class="btn btn--secondary">
+          <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+            <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+          </svg>
+          Back to Insights
+        </a>
+      </div>
+    </footer>
+  </div>
+</article>
+
+    </main>
+    <footer class="footer" role="contentinfo">
+  <div class="container footer__inner">
+    <div class="footer__left">
+      <p class="footer__copy">
+        &copy; 2026 DevFolio. All rights reserved.
+      </p>
+      <p class="footer__credit">
+        Built with <a href="https://github.com/SriSatyaLokesh/devfolio" target="_blank" rel="noopener">DevFolio</a>
+        &mdash; Portfolio-as-Code.
+      </p>
+    </div>
+
+    <div class="footer__right">
+      <a href="#hero" class="footer__back-to-top" title="Back to Top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+          <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+    
+    
+      
+
+
+<!-- Load Vanta Dependencies -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+
+
+<!-- Load the specific Vanta effect from CDN -->
+<script defer src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+
+<script>
+  // WHITELIST: Core Three.js effects (No P5 dependencies)
+  const VANTA_EFFECTS = ['NET', 'WAVES', 'FOG', 'CLOUDS', 'CLOUDS2', 'RINGS', 'TOPOLOGY'];
+  let currentEffect = 'BIRDS';
+
+  window.loadVantaScript = function(effectName) {
+    return new Promise((resolve, reject) => {
+      const slug = effectName.toLowerCase();
+      if (typeof VANTA !== 'undefined' && typeof VANTA[effectName] === 'function') {
+        resolve();
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = `https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.${slug}.min.js`;
+      script.onload = resolve;
+      script.onerror = reject;
+      document.head.appendChild(script);
+    });
+  };
+
+  // ─── EASTER EGG TRIGGER ────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', () => {
+    const trigger = document.getElementById('vanta-trigger');
+    if (trigger) {
+      trigger.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        window.randomizeVanta();
+      });
+      // Prevent selection on rapid clicking
+      trigger.addEventListener('mousedown', (e) => {
+        if (e.detail > 1) e.preventDefault();
+      });
+    }
+  });
+
+  window.randomizeVanta = async function() {
+    const trigger = document.getElementById('vanta-trigger');
+    const heroContent = document.querySelector('.hero__content');
+    const shockwave = document.getElementById('vanta-shockwave');
+    const heroSection = document.getElementById('hero');
+    
+    if (trigger) {
+      trigger.classList.add('loading');
+    }
+
+    // ─── MAGIC SHOCKWAVE CALCULATIONS ──────────────────────────────────────
+    if (shockwave && heroSection && trigger) {
+      const rect = trigger.getBoundingClientRect();
+      const heroRect = heroSection.getBoundingClientRect();
+      
+      // Calculate center relative to hero coordinate system
+      const centerX = ((rect.left + rect.width/2) - heroRect.left) / heroRect.width * 100;
+      const centerY = ((rect.top + rect.height/2) - heroRect.top) / heroRect.height * 100;
+
+      // Reset and trigger expansion
+      gsap.set(shockwave, { 
+        clipPath: `circle(0% at ${centerX}% ${centerY}%)`,
+        opacity: 0.8,
+        display: 'block'
+      });
+
+      gsap.to(shockwave, {
+        clipPath: `circle(150% at ${centerX}% ${centerY}%)`,
+        opacity: 0,
+        duration: 1.8,
+        ease: "power2.out",
+        onComplete: () => {
+          gsap.set(shockwave, { display: 'none' });
+        }
+      });
+    }
+    
+    if (heroContent) {
+      gsap.to(heroContent, {
+        y: -15,
+        scale: 1.02,
+        opacity: 0.7,
+        duration: 0.8,
+        ease: "power2.out"
+      });
+    }
+
+    // Pick new random effect from whitelist
+    let nextIdx = Math.floor(Math.random() * VANTA_EFFECTS.length);
+    let nextEffect = VANTA_EFFECTS[nextIdx];
+    
+    if (nextEffect === currentEffect) {
+      nextIdx = (nextIdx + 1) % VANTA_EFFECTS.length;
+      nextEffect = VANTA_EFFECTS[nextIdx];
+    }
+
+    try {
+      await window.loadVantaScript(nextEffect);
+      currentEffect = nextEffect;
+      window._VANTA_OVERRIDE = nextEffect;
+      window.initVanta();
+      
+    } catch (err) {
+      console.error("Magic failed:", err);
+    } finally {
+      if (trigger) trigger.classList.remove('loading');
+      if (heroContent) {
+        gsap.to(heroContent, {
+          y: 0,
+          scale: 1,
+          opacity: 1,
+          duration: 0.8,
+          ease: "elastic.out(1, 0.75)"
+        });
+      }
+    }
+  };
+
+  window.initVanta = function() {
+    if (window.DEV_FOLIO_VANTA) {
+      window.DEV_FOLIO_VANTA.destroy();
+    }
+
+    // Surgical color helper for Vanta/Three.js
+    const colorToNum = (hex) => {
+      if (!hex) return 0x000000;
+      return parseInt(hex.replace("#", "0x"), 16);
+    };
+
+    const effectKey = window._VANTA_OVERRIDE || 'BIRDS';
+    const accentStr = "#58a6ff";
+    const primaryStr = "#0d1117";
+    
+    // ... rest of logic remains same ...
+    
+    // Theme detection
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const bgStr = isLight ? '#f0f4f8' : primaryStr;
+
+    // Numeric versions
+    const accent = colorToNum(accentStr);
+    const bg = colorToNum(bgStr);
+
+    let config = {
+      el: "#hero",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      backgroundColor: bg,
+      color: accent
+    };
+
+    // Precision tuning for every effect
+    switch(effectKey) {
+      case 'BIRDS':
+        config.color1 = accent;
+        config.color2 = accent; // Force monochromatic
+        config.colorMode = "lerp";
+        config.birdSize = 1.2;
+        break;
+      case 'WAVES':
+        config.color = accent;
+        config.backgroundColor = bg;
+        config.shininess = isLight ? 50 : 150; 
+        config.waveHeight = 35.0;
+        config.waveSpeed = 1.0;
+        config.zoom = 0.8;
+        break;
+      case 'FOG':
+        config.highlightColor = accent;
+        config.midtoneColor = accent;
+        config.lowlightColor = accent;
+        config.baseColor = bg;
+        break;
+      case 'NET':
+        config.color = accent;
+        config.backgroundColor = bg;
+        break;
+      case 'DOTS':
+        config.color = accent;
+        config.color2 = accent;
+        config.backgroundColor = bg;
+        config.size = 3.0;
+        config.spacing = 35.0;
+        break;
+      case 'CELLS':
+        config.color1 = accent;
+        config.color2 = accent;
+        break;
+      case 'CLOUDS':
+      case 'CLOUDS2':
+        // Clouds/Clouds2 are explicitly exempted from monochromatic force per user request
+        if (isLight) {
+          config.skyColor = 0x68b2e3;
+          config.cloudColor = 0xadc1d6;
+          config.cloudShadowColor = 0x183550;
+          config.sunColor = 0xff9919;
+          config.sunGlareColor = 0xff6633;
+          config.sunlightColor = 0xff9933;
+        } else {
+          config.skyColor = colorToNum(effectKey === 'CLOUDS2' ? '#0d1117' : bgStr);
+          config.cloudColor = colorToNum('#334155');
+          config.cloudShadowColor = colorToNum('#1e293b');
+          config.sunColor = accent;
+        }
+        config.speed = 1.2;
+        if (effectKey === 'CLOUDS2' && !isLight) {
+          config.lightColor = accent;
+        }
+        break;
+      case 'TOPOLOGY':
+        config.color = accent;
+        config.backgroundColor = bg;
+        config.speed = 6.0;
+        break;
+      case 'RINGS':
+        // Rings is explicitly exempted but follows accent where applicable
+        config.color = accent;
+        config.backgroundColor = bg;
+        break;
+      case 'HALO':
+        const haloBgStr = isLight ? '#94a3b8' : bgStr;
+        config.backgroundColor = colorToNum(haloBgStr);
+        config.baseColor = colorToNum(haloBgStr);
+        config.color2 = accent;
+        config.color = accent;
+        config.amplitudeFactor = 2.0;
+        break;
+      default:
+        break;
+    }
+
+    try {
+      if (typeof VANTA !== 'undefined' && typeof VANTA[effectKey] === 'function') {
+        const instance = VANTA[effectKey](config);
+        
+        // Post-init hijacking to force monochromatic sync on problematic effects
+        if (effectKey === 'RINGS' || effectKey === 'HALO') {
+          if (instance.colors) instance.colors = [accent, accent];
+          if (instance.options) {
+            instance.options.color = accent;
+            instance.options.color2 = accent;
+          }
+          if (typeof instance.restart === 'function') instance.restart();
+        }
+        
+        window.DEV_FOLIO_VANTA = instance;
+      } else {
+        if (effectKey !== 'NET' && typeof VANTA !== 'undefined' && typeof VANTA.NET === 'function') {
+           window.DEV_FOLIO_VANTA = VANTA.NET(config);
+        }
+      }
+    } catch(err) {
+      console.error("Vanta initialization failed:", err);
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', window.initVanta);
+</script>
+
+    
+
+    
+
+<audio id="bg-music" loop preload="auto">
+  <source src="/devfolio/assets/music/interstellar.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  (function() {
+    const audio = document.getElementById('bg-music');
+    const targetVolume = 1.0;
+    let hasStarted = false;
+
+    // Fade volume using GSAP
+    window.fadeAudio = function(toVolume, duration = 1.5) {
+      if (!audio) return;
+      gsap.to(audio, {
+        volume: toVolume,
+        duration: duration,
+        ease: "power2.inOut",
+        onStart: () => {
+          if (toVolume > 0 && audio.paused) audio.play();
+        },
+        onComplete: () => {
+          if (toVolume === 0) audio.pause();
+          updateSoundToggleUI();
+        }
+      });
+    };
+
+    window.toggleSound = function() {
+      if (!audio) return;
+      if (audio.paused) {
+        window.fadeAudio(targetVolume, 2);
+      } else {
+        window.fadeAudio(0, 1);
+      }
+    };
+
+    function startCinematicExperience() {
+      if (hasStarted) return;
+      hasStarted = true;
+      
+      audio.volume = 0.5; // Start at audible 50%
+      audio.play().then(() => {
+        // High-Fidelity Cinematic Ramp
+        const tl = gsap.timeline({
+          onComplete: () => updateSoundToggleUI()
+        });
+
+        tl.to(audio, {
+          volume: 0.8,
+          duration: 5,
+          ease: "power2.out"
+        })
+        .to(audio, {
+          volume: targetVolume,
+          duration: 15,
+          ease: "power1.inOut"
+        });
+
+      }).catch(err => {
+        console.warn("Autoplay blocked, waiting for next interaction or toggle.");
+        hasStarted = false; // Reset to try again on next click
+      });
+
+      // Cleanup listeners
+      ['click', 'mousedown', 'keydown', 'touchstart'].forEach(evt => {
+        document.removeEventListener(evt, startCinematicExperience);
+      });
+    }
+
+    // Modern mobile/desktop safety: wait for first interaction
+    ['click', 'mousedown', 'keydown', 'touchstart'].forEach(evt => {
+      document.addEventListener(evt, startCinematicExperience, { once: true });
+    });
+
+    function updateSoundToggleUI() {
+      const btn = document.getElementById('sound-toggle');
+      if (!btn) return;
+      if (audio.paused || audio.volume === 0) {
+        btn.classList.add('is-muted');
+      } else {
+        btn.classList.remove('is-muted');
+      }
+    }
+  })();
+</script>
+
+
+
+    <!-- Interactions -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="/devfolio/assets/js/smooth-scroll.js"></script>
+    <script defer src="/devfolio/assets/js/gsap-animations.js"></script>
+  </body>
+</html>
