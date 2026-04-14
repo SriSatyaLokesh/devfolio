@@ -1,0 +1,31 @@
+<section id="recommendations" class="recommendations section-wrapper" aria-label="Recommendations">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Recommendations</h2>
+    </div>
+    <div class="recommendations__grid">
+      {% for rec in site.data.profile.recommendations %}
+        <article class="rec-card">
+          <blockquote class="rec-card__quote">
+            <p>{{ rec.text }}</p>
+          </blockquote>
+          <footer class="rec-card__footer">
+            <strong class="rec-card__name">{{ rec.name }}</strong>
+            {% if rec.title and rec.title != "" %}
+              <span class="rec-card__title">{{ rec.title }}</span>
+            {% endif %}
+            {% if rec.linkedin_url and rec.linkedin_url != "" %}
+              <a
+                href="{{ rec.linkedin_url }}"
+                class="rec-card__linkedin"
+                target="_blank"
+                rel="noopener"
+                aria-label="View {{ rec.name }}'s LinkedIn profile"
+              >LinkedIn &rarr;</a>
+            {% endif %}
+          </footer>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
