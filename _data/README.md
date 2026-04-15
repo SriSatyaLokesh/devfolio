@@ -84,6 +84,141 @@ Showcase your best work and praise.
 | **Industrial Gold** | `#000000` | `#111111` | `#F59E0B` | `halo` |
 | **Matte Crimson** | `#080808` | `#141414` | `#EF4444` | `rings` |
 
+### JSON Presets (Copy-Paste Ready)
+
+> [!TIP]
+> To try these out, copy the snippet and replace the `vanta_effect` and `colors` object in your `_data/profile.json`.
+
+<details>
+<summary><b>1. Amethyst Night</b></summary>
+
+```json
+"vanta_effect": "birds",
+"colors": {
+  "primary": "#0a0a0c",
+  "secondary": "#121216",
+  "accent": "#C084FC"
+}
+```
+</details>
+
+<details>
+<summary><b>2. Volcano Lead</b></summary>
+
+```json
+"vanta_effect": "net",
+"colors": {
+  "primary": "#050505",
+  "secondary": "#1a0505",
+  "accent": "#FF4500"
+}
+```
+</details>
+
+<details>
+<summary><b>3. Cyber Monolith</b></summary>
+
+```json
+"vanta_effect": "rings",
+"colors": {
+  "primary": "#010101",
+  "secondary": "#0f0f12",
+  "accent": "#EAB308"
+}
+```
+</details>
+
+<details>
+<summary><b>4. Forest Guard</b></summary>
+
+```json
+"vanta_effect": "waves",
+"colors": {
+  "primary": "#0a0c0a",
+  "secondary": "#121612",
+  "accent": "#10B981"
+}
+```
+</details>
+
+<details>
+<summary><b>5. Carbon Blue</b></summary>
+
+```json
+"vanta_effect": "net",
+"colors": {
+  "primary": "#0d1117",
+  "secondary": "#161b22",
+  "accent": "#58a6ff"
+}
+```
+</details>
+
+<details>
+<summary><b>6. Midnight Rose</b></summary>
+
+```json
+"vanta_effect": "fog",
+"colors": {
+  "primary": "#0c0a0a",
+  "secondary": "#161212",
+  "accent": "#F43F5E"
+}
+```
+</details>
+
+<details>
+<summary><b>7. Deep Nebula</b></summary>
+
+```json
+"vanta_effect": "clouds",
+"colors": {
+  "primary": "#0a0a14",
+  "secondary": "#121220",
+  "accent": "#8B5CF6"
+}
+```
+</details>
+
+<details>
+<summary><b>8. Electric Slate</b></summary>
+
+```json
+"vanta_effect": "net",
+"colors": {
+  "primary": "#0f172a",
+  "secondary": "#1e293b",
+  "accent": "#38BDF8"
+}
+```
+</details>
+
+<details>
+<summary><b>9. Industrial Gold</b></summary>
+
+```json
+"vanta_effect": "halo",
+"colors": {
+  "primary": "#000000",
+  "secondary": "#111111",
+  "accent": "#F59E0B"
+}
+```
+</details>
+
+<details>
+<summary><b>10. Matte Crimson</b></summary>
+
+```json
+"vanta_effect": "rings",
+"colors": {
+  "primary": "#080808",
+  "secondary": "#141414",
+  "accent": "#EF4444"
+}
+```
+</details>
+
 ---
 
 ## Pro Tips
