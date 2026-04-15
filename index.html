@@ -1,8 +1,36 @@
 <!DOCTYPE html>
+<!-- 
+  DevFolio — Default Layout
+  This is the primary wrapper for the application. It handles the injection of
+  head metadata, navigation, content, and global interaction scripts.
+-->
 <html lang="en" data-theme="dark">
-  <meta charset="UTF-8" />
+  
+  <!-- 
+  DevFolio — Head Metadata
+  Handles SEO, Social Sharing (OG/Twitter), CSS variable injection, 
+  and FOUC prevention logic.
+-->
+<meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Portfolio-as-Code — A Jekyll developer portfolio template. Fork, fill JSON, deploy." />
+<meta name="author" content="DevFolio" />
+
+<!-- SEO & Social Sharing (Open Graph) -->
+<meta property="og:title" content="DevFolio | Portfolio" />
+<meta property="og:description" content="Portfolio-as-Code — A Jekyll developer portfolio template. Fork, fill JSON, deploy." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://srisatyalokesh.github.io/devfolio/" />
+
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="DevFolio | Portfolio" />
+<meta name="twitter:description" content="Portfolio-as-Code — A Jekyll developer portfolio template. Fork, fill JSON, deploy." />
+
+<!-- Canonical URL -->
+<link rel="canonical" href="https://srisatyalokesh.github.io/devfolio/" />
+
 <title>DevFolio | Portfolio</title>
 
 <!-- Favicons -->
@@ -12,21 +40,26 @@
 <link rel="manifest" href="/devfolio/assets/img/favicon/site.webmanifest">
 <link rel="shortcut icon" href="/devfolio/assets/img/favicon/favicon.ico">
 
-<!-- FOUC Prevention: inject CSS variables and initial theme before stylesheet loads -->
+<!-- 
+  FOUC Prevention: 
+  Injects design tokens from _data/profile.json into CSS variables 
+  and sets the initial theme before the browser paints the page.
+-->
 <style>
   :root {
     --color-primary:   #0d1117;
     --color-secondary: #161b22;
     --color-accent:    #58a6ff;
     
-    /* Derived Tokens (Liquid + CSS) */
+    /* Derived Glassmorphic Tokens */
     --color-accent-subtle: color-mix(in srgb, var(--color-accent) 15%, transparent);
     --color-border-glamour: color-mix(in srgb, var(--color-accent) 25%, var(--color-border, #30363d));
   }
 </style>
+
 <script>
-  // Apply saved theme preference before any paint to prevent FOUC
   (function() {
+    // Theme initialization to prevent white flash in dark mode
     var saved = localStorage.getItem('devfolio-theme');
     var jsonDefault = 'dark';
     var theme = saved || jsonDefault;
@@ -34,38 +67,52 @@
   })();
 </script>
 
-<!-- Google Fonts: Space Grotesk + Archivo -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
-<!-- Main Stylesheet -->
+<!-- Main Stylesheet (Orchestrated Modular SASS) -->
 <link rel="stylesheet" href="/devfolio/assets/css/main.css" />
 
+  
   <body>
-    <nav class="nav" role="navigation" aria-label="Main navigation">
+    <!-- Global Navigation -->
+    <!-- 
+  DevFolio — Navigation
+  A high-fidelity glassmorphism navbar with dynamic link generation,
+  theme toggling, and sound state management.
+-->
+<nav class="nav" role="navigation" aria-label="Primary navigation">
   <div class="container nav__inner">
-    <a href="/devfolio/#hero" class="nav__brand">
+    
+    <!-- Branding / Logo -->
+    <a href="/devfolio/#hero" class="nav__brand" aria-label="Go to home">
       
-        <img src="/devfolio/assets/img/devfolio.png" alt="Logo" class="nav__logo-img">
+        <img 
+          src="/devfolio/assets/img/devfolio.png" 
+          alt="DevFolio Logo" 
+          class="nav__logo-img"
+          loading="eager"
+        >
       
     </a>
 
+    <!-- Navigation Links -->
     <ul class="nav__links" role="list" id="nav-links">
-      <div class="nav__indicator"></div>
+      <div class="nav__indicator" aria-hidden="true"></div>
+      
       <li><a href="/devfolio/#profile"         class="nav__link">About</a></li>
       <li><a href="/devfolio/#experience"      class="nav__link">Experience</a></li>
-      <li><a href="/devfolio/#education"       class="nav__link">Education</a></li>
       <li><a href="/devfolio/#skills"          class="nav__link">Skills</a></li>
       <li><a href="/devfolio/#projects"        class="nav__link">Projects</a></li>
       <li><a href="/devfolio/#contact"         class="nav__link">Contact</a></li>
+      
+      <!-- Conditional Blog Link -->
       
         <li><a href="/devfolio/blog/" class="nav__link">Blog</a></li>
       
     </ul>
 
+    <!-- Action Buttons -->
     <div class="nav__actions">
-      <!-- Cinematic Sound Toggle -->
+      
+      <!-- Cinematic Sound Toggle (Vanta & Audio) -->
       
       <button
         id="sound-toggle"
@@ -74,7 +121,7 @@
         aria-label="Toggle background music"
         title="Toggle Sound"
       >
-        <div class="wavelength">
+        <div class="wavelength" aria-hidden="true">
           <span class="wavelength__bar"></span>
           <span class="wavelength__bar"></span>
           <span class="wavelength__bar"></span>
@@ -83,28 +130,28 @@
       </button>
       
 
-      <!-- Dark/Light mode toggle -->
+      <!-- Dark/Light theme toggle -->
       <button
         id="theme-toggle"
         class="nav__theme-toggle"
         aria-label="Toggle dark/light mode"
         title="Toggle theme"
       >
-        <!-- Sun icon (light mode) -->
+        <!-- Sun icon (Visible in Light Mode) -->
         <svg class="icon icon--sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
           <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
-        <!-- Moon icon (dark mode) -->
+        <!-- Moon icon (Visible in Dark Mode) -->
         <svg class="icon icon--moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </button>
 
-      <!-- Mobile hamburger -->
+      <!-- Mobile Menu Toggle -->
       <button
         id="nav-toggle"
         class="nav__hamburger"
-        aria-label="Toggle navigation"
+        aria-label="Toggle navigation menu"
         aria-expanded="false"
         aria-controls="nav-links"
       >
@@ -116,8 +163,14 @@
   </div>
 </nav>
 
-    <main>
-      <section id="hero" class="hero" aria-label="Hero">
+
+    <main id="main-content">
+      <!-- 
+  DevFolio — Single Page Application (SPA) Orchestrator
+  This file includes all homepage sections in their defined scroll order.
+-->
+
+<section id="hero" class="hero" aria-label="Hero">
   <!-- Magical Shockwave Overlay -->
   <div class="hero__magic-wave" id="vanta-shockwave"></div>
   
@@ -144,17 +197,27 @@
   </div>
 </section>
 
-<section id="profile" class="profile section-wrapper" aria-label="About">
+<!-- 
+  DevFolio — Profile Section
+  Displays the developer's avatar and biography.
+  Data: site.data.profile.bio, site.data.profile.profile_image_url
+-->
+<section id="profile" class="profile section-wrapper" aria-label="About Me">
   <div class="container profile__inner">
+    
+    <!-- Profile Avatar -->
     <div class="profile__image-wrap">
       <img
-        src="./assets/img/logo.jpg"
+        src="/devfolio/assets/img/logo.jpg"
         alt="DevFolio"
         class="profile__image"
         width="280"
         height="280"
+        loading="lazy"
       />
     </div>
+
+    <!-- Biography Content -->
     <div class="profile__content">
       <h2 class="section-title">About Me</h2>
       <p class="profile__bio">I am a high-fidelity, single-page Jekyll template born from a deep-seated hatred for drag-and-drop builders. I live in a single JSON file and dream of pixel-perfect glassmorphism. I don't need a CV; I am the CV. I'm here to ensure your career looks like it was built by a team of Silicon Valley designers, even if you just finished your second coffee.</p>
@@ -162,24 +225,36 @@
   </div>
 </section>
 
+<!-- 
+  DevFolio — Experience Section
+  A vertical timeline of professional work experience.
+  Data: site.data.profile.experience
+-->
 <section id="experience" class="experience section-wrapper" aria-label="Work Experience">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Experience</h2>
     </div>
+
     <div class="experience__list">
       
         <article class="experience__item">
+          <!-- Role & Duration Header -->
           <div class="experience__header">
             <h3 class="experience__role">Senior Portfolio Engine</h3>
-            <span class="experience__duration">Jan 2026 – Present</span>
+            <span class="experience__duration" aria-label="Duration">Jan 2026 – Present</span>
           </div>
+
+          <!-- Company Link/Text -->
           
-          <a href="https://pages.github.com" class="experience__company" target="_blank" rel="noopener">GitHub Pages</a>
+            <a href="https://pages.github.com" class="experience__company" target="_blank" rel="noopener noreferrer">
+              GitHub Pages
+            </a>
           
           
+          <!-- Task Description (List or Paragraph) -->
           
-            <ul class="experience__description-list">
+            <ul class="experience__description-list" role="list">
               
                 <li>Automated the career glow-up of thousands of developers by providing 6 interactable WebGL backgrounds they didn't know they needed.</li>
               
@@ -194,16 +269,22 @@
         </article>
       
         <article class="experience__item">
+          <!-- Role & Duration Header -->
           <div class="experience__header">
             <h3 class="experience__role">Lead CSS Wrestler</h3>
-            <span class="experience__duration">Oct 2025 – Present</span>
+            <span class="experience__duration" aria-label="Duration">Oct 2025 – Present</span>
           </div>
+
+          <!-- Company Link/Text -->
           
-          <a href="https://www.w3.org" class="experience__company" target="_blank" rel="noopener">The Internet</a>
+            <a href="https://www.w3.org" class="experience__company" target="_blank" rel="noopener noreferrer">
+              The Internet
+            </a>
           
           
+          <!-- Task Description (List or Paragraph) -->
           
-            <ul class="experience__description-list">
+            <ul class="experience__description-list" role="list">
               
                 <li>Centering a <div> while simultaneously maintaining Backdrop Blur (12px) without causing a browser meltdown.</li>
               
@@ -221,23 +302,33 @@
   </div>
 </section>
 
-<section id="education" class="education section-wrapper" aria-label="Education">
+<!-- 
+  DevFolio — Education Section
+  A vertical timeline of academic achievements.
+  Data: site.data.profile.education
+-->
+<section id="education" class="education section-wrapper" aria-label="Education History">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Education</h2>
     </div>
+
     <div class="education__list">
       
-        <article class="education__item" style="animation-delay: 0ms">
+        <article class="education__item">
+          <!-- Degree & Graduation Year Header -->
           <div class="education__header">
             <h3 class="education__degree">PhD in Zero-Code Architecture</h3>
-            <span class="education__year">2026</span>
+            <span class="education__year" aria-label="Graduation Year">2026</span>
           </div>
+
+          <!-- Academic Institution -->
           <span class="education__institution">University of Open Source</span>
           
+          <!-- Optional Honors or Details -->
           
             
-              <ul class="experience__description-list">
+              <ul class="experience__description-list" role="list">
                 
                   <li>Defended a groundbreaking thesis on why developers should spend time coding features, not fighting with HTML boilerplate.</li>
                 
@@ -250,16 +341,20 @@
           
         </article>
       
-        <article class="education__item" style="animation-delay: 150ms">
+        <article class="education__item">
+          <!-- Degree & Graduation Year Header -->
           <div class="education__header">
             <h3 class="education__degree">Master of Portfolio Automation</h3>
-            <span class="education__year">2025</span>
+            <span class="education__year" aria-label="Graduation Year">2025</span>
           </div>
+
+          <!-- Academic Institution -->
           <span class="education__institution">Self-Taught via SriSatyaLokesh</span>
           
+          <!-- Optional Honors or Details -->
           
             
-              <ul class="experience__description-list">
+              <ul class="experience__description-list" role="list">
                 
                   <li>Mastered the art of JSON-to-Elite-Portfolio transformation.</li>
                 
@@ -274,37 +369,55 @@
   </div>
 </section>
 
-<section id="skills" class="section-wrapper skills" aria-label="Skills">
+<!-- 
+  DevFolio — Skills Section (Bento Grid)
+  A dynamic responsive grid that adjusts card spans based on category count.
+  Data: site.data.profile.skills
+-->
+<section id="skills" class="section-wrapper skills" aria-label="Technical Skills">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Skills</h2>
     </div>
 
+    <!-- Bento Grid Container -->
     <div class="skills-bento-grid">
       
       
+      
         
+        
+        <!-- Logic to determine card span based on total category count -->
         
         
 
-        <article class="skills-card skills-card--span-6">
+        <article class="skills-card skills-card--span-6" role="region" aria-labelledby="skill-cat-1">
           <div class="skills-card__content">
-            <h3 class="skills-card__category">Frontend Soul</h3>
+            <h3 class="skills-card__category" id="skill-cat-1">Frontend Soul</h3>
             <div class="skills-card__list">
               
                 
                 
                 
+                <!-- Normalization for SimpleIcons slugs -->
                 
+                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="jekyll">
+<div class="tech-chip" data-tech="jekyll" role="img" aria-label="Technology: Jekyll">
   <img 
     src="https://cdn.simpleicons.org/jekyll" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">Jekyll</span>
@@ -314,16 +427,25 @@
                 
                 
                 
+                <!-- Normalization for SimpleIcons slugs -->
                 
+                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="liquid magic">
+<div class="tech-chip" data-tech="liquid magic" role="img" aria-label="Technology: Liquid Magic">
   <img 
     src="https://cdn.simpleicons.org/liquid" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">Liquid Magic</span>
@@ -333,16 +455,25 @@
                 
                 
                 
+                <!-- Normalization for SimpleIcons slugs -->
                 
+                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="scss architect">
+<div class="tech-chip" data-tech="scss architect" role="img" aria-label="Technology: SCSS Architect">
   <img 
     src="https://cdn.simpleicons.org/sass" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">SCSS Architect</span>
@@ -352,16 +483,25 @@
                 
                 
                 
+                <!-- Normalization for SimpleIcons slugs -->
                 
+                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="gsap moves">
+<div class="tech-chip" data-tech="gsap moves" role="img" aria-label="Technology: GSAP Moves">
   <img 
     src="https://cdn.simpleicons.org/greensock" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">GSAP Moves</span>
@@ -374,26 +514,37 @@
       
         
         
+        <!-- Logic to determine card span based on total category count -->
+        
         
 
-        <article class="skills-card skills-card--span-6">
+        <article class="skills-card skills-card--span-6" role="region" aria-labelledby="skill-cat-2">
           <div class="skills-card__content">
-            <h3 class="skills-card__category">Data Brain</h3>
+            <h3 class="skills-card__category" id="skill-cat-2">Data Brain</h3>
             <div class="skills-card__list">
               
                 
                 
                 
+                <!-- Normalization for SimpleIcons slugs -->
                 
+                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="json schema">
+<div class="tech-chip" data-tech="json schema" role="img" aria-label="Technology: JSON Schema">
   <img 
     src="https://cdn.simpleicons.org/json" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">JSON Schema</span>
@@ -403,16 +554,25 @@
                 
                 
                 
+                <!-- Normalization for SimpleIcons slugs -->
                 
+                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="git workflows">
+<div class="tech-chip" data-tech="git workflows" role="img" aria-label="Technology: Git Workflows">
   <img 
     src="https://cdn.simpleicons.org/git" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">Git Workflows</span>
@@ -422,16 +582,25 @@
                 
                 
                 
+                <!-- Normalization for SimpleIcons slugs -->
                 
+                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="actions automation">
+<div class="tech-chip" data-tech="actions automation" role="img" aria-label="Technology: Actions Automation">
   <img 
     src="https://cdn.simpleicons.org/githubactions" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">Actions Automation</span>
@@ -441,16 +610,25 @@
                 
                 
                 
+                <!-- Normalization for SimpleIcons slugs -->
                 
+                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="yaml whispering">
+<div class="tech-chip" data-tech="yaml whispering" role="img" aria-label="Technology: YAML Whispering">
   <img 
     src="https://cdn.simpleicons.org/yaml" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">YAML Whispering</span>
@@ -463,26 +641,37 @@
       
         
         
+        <!-- Logic to determine card span based on total category count -->
+        
         
 
-        <article class="skills-card skills-card--span-12">
+        <article class="skills-card skills-card--span-12" role="region" aria-labelledby="skill-cat-3">
           <div class="skills-card__content">
-            <h3 class="skills-card__category">Visual Heart</h3>
+            <h3 class="skills-card__category" id="skill-cat-3">Visual Heart</h3>
             <div class="skills-card__list">
               
                 
                 
                 
+                <!-- Normalization for SimpleIcons slugs -->
                 
+                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="vanta.js">
+<div class="tech-chip" data-tech="vanta.js" role="img" aria-label="Technology: Vanta.js">
   <img 
     src="https://cdn.simpleicons.org/visualstudio" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">Vanta.js</span>
@@ -492,16 +681,25 @@
                 
                 
                 
+                <!-- Normalization for SimpleIcons slugs -->
                 
+                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="three.js">
+<div class="tech-chip" data-tech="three.js" role="img" aria-label="Technology: Three.js">
   <img 
     src="https://cdn.simpleicons.org/threejs" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">Three.js</span>
@@ -511,16 +709,25 @@
                 
                 
                 
+                <!-- Normalization for SimpleIcons slugs -->
                 
+                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="webgl">
+<div class="tech-chip" data-tech="webgl" role="img" aria-label="Technology: WebGL">
   <img 
     src="https://cdn.simpleicons.org/webgl" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">WebGL</span>
@@ -530,16 +737,25 @@
                 
                 
                 
+                <!-- Normalization for SimpleIcons slugs -->
                 
+                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="glassmorphism">
+<div class="tech-chip" data-tech="glassmorphism" role="img" aria-label="Technology: Glassmorphism">
   <img 
     src="https://cdn.simpleicons.org/css3" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">Glassmorphism</span>
@@ -554,25 +770,35 @@
   </div>
 </section>
 
-<section id="projects" class="projects section-wrapper" aria-label="Projects">
+<!-- 
+  DevFolio — Projects Section
+  A grid of featured projects with tech chips and external links.
+  Curated Limit: Always shows at most 6 projects (P4).
+  Data: site.data.profile.projects
+-->
+<section id="projects" class="projects section-wrapper" aria-label="Featured Projects">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Projects</h2>
     </div>
 
+    <!-- Project Grid -->
     <div class="project-grid">
       
-        
         <article class="project-card" data-index="0">
+          
+          <!-- Project Thumbnail -->
           
             <div class="project-card__image-container">
               <img
                 src="/devfolio/assets/img/devfolio.png"
-                alt="DevFolio"
+                alt="Screenshot of DevFolio"
                 class="project-card__image"
                 loading="lazy"
+                width="800"
+                height="450"
               />
-              <div class="project-card__overlay"></div>
+              <div class="project-card__overlay" aria-hidden="true"></div>
             </div>
           
 
@@ -580,20 +806,27 @@
             <h3 class="project-card__title">DevFolio</h3>
             <p class="project-card__description">A high-fidelity Portfolio-as-Code template for developers. Focus on your content in a single JSON file while the engine handles elite design, cinematic audio, and WebGL backgrounds.</p>
 
-            <div class="project-card__stack">
+            <!-- Technologies Used -->
+            <div class="project-card__stack" aria-label="Technologies used">
               
                 
                 
-                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="jekyll">
+<div class="tech-chip" data-tech="jekyll" role="img" aria-label="Technology: Jekyll">
   <img 
     src="https://cdn.simpleicons.org/jekyll" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">Jekyll</span>
@@ -602,16 +835,22 @@
               
                 
                 
-                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="scss">
+<div class="tech-chip" data-tech="scss" role="img" aria-label="Technology: SCSS">
   <img 
     src="https://cdn.simpleicons.org/css3" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">SCSS</span>
@@ -620,16 +859,22 @@
               
                 
                 
-                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="gsap">
+<div class="tech-chip" data-tech="gsap" role="img" aria-label="Technology: GSAP">
   <img 
     src="https://cdn.simpleicons.org/greensock" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">GSAP</span>
@@ -638,33 +883,39 @@
               
             </div>
 
+            <!-- Project Deep-links -->
             <div class="project-card__links">
               
-                <a href="https://github.com/SriSatyaLokesh/devfolio" class="project-link" target="_blank" rel="noopener">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-4.51-1.5-7-2"/></svg>
+                <a href="https://github.com/SriSatyaLokesh/devfolio" class="project-link" target="_blank" rel="noopener noreferrer" title="View Source on GitHub">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-4.51-1.5-7-2"/></svg>
+                  <span class="sr-only">Source Code</span>
                 </a>
               
               
-                <a href="https://srisatyalokesh.github.io/devfolio/" class="project-link project-link--primary" target="_blank" rel="noopener">
-                  <span>Visit site</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+              
+                <a href="https://srisatyalokesh.github.io/devfolio/" class="project-link project-link--primary" target="_blank" rel="noopener noreferrer">
+                  <span>Visit Site</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
               
             </div>
           </div>
         </article>
       
-        
         <article class="project-card" data-index="1">
+          
+          <!-- Project Thumbnail -->
           
             <div class="project-card__image-container">
               <img
                 src="https://srisatyalokesh.github.io/open-certificate-generator/assets/img/og-default.jpg"
-                alt="Open Certificate Generator"
+                alt="Screenshot of Open Certificate Generator"
                 class="project-card__image"
                 loading="lazy"
+                width="800"
+                height="450"
               />
-              <div class="project-card__overlay"></div>
+              <div class="project-card__overlay" aria-hidden="true"></div>
             </div>
           
 
@@ -672,20 +923,27 @@
             <h3 class="project-card__title">Open Certificate Generator</h3>
             <p class="project-card__description">An automated bulk certificate generation engine. Designed for hackathons and organizations to generate branded, professional certificates from raw data in seconds.</p>
 
-            <div class="project-card__stack">
+            <!-- Technologies Used -->
+            <div class="project-card__stack" aria-label="Technologies used">
               
                 
                 
-                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="react">
+<div class="tech-chip" data-tech="react" role="img" aria-label="Technology: React">
   <img 
     src="https://cdn.simpleicons.org/react" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">React</span>
@@ -694,16 +952,22 @@
               
                 
                 
-                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="canvas api">
+<div class="tech-chip" data-tech="canvas api" role="img" aria-label="Technology: Canvas API">
   <img 
     src="https://cdn.simpleicons.org/html5" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">Canvas API</span>
@@ -712,16 +976,22 @@
               
                 
                 
-                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="node.js">
+<div class="tech-chip" data-tech="node.js" role="img" aria-label="Technology: Node.js">
   <img 
     src="https://cdn.simpleicons.org/nodedotjs" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">Node.js</span>
@@ -730,33 +1000,39 @@
               
             </div>
 
+            <!-- Project Deep-links -->
             <div class="project-card__links">
               
-                <a href="https://github.com/SriSatyaLokesh/open-certificate-generator" class="project-link" target="_blank" rel="noopener">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-4.51-1.5-7-2"/></svg>
+                <a href="https://github.com/SriSatyaLokesh/open-certificate-generator" class="project-link" target="_blank" rel="noopener noreferrer" title="View Source on GitHub">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-4.51-1.5-7-2"/></svg>
+                  <span class="sr-only">Source Code</span>
                 </a>
               
               
-                <a href="https://srisatyalokesh.github.io/open-certificate-generator/" class="project-link project-link--primary" target="_blank" rel="noopener">
-                  <span>Visit site</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+              
+                <a href="https://srisatyalokesh.github.io/open-certificate-generator/" class="project-link project-link--primary" target="_blank" rel="noopener noreferrer">
+                  <span>Visit Site</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
               
             </div>
           </div>
         </article>
       
-        
         <article class="project-card" data-index="2">
+          
+          <!-- Project Thumbnail -->
           
             <div class="project-card__image-container">
               <img
                 src="https://images.ctfassets.net/8aevphvgewt8/2Zamxo7a7F9K9jsTAl2EGA/bce1f04a40536e89ef543cb311f2968b/github-copilot-cli.png"
-                alt="Copilot Team Workflow"
+                alt="Screenshot of Copilot Team Workflow"
                 class="project-card__image"
                 loading="lazy"
+                width="800"
+                height="450"
               />
-              <div class="project-card__overlay"></div>
+              <div class="project-card__overlay" aria-hidden="true"></div>
             </div>
           
 
@@ -764,20 +1040,27 @@
             <h3 class="project-card__title">Copilot Team Workflow</h3>
             <p class="project-card__description">A comprehensive framework of standards and workflows for maximizing team velocity with GitHub Copilot. Includes optimized prompts and pair-programming patterns for elite teams.</p>
 
-            <div class="project-card__stack">
+            <!-- Technologies Used -->
+            <div class="project-card__stack" aria-label="Technologies used">
               
                 
                 
-                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="ai prompts">
+<div class="tech-chip" data-tech="ai prompts" role="img" aria-label="Technology: AI Prompts">
   <img 
     src="https://cdn.simpleicons.org/openai" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">AI Prompts</span>
@@ -786,16 +1069,22 @@
               
                 
                 
-                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="workflows">
+<div class="tech-chip" data-tech="workflows" role="img" aria-label="Technology: Workflows">
   <img 
     src="https://cdn.simpleicons.org/github" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">Workflows</span>
@@ -804,16 +1093,22 @@
               
                 
                 
-                
+                <!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% include tech_chip.html label="React" logo="react" %}
+-->
 
 
-
-<div class="tech-chip" data-tech="git">
+<div class="tech-chip" data-tech="git" role="img" aria-label="Technology: Git">
   <img 
     src="https://cdn.simpleicons.org/git" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">Git</span>
@@ -822,16 +1117,19 @@
               
             </div>
 
+            <!-- Project Deep-links -->
             <div class="project-card__links">
               
-                <a href="https://github.com/SriSatyaLokesh/copilot-team-workflow" class="project-link" target="_blank" rel="noopener">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-4.51-1.5-7-2"/></svg>
+                <a href="https://github.com/SriSatyaLokesh/copilot-team-workflow" class="project-link" target="_blank" rel="noopener noreferrer" title="View Source on GitHub">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-4.51-1.5-7-2"/></svg>
+                  <span class="sr-only">Source Code</span>
                 </a>
               
               
-                <a href="https://srisatyalokesh.github.io/copilot-team-workflow/" class="project-link project-link--primary" target="_blank" rel="noopener">
-                  <span>Visit site</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+              
+                <a href="https://srisatyalokesh.github.io/copilot-team-workflow/" class="project-link project-link--primary" target="_blank" rel="noopener noreferrer">
+                  <span>Visit Site</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-external-link" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
               
             </div>
@@ -842,55 +1140,83 @@
   </div>
 </section>
 
-<section id="recommendations" class="recommendations section-wrapper" aria-label="Recommendations">
+<!-- 
+  DevFolio — Recommendations Section
+  A grid of peer/manager testimonials.
+  Data: site.data.profile.recommendations
+-->
+<section id="recommendations" class="recommendations section-wrapper" aria-label="Peer Recommendations">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Recommendations</h2>
     </div>
+
+    <!-- Recommendations Grid -->
     <div class="recommendations__grid">
       
-        <article class="rec-card">
+        <article class="rec-card" role="article">
+          
+          <!-- Testimonial Quote -->
           <blockquote class="rec-card__quote">
             <p>I built DevFolio specifically to solve my own frustration with complex portfolio maintenance. Pro-tip: Double-click the 'Available for opportunities' badge for a little surprise.</p>
           </blockquote>
+
+          <!-- Author attribution -->
           <footer class="rec-card__footer">
-            <strong class="rec-card__name">SriSatyaLokesh</strong>
+            <cite class="rec-card__name">SriSatyaLokesh</cite>
+            
             
               <span class="rec-card__title">Creator of DevFolio</span>
+            
             
             
               <a
                 href="https://www.linkedin.com/in/srisatyalokesh"
                 class="rec-card__linkedin"
                 target="_blank"
-                rel="noopener"
-                aria-label="View SriSatyaLokesh's LinkedIn profile"
-              >LinkedIn &rarr;</a>
+                rel="noopener noreferrer"
+                title="View SriSatyaLokesh on LinkedIn"
+                aria-label="Visit SriSatyaLokesh's LinkedIn"
+              >
+                LinkedIn &rarr;
+              </a>
             
           </footer>
         </article>
       
-        <article class="rec-card">
+        <article class="rec-card" role="article">
+          
+          <!-- Testimonial Quote -->
           <blockquote class="rec-card__quote">
             <p>DevFolio is so good, it actually convinced me to stop using React for a simple landing page. My Lighthouse score is 100/100 and my hands are finally clean of node_modules.</p>
           </blockquote>
+
+          <!-- Author attribution -->
           <footer class="rec-card__footer">
-            <strong class="rec-card__name">A Grateful Developer</strong>
+            <cite class="rec-card__name">A Grateful Developer</cite>
+            
             
               <span class="rec-card__title">Escaped React Dev</span>
             
             
+            
           </footer>
         </article>
       
-        <article class="rec-card">
+        <article class="rec-card" role="article">
+          
+          <!-- Testimonial Quote -->
           <blockquote class="rec-card__quote">
             <p>The Portfolio-as-Code philosophy is exactly what I needed. I spend all day in VS Code; why would I want to build my site in a browser drag-and-drop tool?</p>
           </blockquote>
+
+          <!-- Author attribution -->
           <footer class="rec-card__footer">
-            <strong class="rec-card__name">Backend Guru</strong>
+            <cite class="rec-card__name">Backend Guru</cite>
+            
             
               <span class="rec-card__title">Senior YAML Architect</span>
+            
             
             
           </footer>
@@ -900,39 +1226,47 @@
   </div>
 </section>
 
-
-
-<section id="contact" class="contact section-wrapper" aria-label="Contact">
+<!-- 
+  DevFolio — Contact Section
+  Premium two-column layout for CTA and social profiles.
+  Data: site.data.profile.email, site.data.profile.social[]
+-->
+<section id="contact" class="contact section-wrapper" aria-label="Contact Information">
   <div class="container">
 
     <div class="contact__grid">
 
-      <!-- LEFT: CTA Column -->
+      <!-- LEFT: Call to Action Column -->
       <div class="contact__cta-col">
-        <div class="contact__eyebrow">
+        <div class="contact__eyebrow" role="status">
           <span class="contact__dot" aria-hidden="true"></span>
           Open to opportunities
         </div>
 
-        <h2 class="section-title contact__title">Let's Build<br>Something<br><span class="contact__title-accent">Great Together</span></h2>
+        <h2 class="section-title contact__title">
+          Let's Build<br>Something<br><span class="contact__title-accent">Great Together</span>
+        </h2>
 
         <p class="contact__intro">
           Whether it's a full-time role, a side project, or just a great conversation — my inbox is always open. I typically reply within 24 hours.
         </p>
 
-        <!-- Copy email button (JS progressive enhancement) -->
+        <!-- Copy Email Interaction (handled by assets/js/contact-scripts.js) -->
         <div class="contact__email-block">
           <span class="contact__email-label">Reach me directly</span>
           <button
             id="copy-email-btn"
             class="contact__email-btn"
             data-email="srisatyalokesh@duck.com"
-            aria-label="Copy email address"
+            aria-label="Copy email address to clipboard"
+            title="Click to copy email"
           >
+            <!-- Email Icon -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true" class="contact__email-icon">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
             </svg>
             <span class="contact__email-text">srisatyalokesh@duck.com</span>
+            <!-- Copy Icon -->
             <svg class="contact__copy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true">
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
             </svg>
@@ -940,114 +1274,136 @@
           </button>
         </div>
 
-        <!-- Response time promise -->
+        <!-- Trust Indicator -->
         <div class="contact__promise">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
           Avg. response time: &lt; 24 hours
         </div>
       </div>
 
-      <!-- RIGHT: Social Cards -->
-      <div class="contact__social-col">
+      <!-- RIGHT: Social Platform Cards -->
+      <div class="contact__social-col" role="list" aria-label="Social media profiles">
         
           
-            <a
-              href="https://github.com/SriSatyaLokesh/devfolio"
-              class="contact__social-card"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit my GitHub profile"
-            >
-              <div class="contact__social-icon" aria-hidden="true">
-                
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            <article role="listitem">
+              <a
+                href="https://github.com/SriSatyaLokesh/devfolio"
+                class="contact__social-card"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Follow on GitHub"
+                aria-label="Visit my GitHub profile"
+              >
+                <!-- Platform Icon (Case-matched in Liquid) -->
+                <div class="contact__social-icon" aria-hidden="true">
                   
-              </div>
+                      <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    
+                </div>
 
-              <div class="contact__social-info">
-                <span class="contact__social-name">GitHub</span>
-                <span class="contact__social-handle">github.com/SriSatyaLokesh/devfol</span>
-              </div>
+                <div class="contact__social-info">
+                  <span class="contact__social-name">GitHub</span>
+                  <span class="contact__social-handle" aria-label="Username/Handle">github.com/SriSatyaLokesh/devfol</span>
+                </div>
 
-              <svg class="contact__social-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
-                <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-              </svg>
-            </a>
-          
-        
-          
-            <a
-              href="https://twitter.com"
-              class="contact__social-card"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit my Twitter profile"
-            >
-              <div class="contact__social-icon" aria-hidden="true">
-                
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                  
-              </div>
-
-              <div class="contact__social-info">
-                <span class="contact__social-name">Twitter</span>
-                <span class="contact__social-handle">twitter.com</span>
-              </div>
-
-              <svg class="contact__social-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
-                <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-              </svg>
-            </a>
+                <!-- External Arrow -->
+                <svg class="contact__social-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
+                  <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                </svg>
+              </a>
+            </article>
           
         
           
-            <a
-              href="https://linkedin.com"
-              class="contact__social-card"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit my LinkedIn profile"
-            >
-              <div class="contact__social-icon" aria-hidden="true">
-                
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062-0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <article role="listitem">
+              <a
+                href="https://twitter.com"
+                class="contact__social-card"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Follow on Twitter"
+                aria-label="Visit my Twitter profile"
+              >
+                <!-- Platform Icon (Case-matched in Liquid) -->
+                <div class="contact__social-icon" aria-hidden="true">
                   
-              </div>
+                      <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    
+                </div>
 
-              <div class="contact__social-info">
-                <span class="contact__social-name">LinkedIn</span>
-                <span class="contact__social-handle">linkedin.com</span>
-              </div>
+                <div class="contact__social-info">
+                  <span class="contact__social-name">Twitter</span>
+                  <span class="contact__social-handle" aria-label="Username/Handle">twitter.com</span>
+                </div>
 
-              <svg class="contact__social-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
-                <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-              </svg>
-            </a>
+                <!-- External Arrow -->
+                <svg class="contact__social-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
+                  <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                </svg>
+              </a>
+            </article>
           
         
           
-            <a
-              href="https://dev.to"
-              class="contact__social-card"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Visit my Dev.to profile"
-            >
-              <div class="contact__social-icon" aria-hidden="true">
-                
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.3zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.64-2.52.66-.03c.39-.02.66 0 .66.04 0 .1-1.33 4.54-1.48 4.98z"/></svg>
+            <article role="listitem">
+              <a
+                href="https://linkedin.com"
+                class="contact__social-card"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Follow on LinkedIn"
+                aria-label="Visit my LinkedIn profile"
+              >
+                <!-- Platform Icon (Case-matched in Liquid) -->
+                <div class="contact__social-icon" aria-hidden="true">
                   
-              </div>
+                      <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062-0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    
+                </div>
 
-              <div class="contact__social-info">
-                <span class="contact__social-name">Dev.to</span>
-                <span class="contact__social-handle">dev.to</span>
-              </div>
+                <div class="contact__social-info">
+                  <span class="contact__social-name">LinkedIn</span>
+                  <span class="contact__social-handle" aria-label="Username/Handle">linkedin.com</span>
+                </div>
 
-              <svg class="contact__social-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
-                <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-              </svg>
-            </a>
+                <!-- External Arrow -->
+                <svg class="contact__social-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
+                  <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                </svg>
+              </a>
+            </article>
+          
+        
+          
+            <article role="listitem">
+              <a
+                href="https://dev.to"
+                class="contact__social-card"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Follow on Dev.to"
+                aria-label="Visit my Dev.to profile"
+              >
+                <!-- Platform Icon (Case-matched in Liquid) -->
+                <div class="contact__social-icon" aria-hidden="true">
+                  
+                      <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28"><path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.3zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.64-2.52.66-.03c.39-.02.66 0 .66.04 0 .1-1.33 4.54-1.48 4.98z"/></svg>
+                    
+                </div>
+
+                <div class="contact__social-info">
+                  <span class="contact__social-name">Dev.to</span>
+                  <span class="contact__social-handle" aria-label="Username/Handle">dev.to</span>
+                </div>
+
+                <!-- External Arrow -->
+                <svg class="contact__social-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
+                  <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+                </svg>
+              </a>
+            </article>
           
         
       </div>
@@ -1056,29 +1412,15 @@
   </div>
 </section>
 
-<script>
-  // Copy email to clipboard with feedback
-  (function() {
-    var btn = document.getElementById('copy-email-btn');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      var email = btn.getAttribute('data-email');
-      var feedback = btn.querySelector('.contact__copy-feedback');
-      navigator.clipboard.writeText(email).then(function() {
-        btn.classList.add('contact__email-btn--copied');
-        feedback.textContent = 'Copied!';
-        setTimeout(function() {
-          btn.classList.remove('contact__email-btn--copied');
-          feedback.textContent = '';
-        }, 2000);
-      });
-    });
-  })();
-</script>
-
 
     </main>
-    <footer class="footer" role="contentinfo">
+
+    <!-- Global Footer -->
+    <!-- 
+  DevFolio — Footer
+  Minimalist footer with dynamic copyright year and back-to-top navigation.
+-->
+<footer class="footer" role="contentinfo">
   <div class="container footer__inner">
     <div class="footer__left">
       <p class="footer__copy">
@@ -1090,9 +1432,10 @@
       </p>
     </div>
 
+    <!-- Back to Top Actions -->
     <div class="footer__right">
-      <a href="#hero" class="footer__back-to-top" title="Back to Top">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+      <a href="#hero" class="footer__back-to-top" title="Back to Top" aria-label="Scroll back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20" aria-hidden="true">
           <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
       </a>
@@ -1100,373 +1443,71 @@
   </div>
 </footer>
 
+
+    <!-- Initialization of Cinematic Effects -->
     
     
-      
+      <!-- 
+  DevFolio — Vanta Initialization
+  Handles the conditional loading of Vanta.js dependencies and
+  injects Liquid configuration tokens for the Vanta Controller.
+-->
 
 
-<!-- Load Vanta Dependencies -->
+
+<!-- Dependency: Three.js (Core) -->
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+<!-- Dependency: P5.js (Select Effects Only) -->
 
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
 
 
-<!-- Load the specific Vanta effect from CDN -->
+<!-- Dependency: Initial Vanta Effect Script -->
 <script defer src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
 
+<!-- Pass Liquid Configuration to the Vanta Controller -->
 <script>
-  // WHITELIST: Core Three.js effects (No P5 dependencies)
-  const VANTA_EFFECTS = ['NET', 'WAVES', 'FOG', 'CLOUDS', 'CLOUDS2', 'RINGS', 'TOPOLOGY'];
-  let currentEffect = 'BIRDS';
-
-  window.loadVantaScript = function(effectName) {
-    return new Promise((resolve, reject) => {
-      const slug = effectName.toLowerCase();
-      if (typeof VANTA !== 'undefined' && typeof VANTA[effectName] === 'function') {
-        resolve();
-        return;
-      }
-      const script = document.createElement('script');
-      script.src = `https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.${slug}.min.js`;
-      script.onload = resolve;
-      script.onerror = reject;
-      document.head.appendChild(script);
-    });
-  };
-
-  // ─── EASTER EGG TRIGGER ────────────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', () => {
-    const trigger = document.getElementById('vanta-trigger');
-    if (trigger) {
-      trigger.addEventListener('dblclick', (e) => {
-        e.preventDefault();
-        window.randomizeVanta();
-      });
-      // Prevent selection on rapid clicking
-      trigger.addEventListener('mousedown', (e) => {
-        if (e.detail > 1) e.preventDefault();
-      });
-    }
+  window.DEV_FOLIO_CONFIG = Object.assign(window.DEV_FOLIO_CONFIG || {}, {
+    vantaEffect: 'birds',
+    accentColor: '#58a6ff',
+    primaryColor: '#0d1117',
+    lightBg: '#f0f4f8'
   });
-
-  window.randomizeVanta = async function() {
-    const trigger = document.getElementById('vanta-trigger');
-    const heroContent = document.querySelector('.hero__content');
-    const shockwave = document.getElementById('vanta-shockwave');
-    const heroSection = document.getElementById('hero');
-    
-    if (trigger) {
-      trigger.classList.add('loading');
-    }
-
-    // ─── MAGIC SHOCKWAVE CALCULATIONS ──────────────────────────────────────
-    if (shockwave && heroSection && trigger) {
-      const rect = trigger.getBoundingClientRect();
-      const heroRect = heroSection.getBoundingClientRect();
-      
-      // Calculate center relative to hero coordinate system
-      const centerX = ((rect.left + rect.width/2) - heroRect.left) / heroRect.width * 100;
-      const centerY = ((rect.top + rect.height/2) - heroRect.top) / heroRect.height * 100;
-
-      // Reset and trigger expansion
-      gsap.set(shockwave, { 
-        clipPath: `circle(0% at ${centerX}% ${centerY}%)`,
-        opacity: 0.8,
-        display: 'block'
-      });
-
-      gsap.to(shockwave, {
-        clipPath: `circle(150% at ${centerX}% ${centerY}%)`,
-        opacity: 0,
-        duration: 1.8,
-        ease: "power2.out",
-        onComplete: () => {
-          gsap.set(shockwave, { display: 'none' });
-        }
-      });
-    }
-    
-    if (heroContent) {
-      gsap.to(heroContent, {
-        y: -15,
-        scale: 1.02,
-        opacity: 0.7,
-        duration: 0.8,
-        ease: "power2.out"
-      });
-    }
-
-    // Pick new random effect from whitelist
-    let nextIdx = Math.floor(Math.random() * VANTA_EFFECTS.length);
-    let nextEffect = VANTA_EFFECTS[nextIdx];
-    
-    if (nextEffect === currentEffect) {
-      nextIdx = (nextIdx + 1) % VANTA_EFFECTS.length;
-      nextEffect = VANTA_EFFECTS[nextIdx];
-    }
-
-    try {
-      await window.loadVantaScript(nextEffect);
-      currentEffect = nextEffect;
-      window._VANTA_OVERRIDE = nextEffect;
-      window.initVanta();
-      
-    } catch (err) {
-      console.error("Magic failed:", err);
-    } finally {
-      if (trigger) trigger.classList.remove('loading');
-      if (heroContent) {
-        gsap.to(heroContent, {
-          y: 0,
-          scale: 1,
-          opacity: 1,
-          duration: 0.8,
-          ease: "elastic.out(1, 0.75)"
-        });
-      }
-    }
-  };
-
-  window.initVanta = function() {
-    if (window.DEV_FOLIO_VANTA) {
-      window.DEV_FOLIO_VANTA.destroy();
-    }
-
-    // Surgical color helper for Vanta/Three.js
-    const colorToNum = (hex) => {
-      if (!hex) return 0x000000;
-      return parseInt(hex.replace("#", "0x"), 16);
-    };
-
-    const effectKey = window._VANTA_OVERRIDE || 'BIRDS';
-    const accentStr = "#58a6ff";
-    const primaryStr = "#0d1117";
-    
-    // ... rest of logic remains same ...
-    
-    // Theme detection
-    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    const bgStr = isLight ? '#f0f4f8' : primaryStr;
-
-    // Numeric versions
-    const accent = colorToNum(accentStr);
-    const bg = colorToNum(bgStr);
-
-    let config = {
-      el: "#hero",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.00,
-      minWidth: 200.00,
-      backgroundColor: bg,
-      color: accent
-    };
-
-    // Precision tuning for every effect
-    switch(effectKey) {
-      case 'BIRDS':
-        config.color1 = accent;
-        config.color2 = accent; // Force monochromatic
-        config.colorMode = "lerp";
-        config.birdSize = 1.2;
-        break;
-      case 'WAVES':
-        config.color = accent;
-        config.backgroundColor = bg;
-        config.shininess = isLight ? 50 : 150; 
-        config.waveHeight = 35.0;
-        config.waveSpeed = 1.0;
-        config.zoom = 0.8;
-        break;
-      case 'FOG':
-        config.highlightColor = accent;
-        config.midtoneColor = accent;
-        config.lowlightColor = accent;
-        config.baseColor = bg;
-        break;
-      case 'NET':
-        config.color = accent;
-        config.backgroundColor = bg;
-        break;
-      case 'DOTS':
-        config.color = accent;
-        config.color2 = accent;
-        config.backgroundColor = bg;
-        config.size = 3.0;
-        config.spacing = 35.0;
-        break;
-      case 'CELLS':
-        config.color1 = accent;
-        config.color2 = accent;
-        break;
-      case 'CLOUDS':
-      case 'CLOUDS2':
-        // Clouds/Clouds2 are explicitly exempted from monochromatic force per user request
-        if (isLight) {
-          config.skyColor = 0x68b2e3;
-          config.cloudColor = 0xadc1d6;
-          config.cloudShadowColor = 0x183550;
-          config.sunColor = 0xff9919;
-          config.sunGlareColor = 0xff6633;
-          config.sunlightColor = 0xff9933;
-        } else {
-          config.skyColor = colorToNum(effectKey === 'CLOUDS2' ? '#0d1117' : bgStr);
-          config.cloudColor = colorToNum('#334155');
-          config.cloudShadowColor = colorToNum('#1e293b');
-          config.sunColor = accent;
-        }
-        config.speed = 1.2;
-        if (effectKey === 'CLOUDS2' && !isLight) {
-          config.lightColor = accent;
-        }
-        break;
-      case 'TOPOLOGY':
-        config.color = accent;
-        config.backgroundColor = bg;
-        config.speed = 6.0;
-        break;
-      case 'RINGS':
-        // Rings is explicitly exempted but follows accent where applicable
-        config.color = accent;
-        config.backgroundColor = bg;
-        break;
-      case 'HALO':
-        const haloBgStr = isLight ? '#94a3b8' : bgStr;
-        config.backgroundColor = colorToNum(haloBgStr);
-        config.baseColor = colorToNum(haloBgStr);
-        config.color2 = accent;
-        config.color = accent;
-        config.amplitudeFactor = 2.0;
-        break;
-      default:
-        break;
-    }
-
-    try {
-      if (typeof VANTA !== 'undefined' && typeof VANTA[effectKey] === 'function') {
-        const instance = VANTA[effectKey](config);
-        
-        // Post-init hijacking to force monochromatic sync on problematic effects
-        if (effectKey === 'RINGS' || effectKey === 'HALO') {
-          if (instance.colors) instance.colors = [accent, accent];
-          if (instance.options) {
-            instance.options.color = accent;
-            instance.options.color2 = accent;
-          }
-          if (typeof instance.restart === 'function') instance.restart();
-        }
-        
-        window.DEV_FOLIO_VANTA = instance;
-      } else {
-        if (effectKey !== 'NET' && typeof VANTA !== 'undefined' && typeof VANTA.NET === 'function') {
-           window.DEV_FOLIO_VANTA = VANTA.NET(config);
-        }
-      }
-    } catch(err) {
-      console.error("Vanta initialization failed:", err);
-    }
-  };
-
-  document.addEventListener('DOMContentLoaded', window.initVanta);
 </script>
 
-    
+<!-- Main Vanta Controller Logic -->
+<script defer src="/devfolio/assets/js/vanta-controller.js"></script>
 
     
 
-<audio id="bg-music" loop preload="auto">
-  <source src="/devfolio/assets/music/interstellar.mp3" type="audio/mpeg">
-</audio>
+    <!-- Global Audio Component -->
+    <!-- 
+  DevFolio — Audio Player Include
+  Sets up the audio element with Liquid configuration and handles
+  the inclusion of the audio controller script.
+-->
 
-<script>
-  (function() {
-    const audio = document.getElementById('bg-music');
-    const targetVolume = 1.0;
-    let hasStarted = false;
 
-    // Fade volume using GSAP
-    window.fadeAudio = function(toVolume, duration = 1.5) {
-      if (!audio) return;
-      gsap.to(audio, {
-        volume: toVolume,
-        duration: duration,
-        ease: "power2.inOut",
-        onStart: () => {
-          if (toVolume > 0 && audio.paused) audio.play();
-        },
-        onComplete: () => {
-          if (toVolume === 0) audio.pause();
-          updateSoundToggleUI();
-        }
-      });
-    };
+  <audio 
+    id="bg-music" 
+    loop 
+    preload="auto" 
+    data-max-volume="1.0"
+  >
+    <source src="/devfolio/assets/music/interstellar.mp3" type="audio/mpeg">
+  </audio>
 
-    window.toggleSound = function() {
-      if (!audio) return;
-      if (audio.paused) {
-        window.fadeAudio(targetVolume, 2);
-      } else {
-        window.fadeAudio(0, 1);
-      }
-    };
-
-    function startCinematicExperience() {
-      if (hasStarted) return;
-      hasStarted = true;
-      
-      audio.volume = 0.5; // Start at audible 50%
-      audio.play().then(() => {
-        // High-Fidelity Cinematic Ramp
-        const tl = gsap.timeline({
-          onComplete: () => updateSoundToggleUI()
-        });
-
-        tl.to(audio, {
-          volume: 0.8,
-          duration: 5,
-          ease: "power2.out"
-        })
-        .to(audio, {
-          volume: targetVolume,
-          duration: 15,
-          ease: "power1.inOut"
-        });
-
-      }).catch(err => {
-        console.warn("Autoplay blocked, waiting for next interaction or toggle.");
-        hasStarted = false; // Reset to try again on next click
-      });
-
-      // Cleanup listeners
-      ['click', 'mousedown', 'keydown', 'touchstart'].forEach(evt => {
-        document.removeEventListener(evt, startCinematicExperience);
-      });
-    }
-
-    // Modern mobile/desktop safety: wait for first interaction
-    ['click', 'mousedown', 'keydown', 'touchstart'].forEach(evt => {
-      document.addEventListener(evt, startCinematicExperience, { once: true });
-    });
-
-    function updateSoundToggleUI() {
-      const btn = document.getElementById('sound-toggle');
-      if (!btn) return;
-      if (audio.paused || audio.volume === 0) {
-        btn.classList.add('is-muted');
-      } else {
-        btn.classList.remove('is-muted');
-      }
-    }
-  })();
-</script>
+  <!-- Controller Logic -->
+  <script defer src="/devfolio/assets/js/audio-controller.js"></script>
 
 
 
-    <!-- Interactions -->
+    <!-- Core Interactions & Animations (Deferred) -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script defer src="/devfolio/assets/js/smooth-scroll.js"></script>
     <script defer src="/devfolio/assets/js/gsap-animations.js"></script>
+    <script defer src="/devfolio/assets/js/contact-scripts.js"></script>
   </body>
 </html>
