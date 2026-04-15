@@ -1,0 +1,60 @@
+/* Footer */
+.footer { 
+  padding: var(--s-8) 0; 
+  border-top: 1px solid var(--color-border);
+  background: color-mix(in srgb, var(--color-secondary) 40%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-6);
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.footer__left { display: flex; flex-direction: column; gap: 4px; }
+.footer__copy { font-size: 0.95rem; font-weight: 600; color: var(--color-text); }
+
+.footer__credit {
+  font-size: 0.82rem; color: var(--color-muted);
+  a { color: var(--color-accent); font-weight: 600; &:hover { text-decoration: underline; } }
+}
+
+.footer__right { display: flex; align-items: center; gap: var(--s-6); }
+.footer__socials { display: flex; align-items: center; gap: var(--s-2); }
+
+.footer__social-link {
+  transition: var(--transition);
+  &:hover { transform: translateY(-3px); }
+}
+
+.footer__social-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  color: var(--color-accent); border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+  transition: var(--transition);
+  &:hover { 
+    background: color-mix(in srgb, var(--color-accent) 20%, transparent);
+    border-color: var(--color-accent);
+  }
+}
+
+.footer__back-to-top {
+  width: 44px; height: 44px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  color: var(--color-accent); border: 1px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+  transition: var(--transition); cursor: pointer;
+  &:hover {
+    background: var(--color-accent); color: var(--color-secondary);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+}

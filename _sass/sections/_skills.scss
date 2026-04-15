@@ -1,0 +1,26 @@
+/* Skills (Bento) */
+.skills-bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--s-5); }
+
+.skills-card { 
+  @include glass-panel; padding: var(--s-6); display: flex; flex-direction: column; gap: var(--s-4); 
+  &:hover { 
+    @include glass-panel-hover; 
+    .tech-chip__icon { filter: grayscale(0) brightness(1); opacity: 1; }
+  } 
+}
+
+.skills-card--span-4 { grid-column: span 12; @media (min-width: 1025px) { grid-column: span 4; } }
+.skills-card--span-6 { grid-column: span 12; @media (min-width: 1025px) { grid-column: span 6; } }
+.skills-card--span-8 { grid-column: span 12; @media (min-width: 1025px) { grid-column: span 8; } }
+.skills-card--span-12 { grid-column: span 12; }
+
+.skills-card__category { font-size: 1rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; }
+.skills-card__list { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.skills-card__content { display: flex; flex-direction: column; gap: var(--s-4); height: 100%; }
+
+@media (max-width: 1024px) {
+  /* Unified bento collapse */
+  .skills-card--span-4, .skills-card--span-6, .skills-card--span-8, .skills-card--span-12 { grid-column: span 12; }
+  /* Support for legacy span classes */
+  .skills-card--large, .skills-card--small, .skills-card--wide, .skills-card--medium { grid-column: span 12; }
+}

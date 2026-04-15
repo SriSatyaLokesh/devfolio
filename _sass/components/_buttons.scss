@@ -1,0 +1,41 @@
+/* CTA Buttons */
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: 0.85rem 1.75rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+}
+
+.hero__cta--primary {
+  background: var(--color-accent);
+  color: var(--color-secondary);
+  box-shadow: none !important;
+  
+  &:hover {
+    transform: translateY(-3px) scale(1.05);
+  }
+
+  svg { transition: transform 0.3s ease; }
+  &:hover svg { transform: translateY(2px); }
+}
+
+.hero__cta--secondary {
+  @include glass-panel;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  box-shadow: none !important;
+  
+  &:hover {
+    @include glass-panel-hover;
+    transform: translateY(-5px) scale(1.05);
+    border-color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+    color: var(--color-accent);
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  }
+}

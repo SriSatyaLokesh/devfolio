@@ -1,0 +1,63 @@
+/* Recommendations */
+.recommendations__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--s-5);
+  align-items: stretch; 
+}
+
+.rec-card {
+  @include glass-panel;
+  padding: var(--s-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  position: relative;
+  overflow: hidden;
+  height: 100%; 
+  &:hover { 
+    @include glass-panel-hover; 
+    transform: translateY(-8px); 
+  }
+  &::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.5rem;
+    right: var(--s-5);
+    font-size: 6rem;
+    line-height: 1;
+    color: var(--color-accent);
+    opacity: 0.07;
+    font-family: var(--font-heading);
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+.rec-card__quote {
+  flex: 1;
+  p {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    font-style: italic;
+    max-width: none;
+  }
+}
+
+.rec-card__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: var(--s-4);
+  border-top: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
+  margin-top: auto;
+}
+
+.rec-card__name { font-size: 0.95rem; font-weight: 700; color: var(--color-text); }
+.rec-card__title { font-size: 0.82rem; color: var(--color-accent); font-weight: 500; }
+.rec-card__linkedin {
+  display: inline-flex; align-items: center; gap: var(--s-1);
+  margin-top: var(--s-2); font-size: 0.8rem; font-weight: 600; color: #0A66C2;
+  &:hover { opacity: 0.75; text-decoration: underline; }
+}

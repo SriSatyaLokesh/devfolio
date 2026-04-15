@@ -1,0 +1,33 @@
+/* Projects */
+.project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: var(--s-6); }
+
+.project-card { 
+  @include glass-panel; overflow: hidden; display: flex; flex-direction: column; position: relative;
+  &:hover { 
+    @include glass-panel-hover; 
+    transform: translateY(-12px); 
+    .tech-chip__icon { filter: grayscale(0) brightness(1); opacity: 1; }
+  }
+}
+
+.project-card__image-container { height: 240px; position: relative; overflow: hidden; border-bottom: 1px solid var(--color-border); }
+.project-card__image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.project-card:hover .project-card__image { transform: scale(1.08); }
+.project-card__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%); opacity: 0; transition: opacity 0.3s ease; }
+.project-card:hover .project-card__overlay { opacity: 1; }
+
+.project-card__content { padding: var(--s-6); flex: 1; display: flex; flex-direction: column; gap: var(--s-4); }
+.project-card__title { font-size: 1.4rem; letter-spacing: -0.02em; }
+.project-card__description { font-size: 0.95rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.project-card__stack { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.project-card__links { display: flex; align-items: center; gap: var(--s-3); margin-top: auto; padding-top: var(--s-4); }
+
+.project-link {
+  display: inline-flex; align-items: center; gap: var(--s-2); font-size: 0.9rem; font-weight: 600; padding: 0.5rem; border-radius: 8px; color: var(--color-muted);
+  &:hover { color: var(--color-accent); background: color-mix(in srgb, var(--color-accent) 10%, transparent); }
+}
+
+.project-link--primary {
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent); color: var(--color-accent); padding: 0.5rem 1rem; border: 1px solid color-mix(in srgb, var(--color-accent) 25%, transparent);
+  &:hover { background: var(--color-accent); color: var(--color-secondary); border-color: var(--color-accent); }
+}
