@@ -12,7 +12,7 @@ To separate the environmental effects (background animations) from the branding 
 - **Trigger**: Double-click on the "Available for work" status badge (`#vanta-trigger`).
 - **Logic**:
   - Sequential cycling through `VANTA_EFFECTS` array.
-  - Maintains `window.DEV_FOLIO_VANTA_INDEX`.
+  - Maintains `window.THE_PROFILE_VANTA_INDEX`.
   - **Graceful Fallback**: Includes a `#hero` guard clause to prevent errors on blog pages where a background container may be missing.
 
 ### B. Branding: `theme-controller.js`
@@ -20,7 +20,7 @@ To separate the environmental effects (background animations) from the branding 
 - **Trigger**: Double-click on the Navbar Logo (`.nav__brand`).
 - **Logic**:
   - Sequential cycling through `ELITE_PRESETS` (10 curated palettes).
-  - Maintains `window.DEV_FOLIO_COLOR_INDEX`.
+  - Maintains `window.THE_PROFILE_COLOR_INDEX`.
   - **Navigation Prevention**: Intercepts `dblclick` events on the logo link using `e.preventDefault()` to allow cycling on blog pages without jumping to the home page.
   - **Context-Aware Engine**: Detects `data-theme="light"` and selectively applies only the accent colors to preserve readability in Light Mode.
 

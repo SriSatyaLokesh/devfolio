@@ -48,7 +48,7 @@ To adhere to the "Clean Code" principles and `AGENTS.md` guidelines, we separate
 - **`assets/js/contact-scripts.js`**: Handles the interactive copy-to-clipboard functionality.
 
 ### Implementation Pattern:
-Liquid configuration tokens (from `profile.json`) are now passed to these static JS files via a centralized `window.DEV_FOLIO_CONFIG` object, ensuring the JS remains purely functional and decoupled.
+Liquid configuration tokens (from `profile.json`) are now passed to these static JS files via a centralized `window.THE_PROFILE_CONFIG` object, ensuring the JS remains purely functional and decoupled.
 
 ---
 
