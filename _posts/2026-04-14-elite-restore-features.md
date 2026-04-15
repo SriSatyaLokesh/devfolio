@@ -27,7 +27,7 @@ This creates a "wave" of content as you scroll, guiding the visitor's eye throug
 
 ## Interactive Hero with Vanta.js
 
-We integrated **Vanta.js** and **Three.js** to give every DevFolio a unique digital fingerprint. By allowing users to switch between effects like `birds`, `net`, and `waves` directly in their `profile.json`, we provide a WebGL experience with zero JavaScript maintenance for the developer.
+We integrated **Vanta.js** and **Three.js** to give every TheProFile a unique digital fingerprint. By allowing users to switch between effects like `birds`, `net`, and `waves` directly in their `profile.json`, we provide a WebGL experience with zero JavaScript maintenance for the developer.
 
 > **Performance Note**: We only load Three.js and Vanta.js scripts if an effect is active, keeping our initial load time blazing fast.
 

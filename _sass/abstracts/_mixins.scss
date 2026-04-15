@@ -1,25 +1,44 @@
 /* Mixins */
+@mixin mobile { @media (max-width: 576px) { @content; } }
+@mixin tablet { @media (max-width: 992px) { @content; } }
+@mixin desktop { @media (min-width: 993px) { @content; } }
+
 @mixin glass-panel {
-  background: color-mix(in srgb, var(--color-secondary) 60%, transparent);
-  [data-theme="light"] & { background: color-mix(in srgb, var(--color-secondary) 95%, transparent); }
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--color-border);
-  [data-theme="light"] & { border-color: var(--color-border); }
-  box-shadow: 0 8px 32px 0 color-mix(in srgb, var(--color-primary) 20%, transparent);
-  [data-theme="light"] & { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+  backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid transparent;
   border-radius: var(--radius-lg);
+  
+  /* Restoration of the "Liquid Glass" Gradient Look */
+  background-image: 
+    linear-gradient(color-mix(in srgb, var(--color-secondary) 8%, transparent), color-mix(in srgb, var(--color-secondary) 8%, transparent)),
+    linear-gradient(135deg, 
+      color-mix(in srgb, var(--color-accent) 25%, transparent) 0%, 
+      color-mix(in srgb, var(--color-border) 10%, transparent) 50%, 
+      color-mix(in srgb, var(--color-accent) 25%, transparent) 100%
+    );
+  
+  [data-theme="light"] & {
+    background-image: 
+      linear-gradient(color-mix(in srgb, var(--color-secondary) 85%, transparent), color-mix(in srgb, var(--color-secondary) 85%, transparent)),
+      linear-gradient(135deg, 
+        color-mix(in srgb, var(--color-accent) 25%, transparent) 0%, 
+        rgba(0, 0, 0, 0.08) 50%, 
+        color-mix(in srgb, var(--color-accent) 25%, transparent) 100%
+      );
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  }
+  
   transition: var(--transition);
-  color: var(--color-text) !important; /* Force text visibility */
+  color: var(--color-text);
   position: relative;
   z-index: 1;
-  pointer-events: auto; /* Ensure clickable */
 }
 
 @mixin glass-panel-hover {
-  background: color-mix(in srgb, var(--color-secondary) 80%, transparent);
+  background: color-mix(in srgb, var(--color-secondary) 25%, transparent);
   [data-theme="light"] & { background: #ffffff; }
-  transform: translateY(-4px);
+  transform: translateY(-6px);
   border-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
-  box-shadow: none !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
   filter: none !important;
 }

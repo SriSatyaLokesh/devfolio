@@ -1,5 +1,5 @@
 /**
- * DevFolio — Main JS (Restored Monolith)
+ * TheProFile — Main JS (Restored Monolith)
  * -------------------------------------
  * 1. Smooth scroll with nav offset
  * 2. Dark/light theme toggle with localStorage persistence
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function applyTheme(theme) {
     html.setAttribute('data-theme', theme);
-    localStorage.setItem('devfolio-theme', theme);
+    localStorage.setItem('TheProFile-theme', theme);
     if (themeToggle) {
       if (theme === 'dark') {
         themeToggle.classList.remove('is-light');

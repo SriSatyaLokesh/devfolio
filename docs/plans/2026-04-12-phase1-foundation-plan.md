@@ -29,7 +29,7 @@
 <files>  Gemfile
          _config.yml
 <action> Gemfile: jekyll ~> 4.3, jekyll-sass-converter ~> 3.0. No other gems.
-         _config.yml: title=DevFolio, baseurl="/devfolio", url="https://username.github.io",
+         _config.yml: title=TheProFile, baseurl="/TheProFile", url="https://username.github.io",
          markdown=kramdown, sass.sass_dir=_sass, sass.style=compressed.
          Exclude: Gemfile, Gemfile.lock, docs/, skills/, AGENTS.md, .agent/, .gemini/, adapters/.
 <verify> bundle install && bundle exec jekyll doctor
@@ -85,7 +85,7 @@
 ```
 <files>  _includes/footer.html
 <action> Simple <footer> with: © {{ "now" | date: "%Y" }} {{ site.data.profile.name }}. All rights reserved.
-         Add MIT License note and link back to DevFolio repo.
+         Add MIT License note and link back to TheProFile repo.
 <verify> bundle exec jekyll build && grep -r "All rights reserved" _site/index.html
 <done>   Grep finds copyright text in built output.
 ```
@@ -187,7 +187,7 @@
          {% include sections/projects.html %}
          {% include sections/recommendations.html %}
          {% include sections/contact.html %}
-<verify> bundle exec jekyll serve --detach && curl -s http://localhost:4000/devfolio/ | grep -c "section"
+<verify> bundle exec jekyll serve --detach && curl -s http://localhost:4000/TheProFile/ | grep -c "section"
 <done>   At least 7 <section> tags found in the served output. Kill server after check.
 ```
 
@@ -236,7 +236,7 @@
 bundle exec jekyll serve --livereload
 
 # Then manually verify:
-# 1. http://localhost:4000/devfolio/ loads
+# 1. http://localhost:4000/TheProFile/ loads
 # 2. Change mode to "light" in profile.json → page background turns white
 # 3. Add 10 projects to JSON → only 6 cards appear
 # 4. Remove linkedin_url from a recommendation → LinkedIn link disappears

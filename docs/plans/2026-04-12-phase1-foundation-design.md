@@ -6,7 +6,7 @@
 ---
 
 ## Goal
-Scaffold the complete Jekyll project foundation for DevFolio. By the end of Phase 1, `bundle exec jekyll serve` must run without errors and render a correctly themed single-page skeleton.
+Scaffold the complete Jekyll project foundation for TheProFile. By the end of Phase 1, `bundle exec jekyll serve` must run without errors and render a correctly themed single-page skeleton.
 
 ---
 

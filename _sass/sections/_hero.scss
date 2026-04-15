@@ -1,3 +1,4 @@
+@use "../abstracts" as *;
 /* Hero Section */
 .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; }
 
@@ -18,18 +19,27 @@
 }
 
 .hero__name { 
-  font-weight: 700; 
-  background: linear-gradient(135deg, var(--color-text) 30%, var(--color-accent) 100%); 
-  -webkit-background-clip: text; 
-  -webkit-text-fill-color: transparent; 
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: clamp(2.8rem, 10vw, 6rem);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  padding: 0.1em 0;
+  background: linear-gradient(135deg, var(--color-text) 10%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3)); 
+  background-clip: text;
+  margin-bottom: var(--s-2);
 }
 
 .hero__headline {
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.95rem, 2.4vw, 1.25rem);
+  max-width: 600px;
   font-weight: 500;
   color: var(--color-muted);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   line-height: 1.6;
 }
 
@@ -45,7 +55,12 @@
   display: flex; 
   align-items: center; 
   gap: var(--s-4); 
-  margin-top: var(--s-2);
+  margin-top: var(--s-4);
+  @include mobile {
+    flex-direction: column;
+    width: 100%;
+    .btn { width: 100%; justify-content: center; }
+  }
 }
 
 .hero__magic-wave {

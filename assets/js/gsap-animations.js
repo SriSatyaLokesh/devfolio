@@ -1,5 +1,5 @@
 /**
- * DevFolio — GSAP Scroll Animations (Elite Restoration v2)
+ * TheProFile — GSAP Scroll Animations (Elite Restoration v2)
  * --------------------------------------------------------
  * High-fidelity choreography for a premium developer portfolio.
  */

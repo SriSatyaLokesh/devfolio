@@ -1,3 +1,4 @@
+@use "../abstracts" as *;
 /* Skills (Bento) */
 .skills-bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--s-5); }
 
@@ -14,13 +15,14 @@
 .skills-card--span-8 { grid-column: span 12; @media (min-width: 1025px) { grid-column: span 8; } }
 .skills-card--span-12 { grid-column: span 12; }
 
-.skills-card__category { font-size: 1rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; }
+.skills-card__category { font-family: var(--font-heading); font-size: 0.75rem; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
 .skills-card__list { display: flex; flex-wrap: wrap; gap: var(--s-2); }
-.skills-card__content { display: flex; flex-direction: column; gap: var(--s-4); height: 100%; }
+.skills-card__content { display: flex; flex-direction: column; gap: var(--s-4); height: 100%; font-family: var(--font-main); }
 
-@media (max-width: 1024px) {
+@include mobile {
   /* Unified bento collapse */
   .skills-card--span-4, .skills-card--span-6, .skills-card--span-8, .skills-card--span-12 { grid-column: span 12; }
   /* Support for legacy span classes */
   .skills-card--large, .skills-card--small, .skills-card--wide, .skills-card--medium { grid-column: span 12; }
+  .skills-bento-grid { gap: var(--s-4); }
 }

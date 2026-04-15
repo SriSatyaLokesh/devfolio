@@ -15,6 +15,6 @@ The landscape of digital self-expression is shifting. In 2026, we've moved beyon
 
 > "Design is not just what it looks like; it's how it moves and breathes in a spatial environment."
 
-In DevFolio, this philosophy is embedded in our SCSS tokens. By using `color-mix` and multi-layered `backdrop-filter` chains, we achieve a high-fidelity look that remains performant on mobile hardware.
+In TheProFile, this philosophy is embedded in our SCSS tokens. By using `color-mix` and multi-layered `backdrop-filter` chains, we achieve a high-fidelity look that remains performant on mobile hardware.
 
 Stay tuned for more updates on how we're pushing these boundaries further.

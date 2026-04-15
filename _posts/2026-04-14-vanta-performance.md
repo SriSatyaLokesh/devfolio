@@ -14,7 +14,7 @@ Interactive backgrounds define the **Elite 2026** experience, but they come at a
 *   **Mobile Throttling**: On lower-powered devices, we automatically reduce particle density or transition to high-fidelity static gradients to preserve the user experience.
 
 ### Technical Implementation
-The DevFolio loader logic wraps the initialization in a conditional logic flow that respects user preferences and system capabilities:
+The TheProFile loader logic wraps the initialization in a conditional logic flow that respects user preferences and system capabilities:
 
 ```javascript
 if (config.vanta_effect && window.innerWidth > 768) {

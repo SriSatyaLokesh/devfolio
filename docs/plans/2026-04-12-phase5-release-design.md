@@ -6,7 +6,7 @@
 ---
 
 ## Goal
-Publish DevFolio to the world. We need two distinct pieces of documentation: one for the target user (a developer who wants a zero-code portfolio) and one for open-source contributors (developers who want to add features to DevFolio itself).
+Publish TheProFile to the world. We need two distinct pieces of documentation: one for the target user (a developer who wants a zero-code portfolio) and one for open-source contributors (developers who want to add features to TheProFile itself).
 
 ---
 
@@ -23,8 +23,8 @@ Publish DevFolio to the world. We need two distinct pieces of documentation: one
 
 **Audience:** A developer who knows nothing about Jekyll, SCSS, or Liquid, but knows JSON.
 **Structure:**
-1. **Hero Header**: Devfolio Logo/Title + Shields.io badges (build status, license).
-2. **What is DevFolio?**: The "Portfolio-as-Code" philosophy. 
+1. **Hero Header**: TheProFile Logo/Title + Shields.io badges (build status, license).
+2. **What is TheProFile?**: The "Portfolio-as-Code" philosophy. 
 3. **Features**: Vanta.js animations, Dark/Light modes, Shields.io badges.
 4. **Quick Start (3 Steps)**: 
    - 1. Fork repository.
@@ -37,7 +37,7 @@ Publish DevFolio to the world. We need two distinct pieces of documentation: one
 
 ## `CONTRIBUTING.md` Architecture (The Developer Guide)
 
-**Audience:** A developer who wants to submit a Pull Request to DevFolio core.
+**Audience:** A developer who wants to submit a Pull Request to TheProFile core.
 **Structure:**
 1. **Core Philosophy**: Iterate P1-P7 from `AGENTS.md` (no node/npm, limit 6, hard limits). Reiterate that PRs breaking these rules will be rejected.
 2. **Directory Layout**: Explain `_data`, `_includes/sections`, `_layouts`, etc.

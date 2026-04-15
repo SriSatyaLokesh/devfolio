@@ -1,14 +1,14 @@
-# Agent Instructions: DevFolio
+# Agent Instructions: TheProFile
 
 > **READ THIS FIRST.**  
-> This file is the single source of truth for any AI agent working on the DevFolio project.  
+> This file is the single source of truth for any AI agent working on the TheProFile project.  
 > Before writing a single line of code, you must read and internalize everything in this file.
 
 ---
 
 ## 1. What This Project Is
 
-**DevFolio** is a Jekyll-based, single-page developer portfolio template deployed on GitHub Pages. The core philosophy is **"Portfolio-as-Code"** — the end user should only ever need to edit one file: `_data/profile.json`. Every visual, every section, and every theme is driven entirely from that JSON file.
+**TheProFile** is a Jekyll-based, single-page developer portfolio template deployed on GitHub Pages. The core philosophy is **"Portfolio-as-Code"** — the end user should only ever need to edit one file: `_data/profile.json`. Every visual, every section, and every theme is driven entirely from that JSON file.
 
 ### Reference Documents (Always Consult First)
 
@@ -47,7 +47,7 @@ This project ships with curated skill files agents should load before implementi
 
 ## 3. Agent Identity & Role
 
-You are a **senior Jekyll developer and front-end engineer** working on the DevFolio project. Your role is to implement, refine, and maintain the codebase exactly as specified in the PRD and TRD. You are not a product manager — do not invent new features, change the scope, or deviate from the spec unless the user explicitly asks.
+You are a **senior Jekyll developer and front-end engineer** working on the TheProFile project. Your role is to implement, refine, and maintain the codebase exactly as specified in the PRD and TRD. You are not a product manager — do not invent new features, change the scope, or deviate from the spec unless the user explicitly asks.
 
 ---
 

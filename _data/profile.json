@@ -14,7 +14,7 @@
       "max_volume": 1.0
     },
     "use_logo_image": true,
-    "nav_bar_logo_url": "./assets/img/devfolio.png"
+    "nav_bar_logo_url": "./assets/img/theprofile.png"
   },
 
   "available_for_work": true,
@@ -22,15 +22,15 @@
     "enabled": true
   },
 
-  "name": "DevFolio",
-  "headline": "The Portfolio-as-Code Template that builds itself. Zero HTML. Maximum Impact.",
+  "name": "{ TheProFile }",
+  "headline": "The Portfolio-as-Code Template with Zero code & Maximum Impact.",
   "email": "srisatyalokesh@duck.com",
-  "profile_image_url": "./assets/img/logo.jpg",
-  "resume_url": "https://github.com/SriSatyaLokesh/devfolio",
+  "profile_image_url": "./assets/img/logo.png",
+  "resume_url": "https://github.com/SriSatyaLokesh/theprofile",
   "bio": "I am a high-fidelity, single-page Jekyll template born from a deep-seated hatred for drag-and-drop builders. I live in a single JSON file and dream of pixel-perfect glassmorphism. I don't need a CV; I am the CV. I'm here to ensure your career looks like it was built by a team of Silicon Valley designers, even if you just finished your second coffee.",
 
   "social": [
-    { "platform": "GitHub",    "url": "https://github.com/SriSatyaLokesh/devfolio",       "logo": "github",       "color": "181717" },
+    { "platform": "GitHub",    "url": "https://github.com/SriSatyaLokesh/theprofile",       "logo": "github",       "color": "181717" },
     { "platform": "Twitter",   "url": "https://twitter.com",                          "logo": "twitter",      "color": "1DA1F2" },
     { "platform": "LinkedIn",  "url": "https://linkedin.com",                         "logo": "linkedin",     "color": "0A66C2" },
     { "platform": "Dev.to",    "url": "https://dev.to",                               "logo": "devdotto",     "color": "0A0A0A" }
@@ -105,14 +105,14 @@
 
   "projects": [
     {
-      "title": "DevFolio",
+      "title": "{ TheProFile }",
       "description": "A high-fidelity Portfolio-as-Code template for developers. Focus on your content in a single JSON file while the engine handles elite design, cinematic audio, and WebGL backgrounds.",
-      "image_url": "./assets/img/devfolio.png",
+      "image_url": "./assets/img/theprofile.png",
       "stack":        ["Jekyll",    "SCSS",     "GSAP"],
       "stack_colors": ["CC0000",    "1572B6",   "88CE02"],
       "stack_logos":  ["jekyll",    "css3",     "greensock"],
-      "code_url": "https://github.com/SriSatyaLokesh/devfolio",
-      "live_url": "https://srisatyalokesh.github.io/devfolio/"
+      "code_url": "https://github.com/SriSatyaLokesh/theprofile",
+      "live_url": "https://srisatyalokesh.github.io/theprofile/"
     },
     {
       "title": "Open Certificate Generator",
@@ -138,13 +138,13 @@
 
   "recommendations": [
     {
-      "text": "I built DevFolio specifically to solve my own frustration with complex portfolio maintenance. Pro-tip: Double-click the 'Available for opportunities' badge for a little surprise.",
+      "text": "I built TheProFile specifically to solve my own frustration with complex portfolio maintenance. Pro-tip: Double-click the 'Available for opportunities' badge for a little surprise.",
       "name": "SriSatyaLokesh",
-      "title": "Creator of DevFolio",
+      "title": "Creator of TheProFile",
       "linkedin_url": "https://www.linkedin.com/in/srisatyalokesh"
     },
     {
-      "text": "DevFolio is so good, it actually convinced me to stop using React for a simple landing page. My Lighthouse score is 100/100 and my hands are finally clean of node_modules.",
+      "text": "TheProFile is so good, it actually convinced me to stop using React for a simple landing page. My Lighthouse score is 100/100 and my hands are finally clean of node_modules.",
       "name": "A Grateful Developer",
       "title": "Escaped React Dev",
       "linkedin_url": ""

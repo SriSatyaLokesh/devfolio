@@ -5,7 +5,7 @@
 **Status**: Completed / Finalizing
 
 ## 1. Objective
-The goal of this refactor was to transition DevFolio from a functional single-page prototype into a production-grade, open-source-ready library. This required moving away from monolithic files towards a modular architecture that separates structure (HTML), style (SASS), and logic (JS).
+The goal of this refactor was to transition TheProFile from a functional single-page prototype into a production-grade, open-source-ready library. This required moving away from monolithic files towards a modular architecture that separates structure (HTML), style (SASS), and logic (JS).
 
 ---
 

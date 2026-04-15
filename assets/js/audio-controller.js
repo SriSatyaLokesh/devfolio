@@ -1,5 +1,5 @@
 /**
- * DevFolio — Audio Controller
+ * TheProFile — Audio Controller
  * Manages the cinematic background music, volume fading, 
  * and sound-toggle UI synchronization.
  */

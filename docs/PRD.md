@@ -1,4 +1,4 @@
-# Product Requirements Document (PRD): DevFolio
+# Product Requirements Document (PRD): TheProFile
 
 > **Version:** 1.1  
 > **Last Updated:** 2026-04-12  
@@ -8,7 +8,7 @@
 
 ## 1. Project Vision
 
-**DevFolio** is a high-fidelity, single-page developer portfolio template built on **Jekyll** and hosted via **GitHub Pages**. It follows the **"Portfolio-as-Code"** philosophy — a developer forks the repository, edits a single `profile.json` file, and gets a fully deployed, professional, interactive portfolio website without writing a single line of HTML or CSS.
+**TheProFile** is a high-fidelity, single-page developer portfolio template built on **Jekyll** and hosted via **GitHub Pages**. It follows the **"Portfolio-as-Code"** philosophy — a developer forks the repository, edits a single `profile.json` file, and gets a fully deployed, professional, interactive portfolio website without writing a single line of HTML or CSS.
 
 Jekyll is the chosen foundation because it provides structured Liquid templating, `_data/` file support, and a clear upgrade path to a personal blog in a future release.
 
@@ -64,7 +64,7 @@ Jekyll is the chosen foundation because it provides structured Liquid templating
 
 ## 5. The "Zero-Code" Philosophy
 
-The core principle of DevFolio is that **the only file a user should ever need to touch is `_data/profile.json`.**
+The core principle of TheProFile is that **the only file a user should ever need to touch is `_data/profile.json`.**
 
 - All sections, colors, themes, backgrounds, badges, and links are driven by values in this single JSON file.
 - A developer who knows Liquid/CSS is free to modify the templates after forking — but the default experience requires zero HTML/CSS knowledge.

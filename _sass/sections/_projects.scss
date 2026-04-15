@@ -1,5 +1,13 @@
+@use "../abstracts" as *;
 /* Projects */
-.project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: var(--s-6); }
+.project-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+  gap: var(--s-6); 
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
+}
 
 .project-card { 
   @include glass-panel; overflow: hidden; display: flex; flex-direction: column; position: relative;
@@ -17,8 +25,8 @@
 .project-card:hover .project-card__overlay { opacity: 1; }
 
 .project-card__content { padding: var(--s-6); flex: 1; display: flex; flex-direction: column; gap: var(--s-4); }
-.project-card__title { font-size: 1.4rem; letter-spacing: -0.02em; }
-.project-card__description { font-size: 0.95rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.project-card__title { font-family: var(--font-heading); font-size: 1.4rem; letter-spacing: -0.02em; }
+.project-card__description { font-family: var(--font-main); font-size: 0.95rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 .project-card__stack { display: flex; flex-wrap: wrap; gap: var(--s-2); }
 .project-card__links { display: flex; align-items: center; gap: var(--s-3); margin-top: auto; padding-top: var(--s-4); }
 

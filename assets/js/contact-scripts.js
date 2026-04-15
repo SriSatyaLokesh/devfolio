@@ -1,5 +1,5 @@
 /**
- * DevFolio — Contact Section Scripts
+ * TheProFile — Contact Section Scripts
  * Handles interactive elements like the copy-to-clipboard email button.
  */
 (function() {

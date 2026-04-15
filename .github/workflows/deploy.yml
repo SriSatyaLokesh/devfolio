@@ -1,4 +1,4 @@
-name: Deploy DevFolio to GitHub Pages
+name: Deploy TheProFile to GitHub Pages
 
 on:
   push:

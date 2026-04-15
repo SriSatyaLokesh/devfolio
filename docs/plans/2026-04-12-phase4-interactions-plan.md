@@ -36,5 +36,5 @@
 ## Final Verification
 ```powershell
 bundle exec jekyll build
-# Expect: Success. Open DevFolio manually in localhost and click nav links to check offset scrolling!
+# Expect: Success. Open TheProFile manually in localhost and click nav links to check offset scrolling!
 ```

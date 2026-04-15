@@ -1,4 +1,4 @@
-# Technical Requirements Document (TRD): DevFolio
+# Technical Requirements Document (TRD): TheProFile
 
 > **Version:** 1.0  
 > **Last Updated:** 2026-04-12  
@@ -27,7 +27,7 @@
 ## 2. Directory Structure
 
 ```text
-devfolio/
+TheProFile/
 ├── _data/
 │   ├── profile.json           # THE ONLY FILE users need to edit
 │   └── profile.example.json   # Fully documented example with inline comments
@@ -119,14 +119,14 @@ This is the single source of truth. All sections, styles, and links are driven b
   // ─── PROJECTS (max 6 — hard limit) ───────────────────────────────────────
   "projects": [
     {
-      "title": "DevFolio",
+      "title": "TheProFile",
       "description": "A Jekyll-based developer portfolio template.",
       "image_url": "https://...",
       "stack": ["Jekyll", "SCSS", "JavaScript"],
       "stack_colors": ["CC0000", "1572B6", "F7DF1E"],
       "stack_logos": ["jekyll", "css3", "javascript"],
-      "code_url": "https://github.com/username/devfolio",
-      "live_url": "https://username.github.io/devfolio"
+      "code_url": "https://github.com/username/TheProFile",
+      "live_url": "https://username.github.io/TheProFile"
     }
   ],
 
@@ -382,7 +382,7 @@ nav {
 
 ```yaml
 # .github/workflows/deploy.yml
-name: Deploy DevFolio to GitHub Pages
+name: Deploy TheProFile to GitHub Pages
 
 on:
   push:
@@ -415,9 +415,9 @@ jobs:
 ## 12. `_config.yml` — Jekyll Configuration
 
 ```yaml
-title: DevFolio
+title: TheProFile
 description: Portfolio-as-Code — A Jekyll developer portfolio template
-baseurl: "/devfolio"       # Change to "" if using a custom domain
+baseurl: "/TheProFile"       # Change to "" if using a custom domain
 url: "https://username.github.io"
 
 # Build settings

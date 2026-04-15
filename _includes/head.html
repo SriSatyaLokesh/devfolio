@@ -1,5 +1,5 @@
 <!-- 
-  DevFolio — Head Metadata
+  TheProFile — Head Metadata
   Handles SEO, Social Sharing (OG/Twitter), CSS variable injection, 
   and FOUC prevention logic.
 -->
@@ -54,7 +54,7 @@
 <script>
   (function() {
     // Theme initialization to prevent white flash in dark mode
-    var saved = localStorage.getItem('devfolio-theme');
+    var saved = localStorage.getItem('theprofile-theme');
     var jsonDefault = '{{ site.data.profile.theme_config.mode | default: "dark" }}';
     var theme = saved || jsonDefault;
     document.documentElement.setAttribute('data-theme', theme);

@@ -1,8 +1,8 @@
-# Contributing to DevFolio
+# Contributing to TheProFile
 
-First off, thank you for considering contributing to DevFolio! 
+First off, thank you for considering contributing to TheProFile! 
 
-DevFolio has a very specific set of architectural constraints. Because our target user is a developer who wants a portfolio without the hassle of a build step or NPM configurations, we are fiercely protective of the **Portfolio-as-Code** philosophy.
+TheProFile has a very specific set of architectural constraints. Because our target user is a developer who wants a portfolio without the hassle of a build step or NPM configurations, we are fiercely protective of the **Portfolio-as-Code** philosophy.
 
 Please read the following guidelines carefully before submitting a Pull Request.
 
@@ -60,4 +60,4 @@ Familiarize yourself with where things live before diving in:
 - Have you verified that your changes maintain standard Lighthouse performance markers?
 - Is your pull request purely vanilla JS / HTML / SCSS? 
 
-Thank you for helping us keep DevFolio simple, fast, and beautiful!
+Thank you for helping us keep TheProFile simple, fast, and beautiful!

@@ -1,7 +1,7 @@
 # Design: Blogging Feature — "Elite Posts"
 
 ## Objective
-Introduce a high-fidelity, optional blogging system to DevFolio that allows developers to publish content without compromising the core single-page portfolio philosophy or performance.
+Introduce a high-fidelity, optional blogging system to TheProFile that allows developers to publish content without compromising the core single-page portfolio philosophy or performance.
 
 ## Architecture
 

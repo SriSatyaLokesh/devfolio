@@ -1,43 +1,29 @@
 ---
 ---
 /**
- * DevFolio — main.scss (Modular Architecture)
+ * TheProFile — main.scss (Modular Architecture)
  * -----------------------------------------
  * This is the main orchestrator for the 'Elite 2026' design system.
  * It imports partials from the _sass directory. 
  */
 
-/* 1. External Fonts */
-@import "https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap";
+/* 1. Orchestrated Modular SASS (@use modules must be at the top) */
+@use "abstracts" as *;
+@use "base/base";
+@use "base/utilities";
+@use "layout/nav";
+@use "layout/footer";
+@use "components/badges";
+@use "components/buttons";
+@use "components/chips";
+@use "sections/hero";
+@use "sections/profile";
+@use "sections/experience";
+@use "sections/skills";
+@use "sections/projects";
+@use "sections/recommendations";
+@use "sections/contact";
+@use "blog";
 
-/* 2. Abstracts (Variables & Mixins) */
-@import "abstracts/variables";
-@import "abstracts/mixins";
-
-/* 3. Base (Reset, Typography, Utilities) */
-@import "base/base";
-@import "base/utilities";
-
-/* 4. Layout (Shared Structure) */
-@import "layout/nav";
-@import "layout/footer";
-
-/* 5. Components (Reusable UI) */
-@import "components/badges";
-@import "components/buttons";
-@import "components/chips";
-
-/* 6. Sections (Single Page Segments) */
-@import "sections/hero";
-@import "sections/profile";
-@import "sections/experience";
-@import "sections/skills";
-@import "sections/projects";
-@import "sections/recommendations";
-@import "sections/contact";
-
-/* 7. Pages (Blog & Posts) */
-@import "blog";
-
-/* 8. Animations (Keyframes) */
-@import "animations/keyframes";
+/* 2. External Fonts (CSS Import - must follow all SASS @use) */
+@import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap");

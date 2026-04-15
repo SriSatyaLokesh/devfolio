@@ -1,4 +1,4 @@
-# DevFolio Data Configuration Guide
+# TheProFile Data Configuration Guide
 
 > This directory is the brain of your portfolio. By editing `profile.json`, you can control every visual, interaction, and content piece on your site without touching a single line of HTML or CSS.
 
@@ -8,7 +8,6 @@
 | :--- | :--- |
 | `profile.json` | **Active Configuration**. This is the file you edit. |
 | `profile.example.json` | Template with example data and structure. |
-| `profile.srisatyalokesh.json` | Factual profile of the creator (Sri Satya Lokesh). |
 
 ---
 
@@ -27,7 +26,7 @@ Control the high-fidelity aesthetics of your site.
 | `music.enabled` | Play cinematic background music on entry. | `true`, `false` |
 | `music.file` | Path to the audio file. | `./assets/music/interstellar.mp3` |
 | `use_logo_image` | Toggle between text name and image logo in nav. | `true`, `false` |
-| `nav_bar_logo_url` | Path to your branded logo. | `./assets/img/devfolio.png` |
+| `nav_bar_logo_url` | Path to your branded logo. | `./assets/img/theprofile.png` |
 
 ---
 

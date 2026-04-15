@@ -1,5 +1,5 @@
 <!-- 
-  DevFolio — Contact Section
+  TheProFile — Contact Section
   Premium two-column layout for CTA and social profiles.
   Data: site.data.profile.email, site.data.profile.social[]
 -->
@@ -33,13 +33,20 @@
             aria-label="Copy email address to clipboard"
             title="Click to copy email"
           >
-            <!-- Email Icon -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" aria-hidden="true" class="contact__email-icon">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
-            </svg>
-            <span class="contact__email-text">{{ site.data.profile.email }}</span>
-            <!-- Copy Icon -->
-            <svg class="contact__copy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15" aria-hidden="true">
+            <!-- Email Icon Wrapper (Matches social icon style) -->
+            <div class="contact__email-icon-wrapper" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+
+            <div class="contact__email-text-group">
+              <span class="contact__email-text">{{ site.data.profile.email }}</span>
+              <span class="contact__email-subtext">Click to copy address</span>
+            </div>
+
+            <!-- Copy Icon (Matches social arrow style) -->
+            <svg class="contact__copy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16" aria-hidden="true">
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
             </svg>
             <span class="contact__copy-feedback" aria-live="polite"></span>
