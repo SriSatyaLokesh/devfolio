@@ -1,3 +1,4 @@
+@use "../abstracts" as *;
 /* Skills (Bento) */
 .skills-bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--s-5); }
 
