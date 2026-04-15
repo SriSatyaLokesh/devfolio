@@ -3,7 +3,7 @@ layout: post
 title: "Vanta.js Performance: Engineering Motion"
 date: 2026-04-14 10:00:00 +0530
 description: "How to orchestrate immersive generative backgrounds without compromising on mobile battery life or core web vitals."
-image: "assets/img/blog-vanta-performance.png"
+image: "https://www.bypeople.com/wp-content/uploads/2019/12/free-webgl-3d-background-tool.png"
 ---
 
 Interactive backgrounds define the **Elite 2026** experience, but they come at a computational cost. Orchestrating Three.js and Vanta.js requires more than just importing a script; it requires a performance-first mindset.

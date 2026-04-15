@@ -3,7 +3,7 @@ layout: post
 title: "Exploring Elite Restoration: GSAP, Vanta, and Glassmorphism"
 date: 2026-04-13 14:00:00 +0530
 description: "The technical story behind the restoration of the Elite 2026 design language."
-image: "assets/img/blog-restoration.png"
+image: "https://cdn.prod.website-files.com/67053868fc01e494462e71c9/670d4874817428bdb8b85384_6582afbda178823ef05b262c_gsap-main.webp"
 ---
 
 The world of static sites can often feel, well... *static*. With the **Elite Restoration** update, we aimed to bridge the gap between static performance and premium, interactive aesthetics.

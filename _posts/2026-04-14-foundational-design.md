@@ -3,7 +3,7 @@ layout: post
 title: "Foundational Design: Architecting for 2026"
 date: 2026-04-14 09:00:00 +0530
 description: "Exploring the shift from static minimalist grids to immersive 'Liquid Glass' publication standards."
-image: "assets/img/blog-design-2026.png"
+image: "https://www.jainuniversity.ac.in/uploads/blog/UI_and_UX_Design.webp"
 ---
 
 The landscape of digital self-expression is shifting. In 2026, we've moved beyond the "frosty card" aesthetics of the early 2020s into what we call **Liquid Glass**—a design language defined by dynamic reflections, spatial depth, and responsive lighting.

@@ -3,7 +3,7 @@ layout: post
 title: "DevFolio: The Portfolio-as-Code Revolution"
 date: 2026-04-13 08:00:00 +0530
 description: "Why I built a template that treats your professional identity like a high-performance system."
-image: "assets/img/blog-revolution.png"
+image: "./assets/img/devfolio.png"
 featured: true
 ---
 
