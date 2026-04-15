@@ -1,6 +1,30 @@
+<!-- 
+  DevFolio — Head Metadata
+  Handles SEO, Social Sharing (OG/Twitter), CSS variable injection, 
+  and FOUC prevention logic.
+-->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="{{ site.description }}" />
+<meta name="description" content="{{ site.description | default: site.data.profile.headline }}" />
+<meta name="author" content="{{ site.data.profile.name }}" />
+
+<!-- SEO & Social Sharing (Open Graph) -->
+<meta property="og:title" content="{{ site.data.profile.name }} | Portfolio" />
+<meta property="og:description" content="{{ site.description | default: site.data.profile.headline }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ site.url }}{{ site.baseurl }}/" />
+{% if site.data.profile.image_url %}
+<meta property="og:image" content="{% if site.data.profile.image_url contains 'http' %}{{ site.data.profile.image_url }}{% else %}{{ site.url }}{{ site.baseurl }}{{ site.data.profile.image_url }}{% endif %}" />
+{% endif %}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="{{ site.data.profile.name }} | Portfolio" />
+<meta name="twitter:description" content="{{ site.description | default: site.data.profile.headline }}" />
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ site.url }}{{ site.baseurl }}/" />
+
 <title>{{ site.data.profile.name }} | Portfolio</title>
 
 <!-- Favicons -->
@@ -10,21 +34,26 @@
 <link rel="manifest" href="{{ '/assets/img/favicon/site.webmanifest' | relative_url }}">
 <link rel="shortcut icon" href="{{ '/assets/img/favicon/favicon.ico' | relative_url }}">
 
-<!-- FOUC Prevention: inject CSS variables and initial theme before stylesheet loads -->
+<!-- 
+  FOUC Prevention: 
+  Injects design tokens from _data/profile.json into CSS variables 
+  and sets the initial theme before the browser paints the page.
+-->
 <style>
   :root {
     --color-primary:   {{ site.data.profile.theme_config.colors.primary   | default: '#0d1117' }};
     --color-secondary: {{ site.data.profile.theme_config.colors.secondary | default: '#161b22' }};
     --color-accent:    {{ site.data.profile.theme_config.colors.accent    | default: '#58a6ff' }};
     
-    /* Derived Tokens (Liquid + CSS) */
+    /* Derived Glassmorphic Tokens */
     --color-accent-subtle: color-mix(in srgb, var(--color-accent) 15%, transparent);
     --color-border-glamour: color-mix(in srgb, var(--color-accent) 25%, var(--color-border, #30363d));
   }
 </style>
+
 <script>
-  // Apply saved theme preference before any paint to prevent FOUC
   (function() {
+    // Theme initialization to prevent white flash in dark mode
     var saved = localStorage.getItem('devfolio-theme');
     var jsonDefault = '{{ site.data.profile.theme_config.mode | default: "dark" }}';
     var theme = saved || jsonDefault;
@@ -32,10 +61,5 @@
   })();
 </script>
 
-<!-- Google Fonts: Space Grotesk + Archivo -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
-<!-- Main Stylesheet -->
+<!-- Main Stylesheet (Orchestrated Modular SASS) -->
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | prepend: site.baseurl }}" />

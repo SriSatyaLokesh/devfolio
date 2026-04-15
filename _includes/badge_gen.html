@@ -1,17 +1,12 @@
-{% comment %}
+<!-- 
   badge_gen.html — Shields.io Badge URL Factory
-  -----------------------------------------------
-  This is the ONLY place in DevFolio that constructs a Shields.io URL.
-  Do NOT build badge URLs inline anywhere else.
-
-  Parameters:
-    include.label  — Badge text (e.g., "React", "GitHub"). Spaces are safe.
-    include.color  — Hex color WITHOUT # prefix (e.g., "61DAFB"). Shields.io format.
-    include.logo   — Simple Icons slug (e.g., "react", "github"). See simpleicons.org.
-{% endcomment %}
+  The centralized component for generating tech/social badges.
+  Usage: {% raw %}{% include badge_gen.html label="React" color="61DAFB" logo="react" %}{% endraw %}
+-->
 <img
-  src="https://img.shields.io/badge/{{ include.label | url_encode }}-{{ include.color }}?style=for-the-badge&logo={{ include.logo }}&logoColor=white"
-  alt="{{ include.label }} badge"
+  src="https://img.shields.io/badge/{{ include.label | url_encode }}-{{ include.color | default: 'gray' }}?style=for-the-badge&logo={{ include.logo }}&logoColor=white"
+  alt="{{ include.label }} Badge"
   loading="lazy"
   height="28"
+  aria-label="{{ include.label }} achievement"
 />

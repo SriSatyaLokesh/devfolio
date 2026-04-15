@@ -1,23 +1,35 @@
+<!-- 
+  DevFolio — Experience Section
+  A vertical timeline of professional work experience.
+  Data: site.data.profile.experience
+-->
 <section id="experience" class="experience section-wrapper" aria-label="Work Experience">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Experience</h2>
     </div>
+
     <div class="experience__list">
       {% for exp in site.data.profile.experience %}
         <article class="experience__item">
+          <!-- Role & Duration Header -->
           <div class="experience__header">
             <h3 class="experience__role">{{ exp.role }}</h3>
-            <span class="experience__duration">{{ exp.duration }}</span>
+            <span class="experience__duration" aria-label="Duration">{{ exp.duration }}</span>
           </div>
+
+          <!-- Company Link/Text -->
           {% if exp.company_url and exp.company_url != "" %}
-          <a href="{{ exp.company_url }}" class="experience__company" target="_blank" rel="noopener">{{ exp.company }}</a>
+            <a href="{{ exp.company_url }}" class="experience__company" target="_blank" rel="noopener noreferrer">
+              {{ exp.company }}
+            </a>
           {% else %}
-          <span class="experience__company">{{ exp.company }}</span>
+            <span class="experience__company">{{ exp.company }}</span>
           {% endif %}
           
+          <!-- Task Description (List or Paragraph) -->
           {% if exp.description[0] %}
-            <ul class="experience__description-list">
+            <ul class="experience__description-list" role="list">
               {% for point in exp.description %}
                 <li>{{ point }}</li>
               {% endfor %}

@@ -1,19 +1,19 @@
-{% comment %}
-  tech_chip.html — High-fidelity tech stack chips
-  -----------------------------------------------
-  Parameters:
-    include.label  — Technology name (e.g., "React")
-    include.logo   — (Optional) Simple Icons slug
-{% endcomment %}
-
+<!-- 
+  tech_chip.html — Standardized Tech Chip Component
+  Displays a label with an associated SimpleIcon.
+  Usage: {% raw %}{% include tech_chip.html label="React" logo="react" %}{% endraw %}
+-->
 {% assign slug = include.logo | default: "simpleicons" %}
 
-<div class="tech-chip" data-tech="{{ include.label | downcase }}">
+<div class="tech-chip" data-tech="{{ include.label | downcase }}" role="img" aria-label="Technology: {{ include.label }}">
   <img 
     src="https://cdn.simpleicons.org/{{ slug }}" 
     alt="" 
     class="tech-chip__icon" 
     loading="lazy"
+    width="14"
+    height="14"
+    aria-hidden="true"
     onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
   >
   <span class="tech-chip__label">{{ include.label }}</span>

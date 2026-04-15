@@ -1,13 +1,22 @@
-<section id="skills" class="section-wrapper skills" aria-label="Skills">
+<!-- 
+  DevFolio — Skills Section (Bento Grid)
+  A dynamic responsive grid that adjusts card spans based on category count.
+  Data: site.data.profile.skills
+-->
+<section id="skills" class="section-wrapper skills" aria-label="Technical Skills">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Skills</h2>
     </div>
 
+    <!-- Bento Grid Container -->
     <div class="skills-bento-grid">
       {% assign skills_count = site.data.profile.skills | size %}
+      
       {% for skill_cat in site.data.profile.skills %}
         {% assign idx = forloop.index %}
+        
+        <!-- Logic to determine card span based on total category count -->
         {% capture size_class %}
           {% if skills_count == 1 %}
             span-12
@@ -32,14 +41,17 @@
         {% endcapture %}
         {% assign size_class = size_class | strip %}
 
-        <article class="skills-card skills-card--{{ size_class }}">
+        <article class="skills-card skills-card--{{ size_class }}" role="region" aria-labelledby="skill-cat-{{ idx }}">
           <div class="skills-card__content">
-            <h3 class="skills-card__category">{{ skill_cat.category }}</h3>
+            <h3 class="skills-card__category" id="skill-cat-{{ idx }}">{{ skill_cat.category }}</h3>
             <div class="skills-card__list">
               {% for item in skill_cat.items %}
                 {% assign item_idx = forloop.index0 %}
                 {% assign logo = skill_cat.logos[item_idx] %}
+                
+                <!-- Normalization for SimpleIcons slugs -->
                 {% if logo == "amazonwebservices" %}{% assign logo = "amazonaws" %}{% endif %}
+                
                 {% include tech_chip.html label=item logo=logo %}
               {% endfor %}
             </div>
