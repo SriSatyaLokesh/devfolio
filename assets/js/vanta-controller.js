@@ -3,14 +3,15 @@
  * Manages the initialization, theme-switching, and randomization
  * of Vanta.js background effects.
  */
-(function() {
+(function () {
   // WHITELIST: Core Three.js effects supported by the controller
-  const VANTA_EFFECTS = ['NET', 'WAVES', 'FOG', 'CLOUDS', 'CLOUDS2', 'RINGS', 'TOPOLOGY'];
-  
-  // Configuration passed from the global DEV_FOLIO_CONFIG object
-  const getConfig = () => window.DEV_FOLIO_CONFIG || {};
+  const VANTA_EFFECTS = ['NET', 'WAVES', 'FOG', 'CLOUDS', 'CLOUDS2', 'RINGS', 'TOPOLOGY', 'BIRDS', 'HALO'];
 
-  window.loadVantaScript = function(effectName) {
+
+  // Configuration passed from the global THE_PROFILE_CONFIG object
+  const getConfig = () => window.THE_PROFILE_CONFIG || {};
+
+  window.loadVantaScript = function (effectName) {
     return new Promise((resolve, reject) => {
       const slug = effectName.toLowerCase();
       if (typeof VANTA !== 'undefined' && typeof VANTA[effectName] === 'function') {
@@ -25,26 +26,28 @@
     });
   };
 
+
   /**
-   * Randomizes the Vanta effect with a cinematic shockwave transition.
+   * Sequentially cycles through background effects with a cinematic shockwave transition.
+   * Triggered by the "Available for Work" badge (#vanta-trigger).
    */
-  window.randomizeVanta = async function() {
+  window.randomizeVanta = async function () {
     const config = getConfig();
     const trigger = document.getElementById('vanta-trigger');
     const heroContent = document.querySelector('.hero__content');
     const shockwave = document.getElementById('vanta-shockwave');
     const heroSection = document.getElementById('hero');
-    
+
     if (trigger) trigger.classList.add('loading');
 
     // Shockwave Animation Calculation
     if (shockwave && heroSection && trigger) {
       const rect = trigger.getBoundingClientRect();
       const heroRect = heroSection.getBoundingClientRect();
-      const centerX = ((rect.left + rect.width/2) - heroRect.left) / heroRect.width * 100;
-      const centerY = ((rect.top + rect.height/2) - heroRect.top) / heroRect.height * 100;
+      const centerX = ((rect.left + rect.width / 2) - heroRect.left) / heroRect.width * 100;
+      const centerY = ((rect.top + rect.height / 2) - heroRect.top) / heroRect.height * 100;
 
-      gsap.set(shockwave, { 
+      gsap.set(shockwave, {
         clipPath: `circle(0% at ${centerX}% ${centerY}%)`,
         opacity: 0.8,
         display: 'block'
@@ -58,26 +61,26 @@
         onComplete: () => gsap.set(shockwave, { display: 'none' })
       });
     }
-    
+
     if (heroContent) {
       gsap.to(heroContent, { y: -15, scale: 1.02, opacity: 0.7, duration: 0.8, ease: "power2.out" });
     }
 
-    // Pick new random effect
-    let nextIdx = Math.floor(Math.random() * VANTA_EFFECTS.length);
-    let nextEffect = VANTA_EFFECTS[nextIdx];
-    
-    if (nextEffect === (window.DEV_FOLIO_CURRENT_VANTA || '').toUpperCase()) {
-      nextIdx = (nextIdx + 1) % VANTA_EFFECTS.length;
-      nextEffect = VANTA_EFFECTS[nextIdx];
+    // Sequential Effect Cycling Logic (Independent of Colors)
+    if (typeof window.THE_PROFILE_VANTA_INDEX === 'undefined') {
+      window.THE_PROFILE_VANTA_INDEX = 0;
+    } else {
+      window.THE_PROFILE_VANTA_INDEX = (window.THE_PROFILE_VANTA_INDEX + 1) % VANTA_EFFECTS.length;
     }
+
+    const nextEffect = VANTA_EFFECTS[window.THE_PROFILE_VANTA_INDEX];
 
     try {
       await window.loadVantaScript(nextEffect);
-      window.DEV_FOLIO_CURRENT_VANTA = nextEffect;
+      window.THE_PROFILE_CURRENT_VANTA = nextEffect;
       window.initVanta();
     } catch (err) {
-      console.error("Vanta randomization failed:", err);
+      console.error("Vanta effect cycling failed:", err);
     } finally {
       if (trigger) trigger.classList.remove('loading');
       if (heroContent) {
@@ -86,17 +89,22 @@
     }
   };
 
+
+
   /**
    * Main initialization function for Vanta effects.
    */
-  window.initVanta = function() {
-    if (window.DEV_FOLIO_VANTA_INSTANCE) {
-      window.DEV_FOLIO_VANTA_INSTANCE.destroy();
+  window.initVanta = function () {
+    // Guard clause for pages without hero sections (e.g. blog posts)
+    if (!document.getElementById('hero')) return;
+
+    if (window.THE_PROFILE_VANTA_INSTANCE) {
+      window.THE_PROFILE_VANTA_INSTANCE.destroy();
     }
 
     const config = getConfig();
-    const effectKey = (window.DEV_FOLIO_CURRENT_VANTA || config.vantaEffect || 'NET').toUpperCase();
-    
+    const effectKey = (window.THE_PROFILE_CURRENT_VANTA || config.vantaEffect || 'NET').toUpperCase();
+
     const colorToNum = (hex) => parseInt((hex || '#000000').replace("#", "0x"), 16);
 
     const isLight = document.documentElement.getAttribute('data-theme') === 'light';
@@ -112,13 +120,13 @@
     };
 
     // Advanced precision tuning for specific effects
-    switch(effectKey) {
+    switch (effectKey) {
       case 'BIRDS':
         vantaConfig.color1 = accent; vantaConfig.color2 = accent;
         vantaConfig.colorMode = "lerp"; vantaConfig.birdSize = 1.2;
         break;
       case 'WAVES':
-        vantaConfig.shininess = isLight ? 50 : 150; 
+        vantaConfig.shininess = isLight ? 50 : 150;
         vantaConfig.waveHeight = 35.0; vantaConfig.waveSpeed = 1.0; vantaConfig.zoom = 0.8;
         break;
       case 'FOG':
@@ -152,16 +160,16 @@
     try {
       if (typeof VANTA !== 'undefined' && typeof VANTA[effectKey] === 'function') {
         const instance = VANTA[effectKey](vantaConfig);
-        
+
         // Post-init monochromatic fix for legacy effects
         if (effectKey === 'RINGS' || effectKey === 'HALO') {
           if (instance.colors) instance.colors = [accent, accent];
           if (instance.options) { instance.options.color = accent; instance.options.color2 = accent; }
           if (typeof instance.restart === 'function') instance.restart();
         }
-        window.DEV_FOLIO_VANTA_INSTANCE = instance;
+        window.THE_PROFILE_VANTA_INSTANCE = instance;
       }
-    } catch(err) {
+    } catch (err) {
       console.error("Vanta instance failed:", err);
     }
   };
@@ -170,8 +178,8 @@
   document.addEventListener('DOMContentLoaded', () => {
     // Initial load
     window.initVanta();
-    
-    // Double-click trigger for Easter Egg
+
+    // Double-click trigger for Easter Egg (Background Effects)
     const trigger = document.getElementById('vanta-trigger');
     if (trigger) {
       trigger.addEventListener('dblclick', (e) => {

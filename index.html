@@ -262,7 +262,9 @@
               
                 <li>Successfully defended the 'Portfolio-as-Code' philosophy against the invading forces of drag-and-drop website builders.</li>
               
-                <li>Implemented a 'Secret Shockwave' Easter Egg that randomizes backgrounds and user life choices simultaneously.</li>
+                <li>Implemented a Dual-Trigger Easter Egg discovery system: Double-click the status badge for a background shockwave, or the Navbar logo for a sequential branding makeover.</li>
+              
+                <li>Engineered a context-aware theme engine that intelligently preserves readability by selectively applying color palettes based on Light/Dark mode state.</li>
               
             </ul>
           
@@ -804,7 +806,7 @@
 
           <div class="project-card__content">
             <h3 class="project-card__title">{ TheProFile }</h3>
-            <p class="project-card__description">A high-fidelity Portfolio-as-Code template for developers. Focus on your content in a single JSON file while the engine handles elite design, cinematic audio, and WebGL backgrounds.</p>
+            <p class="project-card__description">A high-fidelity Portfolio-as-Code template. Focus on content in a single JSON file while the engine handles design, cinematic audio, and WebGL. Pro-tip: Double-click the Navbar logo for a branding makeover, or the 'Available for work' badge for background magic.</p>
 
             <!-- Technologies Used -->
             <div class="project-card__stack" aria-label="Technologies used">
@@ -1475,7 +1477,7 @@
 
 <!-- Pass Liquid Configuration to the Vanta Controller -->
 <script>
-  window.DEV_FOLIO_CONFIG = Object.assign(window.DEV_FOLIO_CONFIG || {}, {
+  window.THE_PROFILE_CONFIG = Object.assign(window.THE_PROFILE_CONFIG || {}, {
     vantaEffect: 'birds',
     accentColor: '#58a6ff',
     primaryColor: '#0d1117',
@@ -1513,6 +1515,7 @@
     <!-- Core Interactions & Animations (Deferred) -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script defer src="/theprofile/assets/js/theme-controller.js"></script>
     <script defer src="/theprofile/assets/js/smooth-scroll.js"></script>
     <script defer src="/theprofile/assets/js/gsap-animations.js"></script>
     <script defer src="/theprofile/assets/js/contact-scripts.js"></script>

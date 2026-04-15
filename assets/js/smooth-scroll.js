@@ -32,36 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // ── 2. Theme Toggle ───────────────────────────────────────────
-  const themeToggle = document.getElementById('theme-toggle');
-  const html = document.documentElement;
-
-  function applyTheme(theme) {
-    html.setAttribute('data-theme', theme);
-    localStorage.setItem('TheProFile-theme', theme);
-    if (themeToggle) {
-      if (theme === 'dark') {
-        themeToggle.classList.remove('is-light');
-      } else {
-        themeToggle.classList.add('is-light');
-      }
-    }
-    // Refresh Vanta background immediately if it exists
-    if (typeof window.initVanta === 'function') {
-      window.initVanta();
-    }
-  }
-
-  // Sync button state on load
-  const currentTheme = html.getAttribute('data-theme') || 'dark';
-  applyTheme(currentTheme);
-
-  if (themeToggle) {
-    themeToggle.addEventListener('click', function () {
-      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      applyTheme(next);
-    });
-  }
+  // Theme toggle has been moved to theme-controller.js for clean-code compliance.
 
   // ── 3. Mobile Hamburger ───────────────────────────────────────
   if (hamburger && navLinks) {
