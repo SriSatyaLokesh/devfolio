@@ -5,7 +5,7 @@ description: "A comprehensive deep-dive into the TheProFile engine. Learn how to
 date: 2026-04-15 00:00:00 +0530
 categories: [Guide, Documentation]
 tags: [Jekyll, JSON, UI/UX, Vanta, Tutorial]
-image: "/assets/img/devfolio.png"
+image: "/assets/img/theprofile.png"
 ---
 
 # Introduction: The Era of Software-Driven Identity
@@ -145,12 +145,12 @@ The `projects` array is the highlight of your craftsmanship. **Note**: The templ
 {
   "title": "TheProFile",
   "description": "A high-fidelity Portfolio-as-Code template for developers...",
-  "image_url": "./assets/img/devfolio.png",
+  "image_url": "./assets/img/theprofile.png",
   "stack": ["Jekyll", "SCSS", "GSAP"],
   "stack_colors": ["CC0000", "1572B6", "88CE02"],
   "stack_logos": ["jekyll", "css3", "greensock"],
-  "code_url": "https://github.com/SriSatyaLokesh/devfolio",
-  "live_url": "https://srisatyalokesh.github.io/devfolio/"
+  "code_url": "https://github.com/SriSatyaLokesh/theprofile",
+  "live_url": "https://srisatyalokesh.github.io/theprofile/"
 }
 ```
 

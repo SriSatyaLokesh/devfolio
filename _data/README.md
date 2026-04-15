@@ -27,7 +27,7 @@ Control the high-fidelity aesthetics of your site.
 | `music.enabled` | Play cinematic background music on entry. | `true`, `false` |
 | `music.file` | Path to the audio file. | `./assets/music/interstellar.mp3` |
 | `use_logo_image` | Toggle between text name and image logo in nav. | `true`, `false` |
-| `nav_bar_logo_url` | Path to your branded logo. | `./assets/img/devfolio.png` |
+| `nav_bar_logo_url` | Path to your branded logo. | `./assets/img/theprofile.png` |
 
 ---
 
