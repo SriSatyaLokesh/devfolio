@@ -106,7 +106,7 @@
   "projects": [
     {
       "title": "{ TheProFile }",
-      "description": "A high-fidelity Portfolio-as-Code template for developers. Focus on your content in a single JSON file while the engine handles elite design, cinematic audio, and WebGL backgrounds.",
+      "description": "A high-fidelity Portfolio-as-Code template. Focus on content in a single JSON file while the engine handles design, cinematic audio, and WebGL. Pro-tip: Double-click the Navbar logo for a branding makeover, or the 'Available for work' badge for background magic.",
       "image_url": "./assets/img/theprofile.png",
       "stack":        ["Jekyll",    "SCSS",     "GSAP"],
       "stack_colors": ["CC0000",    "1572B6",   "88CE02"],

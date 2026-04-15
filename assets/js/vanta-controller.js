@@ -7,22 +7,6 @@
   // WHITELIST: Core Three.js effects supported by the controller
   const VANTA_EFFECTS = ['NET', 'WAVES', 'FOG', 'CLOUDS', 'CLOUDS2', 'RINGS', 'TOPOLOGY', 'BIRDS', 'HALO'];
 
-  /**
-   * ELITE PRESETS: Sequential cycles for the Easter Egg.
-   * Based on _data/README.md "Elite" Color Palettes.
-   */
-  const ELITE_PRESETS = [
-    { name: "Amethyst Night",   effect: "BIRDS",  primary: "#0a0a0c", secondary: "#121216", accent: "#C084FC" },
-    { name: "Volcano Lead",     effect: "NET",    primary: "#050505", secondary: "#1a0505", accent: "#FF4500" },
-    { name: "Cyber Monolith",   effect: "RINGS",  primary: "#010101", secondary: "#0f0f12", accent: "#EAB308" },
-    { name: "Forest Guard",     effect: "WAVES",  primary: "#0a0c0a", secondary: "#121612", accent: "#10B981" },
-    { name: "Carbon Blue",      effect: "NET",    primary: "#0d1117", secondary: "#161b22", accent: "#58a6ff" },
-    { name: "Midnight Rose",    effect: "FOG",    primary: "#0c0a0a", secondary: "#161212", accent: "#F43F5E" },
-    { name: "Deep Nebula",      effect: "CLOUDS", primary: "#0a0a14", secondary: "#121220", accent: "#8B5CF6" },
-    { name: "Electric Slate",   effect: "NET",    primary: "#0f172a", secondary: "#1e293b", accent: "#38BDF8" },
-    { name: "Industrial Gold",  effect: "HALO",   primary: "#000000", secondary: "#111111", accent: "#F59E0B" },
-    { name: "Matte Crimson",    effect: "RINGS",  primary: "#080808", secondary: "#141414", accent: "#EF4444" }
-  ];
   
   // Configuration passed from the global DEV_FOLIO_CONFIG object
   const getConfig = () => window.DEV_FOLIO_CONFIG || {};
@@ -42,27 +26,10 @@
     });
   };
 
-  /**
-   * Dynamically updates CSS custom properties on the root element
-   * to reflect the new theme colors.
-   */
-  window.updateThemeColors = function(primary, secondary, accent) {
-    const root = document.documentElement;
-    root.style.setProperty('--color-primary', primary);
-    root.style.setProperty('--color-secondary', secondary);
-    root.style.setProperty('--color-accent', accent);
-    
-    // Update global config so Vanta picks up new colors on init
-    if (window.DEV_FOLIO_CONFIG) {
-      window.DEV_FOLIO_CONFIG.primaryColor = primary;
-      window.DEV_FOLIO_CONFIG.accentColor = accent;
-    }
-    
-    console.log(`[TheProFile] Theme Updated: Primary: ${primary}, Accent: ${accent}`);
-  };
 
   /**
-   * Sequentially cycles through Elite Vanta presets with a cinematic shockwave transition.
+   * Sequentially cycles through background effects with a cinematic shockwave transition.
+   * Triggered by the "Available for Work" badge (#vanta-trigger).
    */
   window.randomizeVanta = async function() {
     const config = getConfig();
@@ -99,25 +66,21 @@
       gsap.to(heroContent, { y: -15, scale: 1.02, opacity: 0.7, duration: 0.8, ease: "power2.out" });
     }
 
-    // Sequential Cycling Logic
-    if (typeof window.DEV_FOLIO_PRESET_INDEX === 'undefined') {
-      window.DEV_FOLIO_PRESET_INDEX = 0;
+    // Sequential Effect Cycling Logic (Independent of Colors)
+    if (typeof window.DEV_FOLIO_VANTA_INDEX === 'undefined') {
+      window.DEV_FOLIO_VANTA_INDEX = 0;
     } else {
-      window.DEV_FOLIO_PRESET_INDEX = (window.DEV_FOLIO_PRESET_INDEX + 1) % ELITE_PRESETS.length;
+      window.DEV_FOLIO_VANTA_INDEX = (window.DEV_FOLIO_VANTA_INDEX + 1) % VANTA_EFFECTS.length;
     }
 
-    const preset = ELITE_PRESETS[window.DEV_FOLIO_PRESET_INDEX];
-    const nextEffect = preset.effect;
-
-    // Apply colors to the UI
-    window.updateThemeColors(preset.primary, preset.secondary, preset.accent);
+    const nextEffect = VANTA_EFFECTS[window.DEV_FOLIO_VANTA_INDEX];
 
     try {
       await window.loadVantaScript(nextEffect);
       window.DEV_FOLIO_CURRENT_VANTA = nextEffect;
       window.initVanta();
     } catch (err) {
-      console.error("Vanta randomization failed:", err);
+      console.error("Vanta effect cycling failed:", err);
     } finally {
       if (trigger) trigger.classList.remove('loading');
       if (heroContent) {
@@ -125,6 +88,8 @@
       }
     }
   };
+
+
 
   /**
    * Main initialization function for Vanta effects.
@@ -211,7 +176,7 @@
     // Initial load
     window.initVanta();
     
-    // Double-click trigger for Easter Egg
+    // Double-click trigger for Easter Egg (Background Effects)
     const trigger = document.getElementById('vanta-trigger');
     if (trigger) {
       trigger.addEventListener('dblclick', (e) => {
