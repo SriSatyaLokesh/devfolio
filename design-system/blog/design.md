@@ -1,6 +1,6 @@
 # DESIGN.md - Blog Specification (Elite 2026 Edition)
 
-This document establishes the high-fidelity design standards for the DevFolio blogging system, defined by the "Elite 2026" magazine aesthetic.
+This document establishes the high-fidelity design standards for the TheProFile blogging system, defined by the "Elite 2026" magazine aesthetic.
 
 ## Aesthetic Identity: Liquid Glass
 - **Mood:** Immersive, editorial, premium digital publication.

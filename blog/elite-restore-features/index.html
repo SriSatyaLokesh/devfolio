@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <!-- 
-  DevFolio — Default Layout
+  TheProFile — Default Layout
   This is the primary wrapper for the application. It handles the injection of
   head metadata, navigation, content, and global interaction scripts.
 -->
 <html lang="en" data-theme="dark">
   
   <!-- 
-  DevFolio — Head Metadata
+  TheProFile — Head Metadata
   Handles SEO, Social Sharing (OG/Twitter), CSS variable injection, 
   and FOUC prevention logic.
 -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Portfolio-as-Code — A Jekyll developer portfolio template. Fork, fill JSON, deploy." />
-<meta name="author" content="DevFolio" />
+<meta name="author" content="{ TheProFile }" />
 
 <!-- SEO & Social Sharing (Open Graph) -->
-<meta property="og:title" content="DevFolio | Portfolio" />
+<meta property="og:title" content="{ TheProFile } | Portfolio" />
 <meta property="og:description" content="Portfolio-as-Code — A Jekyll developer portfolio template. Fork, fill JSON, deploy." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://srisatyalokesh.github.io/devfolio/" />
+<meta property="og:url" content="https://srisatyalokesh.github.io/theprofile/" />
 
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="DevFolio | Portfolio" />
+<meta name="twitter:title" content="{ TheProFile } | Portfolio" />
 <meta name="twitter:description" content="Portfolio-as-Code — A Jekyll developer portfolio template. Fork, fill JSON, deploy." />
 
 <!-- Canonical URL -->
-<link rel="canonical" href="https://srisatyalokesh.github.io/devfolio/" />
+<link rel="canonical" href="https://srisatyalokesh.github.io/theprofile/" />
 
-<title>DevFolio | Portfolio</title>
+<title>{ TheProFile } | Portfolio</title>
 
 <!-- Favicons -->
-<link rel="apple-touch-icon" sizes="180x180" href="/devfolio/assets/img/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/devfolio/assets/img/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/devfolio/assets/img/favicon/favicon-16x16.png">
-<link rel="manifest" href="/devfolio/assets/img/favicon/site.webmanifest">
-<link rel="shortcut icon" href="/devfolio/assets/img/favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/theprofile/assets/img/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/theprofile/assets/img/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/theprofile/assets/img/favicon/favicon-16x16.png">
+<link rel="manifest" href="/theprofile/assets/img/favicon/site.webmanifest">
+<link rel="shortcut icon" href="/theprofile/assets/img/favicon/favicon.ico">
 
 <!-- 
   FOUC Prevention: 
@@ -60,7 +60,7 @@
 <script>
   (function() {
     // Theme initialization to prevent white flash in dark mode
-    var saved = localStorage.getItem('devfolio-theme');
+    var saved = localStorage.getItem('theprofile-theme');
     var jsonDefault = 'dark';
     var theme = saved || jsonDefault;
     document.documentElement.setAttribute('data-theme', theme);
@@ -68,13 +68,13 @@
 </script>
 
 <!-- Main Stylesheet (Orchestrated Modular SASS) -->
-<link rel="stylesheet" href="/devfolio/assets/css/main.css" />
+<link rel="stylesheet" href="/theprofile/assets/css/main.css" />
 
   
   <body>
     <!-- Global Navigation -->
     <!-- 
-  DevFolio — Navigation
+  TheProFile — Navigation
   A high-fidelity glassmorphism navbar with dynamic link generation,
   theme toggling, and sound state management.
 -->
@@ -82,11 +82,11 @@
   <div class="container nav__inner">
     
     <!-- Branding / Logo -->
-    <a href="/devfolio/#hero" class="nav__brand" aria-label="Go to home">
+    <a href="/theprofile/#hero" class="nav__brand" aria-label="Go to home">
       
         <img 
-          src="/devfolio/assets/img/devfolio.png" 
-          alt="DevFolio Logo" 
+          src="/theprofile/assets/img/theprofile.png" 
+          alt="{ TheProFile } Logo" 
           class="nav__logo-img"
           loading="eager"
         >
@@ -97,15 +97,15 @@
     <ul class="nav__links" role="list" id="nav-links">
       <div class="nav__indicator" aria-hidden="true"></div>
       
-      <li><a href="/devfolio/#profile"         class="nav__link">About</a></li>
-      <li><a href="/devfolio/#experience"      class="nav__link">Experience</a></li>
-      <li><a href="/devfolio/#skills"          class="nav__link">Skills</a></li>
-      <li><a href="/devfolio/#projects"        class="nav__link">Projects</a></li>
-      <li><a href="/devfolio/#contact"         class="nav__link">Contact</a></li>
+      <li><a href="/theprofile/#profile"         class="nav__link">About</a></li>
+      <li><a href="/theprofile/#experience"      class="nav__link">Experience</a></li>
+      <li><a href="/theprofile/#skills"          class="nav__link">Skills</a></li>
+      <li><a href="/theprofile/#projects"        class="nav__link">Projects</a></li>
+      <li><a href="/theprofile/#contact"         class="nav__link">Contact</a></li>
       
       <!-- Conditional Blog Link -->
       
-        <li><a href="/devfolio/blog/" class="nav__link">Blog</a></li>
+        <li><a href="/theprofile/blog/" class="nav__link">Blog</a></li>
       
     </ul>
 
@@ -219,7 +219,7 @@
 
 <h2 id="interactive-hero-with-vantajs">Interactive Hero with Vanta.js</h2>
 
-<p>We integrated <strong>Vanta.js</strong> and <strong>Three.js</strong> to give every DevFolio a unique digital fingerprint. By allowing users to switch between effects like <code class="language-plaintext highlighter-rouge">birds</code>, <code class="language-plaintext highlighter-rouge">net</code>, and <code class="language-plaintext highlighter-rouge">waves</code> directly in their <code class="language-plaintext highlighter-rouge">profile.json</code>, we provide a WebGL experience with zero JavaScript maintenance for the developer.</p>
+<p>We integrated <strong>Vanta.js</strong> and <strong>Three.js</strong> to give every TheProFile a unique digital fingerprint. By allowing users to switch between effects like <code class="language-plaintext highlighter-rouge">birds</code>, <code class="language-plaintext highlighter-rouge">net</code>, and <code class="language-plaintext highlighter-rouge">waves</code> directly in their <code class="language-plaintext highlighter-rouge">profile.json</code>, we provide a WebGL experience with zero JavaScript maintenance for the developer.</p>
 
 <blockquote>
   <p><strong>Performance Note</strong>: We only load Three.js and Vanta.js scripts if an effect is active, keeping our initial load time blazing fast.</p>
@@ -249,10 +249,10 @@
           
           
             <article class="blog-card blog-card--span-4">
-              <a href="/devfolio/blog/mastering-portfolio-as-code-configuration-guide/" class="blog-card__link">
+              <a href="/theprofile/blog/mastering-portfolio-as-code-configuration-guide/" class="blog-card__link">
                 <div class="blog-card__content interactive-glow">
                   <div class="blog-card__image-wrap">
-                    <img src="/devfolio/assets/img/devfolio.png" alt="The Master Guide to Portfolio-as-Code Configuration" class="blog-card__image" loading="lazy">
+                    <img src="/theprofile/assets/img/theprofile.png" alt="The Master Guide to Portfolio-as-Code Configuration" class="blog-card__image" loading="lazy">
                   </div>
                   <h4 class="blog-card__title">The Master Guide to Portfolio-as-Code Configuration</h4>
                 </div>
@@ -260,7 +260,7 @@
             </article>
           
             <article class="blog-card blog-card--span-4">
-              <a href="/devfolio/blog/foundational-design/" class="blog-card__link">
+              <a href="/theprofile/blog/foundational-design/" class="blog-card__link">
                 <div class="blog-card__content interactive-glow">
                   <div class="blog-card__image-wrap">
                     <img src="https://www.jainuniversity.ac.in/uploads/blog/UI_and_UX_Design.webp" alt="Foundational Design: Architecting for 2026" class="blog-card__image" loading="lazy">
@@ -271,12 +271,12 @@
             </article>
           
             <article class="blog-card blog-card--span-4">
-              <a href="/devfolio/blog/vanta-performance/" class="blog-card__link">
+              <a href="/theprofile/blog/introducing-theprofile/" class="blog-card__link">
                 <div class="blog-card__content interactive-glow">
                   <div class="blog-card__image-wrap">
-                    <img src="https://www.bypeople.com/wp-content/uploads/2019/12/free-webgl-3d-background-tool.png" alt="Vanta.js Performance: Engineering Motion" class="blog-card__image" loading="lazy">
+                    <img src="/theprofile/assets/img/theprofile.png" alt="TheProFile: The Portfolio-as-Code Revolution" class="blog-card__image" loading="lazy">
                   </div>
-                  <h4 class="blog-card__title">Vanta.js Performance: Engineering Motion</h4>
+                  <h4 class="blog-card__title">TheProFile: The Portfolio-as-Code Revolution</h4>
                 </div>
               </a>
             </article>
@@ -285,14 +285,14 @@
       </div>
       <div class="post-pagination">
         
-          <a href="/devfolio/blog/introducing-devfolio/" class="post-pagination__link post-pagination__link--prev">
+          <a href="/theprofile/blog/introducing-theprofile/" class="post-pagination__link post-pagination__link--prev">
             <span class="label">Previous Article</span>
-            <span class="title">DevFolio: The Portfolio-as-Code Revol...</span>
+            <span class="title">TheProFile: The Portfolio-as-Code Rev...</span>
           </a>
         
 
         
-          <a href="/devfolio/blog/foundational-design/" class="post-pagination__link post-pagination__link--next">
+          <a href="/theprofile/blog/foundational-design/" class="post-pagination__link post-pagination__link--next">
             <span class="label">Next Article</span>
             <span class="title">Foundational Design: Architecting for...</span>
           </a>
@@ -300,7 +300,7 @@
       </div>
 
       <div class="post-back">
-        <a href="/devfolio/blog/" class="btn btn--secondary">
+        <a href="/theprofile/blog/" class="btn btn--secondary">
           <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
             <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
           </svg>
@@ -315,18 +315,18 @@
 
     <!-- Global Footer -->
     <!-- 
-  DevFolio — Footer
+  TheProFile — Footer
   Minimalist footer with dynamic copyright year and back-to-top navigation.
 -->
 <footer class="footer" role="contentinfo">
   <div class="container footer__inner">
     <div class="footer__left">
       <p class="footer__copy">
-        &copy; 2026 DevFolio. All rights reserved.
+        &copy; 2026 { TheProFile }. All rights reserved.
       </p>
       <p class="footer__credit">
-        Built with <a href="https://github.com/SriSatyaLokesh/devfolio" target="_blank" rel="noopener">DevFolio</a>
-        &mdash; Portfolio-as-Code.
+        Built with <a href="https://github.com/SriSatyaLokesh/theprofile" target="_blank" rel="noopener">TheProFile</a>
+        — Portfolio-as-Code.
       </p>
     </div>
 
@@ -346,7 +346,7 @@
     
     
       <!-- 
-  DevFolio — Vanta Initialization
+  TheProFile — Vanta Initialization
   Handles the conditional loading of Vanta.js dependencies and
   injects Liquid configuration tokens for the Vanta Controller.
 -->
@@ -375,13 +375,13 @@
 </script>
 
 <!-- Main Vanta Controller Logic -->
-<script defer src="/devfolio/assets/js/vanta-controller.js"></script>
+<script defer src="/theprofile/assets/js/vanta-controller.js"></script>
 
     
 
     <!-- Global Audio Component -->
     <!-- 
-  DevFolio — Audio Player Include
+  TheProFile — Audio Player Include
   Sets up the audio element with Liquid configuration and handles
   the inclusion of the audio controller script.
 -->
@@ -393,19 +393,19 @@
     preload="auto" 
     data-max-volume="1.0"
   >
-    <source src="/devfolio/assets/music/interstellar.mp3" type="audio/mpeg">
+    <source src="/theprofile/assets/music/interstellar.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Controller Logic -->
-  <script defer src="/devfolio/assets/js/audio-controller.js"></script>
+  <script defer src="/theprofile/assets/js/audio-controller.js"></script>
 
 
 
     <!-- Core Interactions & Animations (Deferred) -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script defer src="/devfolio/assets/js/smooth-scroll.js"></script>
-    <script defer src="/devfolio/assets/js/gsap-animations.js"></script>
-    <script defer src="/devfolio/assets/js/contact-scripts.js"></script>
+    <script defer src="/theprofile/assets/js/smooth-scroll.js"></script>
+    <script defer src="/theprofile/assets/js/gsap-animations.js"></script>
+    <script defer src="/theprofile/assets/js/contact-scripts.js"></script>
   </body>
 </html>

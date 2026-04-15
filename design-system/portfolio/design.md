@@ -1,6 +1,6 @@
 # DESIGN.md - Portfolio Specification (Linear Inspired)
 
-This document establishes the high-fidelity design standards for the DevFolio portfolio, based on the `getdesign.md` Linear template.
+This document establishes the high-fidelity design standards for the TheProFile portfolio, based on the `getdesign.md` Linear template.
 
 ## Global Tokens
 

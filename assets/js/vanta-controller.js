@@ -1,5 +1,5 @@
 /**
- * DevFolio — Vanta Controller
+ * TheProFile — Vanta Controller
  * Manages the initialization, theme-switching, and randomization
  * of Vanta.js background effects.
  */
