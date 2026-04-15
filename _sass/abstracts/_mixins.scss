@@ -19,20 +19,13 @@
   
   [data-theme="light"] & {
     background-image: 
-      linear-gradient(color-mix(in srgb, var(--color-secondary) 90%, transparent), color-mix(in srgb, var(--color-secondary) 90%, transparent)),
+      linear-gradient(color-mix(in srgb, var(--color-secondary) 85%, transparent), color-mix(in srgb, var(--color-secondary) 85%, transparent)),
       linear-gradient(135deg, 
-        color-mix(in srgb, var(--color-accent) 15%, transparent) 0%, 
-        rgba(0,0,0,0.05) 50%, 
-        color-mix(in srgb, var(--color-accent) 15%, transparent) 100%
+        color-mix(in srgb, var(--color-accent) 25%, transparent) 0%, 
+        rgba(0, 0, 0, 0.08) 50%, 
+        color-mix(in srgb, var(--color-accent) 25%, transparent) 100%
       );
-  }
-  
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-  
-  [data-theme="light"] & {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
   }
   
   transition: var(--transition);
