@@ -23,6 +23,7 @@
 @import "components/badges";
 @import "components/buttons";
 @import "components/chips";
+@import "components/cursor";
 
 /* 5. Sections (Single Page Segments) */
 @import "sections/hero";
@@ -35,6 +36,9 @@
 
 /* 6. Pages (Blog & Posts) */
 @import "blog";
+
+/* 7. Dynamics (Animations & Keyframes) */
+@import "animations/keyframes";
 
 /* 2. External Fonts (CSS Import - must follow all SASS @use) */
 @import url("https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap");

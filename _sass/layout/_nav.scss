@@ -98,6 +98,7 @@
     height: 16px;
   }
   .wavelength__bar {
+    display: block; /* Essential: Enable transforms on inline span elements */
     width: 2px;
     height: 100%;
     background: currentColor;
@@ -108,10 +109,12 @@
   /* Animation states */
   &:not(.is-muted) {
     .wavelength__bar {
-      animation: wavelength-bounce 1s ease-in-out infinite;
-      &:nth-child(1) { height: 60%; animation-delay: 0.1s; }
+      animation: wavelength-bounce 0.8s ease-in-out infinite;
+      transform-origin: center; /* Bounce from the middle */
+      
+      &:nth-child(1) { height: 40%; animation-delay: 0.1s; }
       &:nth-child(2) { height: 100%; animation-delay: 0.3s; }
-      &:nth-child(3) { height: 80%; animation-delay: 0.2s; }
+      &:nth-child(3) { height: 70%; animation-delay: 0.2s; }
       &:nth-child(4) { height: 50%; animation-delay: 0.4s; }
     }
   }

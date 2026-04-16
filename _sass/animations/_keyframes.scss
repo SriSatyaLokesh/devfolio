@@ -26,8 +26,8 @@
 }
 
 @keyframes wavelength-bounce {
-  0%, 100% { transform: scaleY(1); }
-  50% { transform: scaleY(0.4); }
+  0%, 100% { transform: scaleY(1); opacity: 1; }
+  50% { transform: scaleY(0.2); opacity: 0.6; }
 }
 
 @keyframes magic-spin-elite {
