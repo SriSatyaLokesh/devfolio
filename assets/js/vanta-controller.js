@@ -5,7 +5,7 @@
  */
 (function () {
   // WHITELIST: Core Three.js effects supported by the controller
-  const VANTA_EFFECTS = ['NET', 'WAVES', 'FOG', 'CLOUDS', 'CLOUDS2', 'RINGS', 'TOPOLOGY', 'BIRDS', 'HALO'];
+  const VANTA_EFFECTS = ['NET', 'FOG', 'CLOUDS', 'RINGS', 'TOPOLOGY', 'BIRDS', 'HALO'];
 
 
   // Configuration passed from the global THE_PROFILE_CONFIG object

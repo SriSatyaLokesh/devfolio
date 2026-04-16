@@ -14,7 +14,8 @@
       "max_volume": 0.3
     },
     "use_logo_image": true,
-    "nav_bar_logo_url": "./assets/img/theprofile.png"
+    "nav_bar_logo_url": "./assets/img/theprofile.png",
+    "custom_cursor": true
   },
 
   "available_for_work": true,
