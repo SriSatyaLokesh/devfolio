@@ -14,7 +14,7 @@
     width="14"
     height="14"
     aria-hidden="true"
-    onerror="this.src='https://cdn.simpleicons.org/simpleicons'"
+    onerror="if(!this.getAttribute('data-tried-fallback')){this.setAttribute('data-tried-fallback','true');this.src='https://cdn.simpleicons.org/simpleicons';}"
   >
   <span class="tech-chip__label">{{ include.label }}</span>
 </div>

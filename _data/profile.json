@@ -10,11 +10,12 @@
     },
     "music": {
       "enabled": true,
-      "file": "./assets/music/interstellar.mp3",
+      "file": "/assets/music/interstellar.mp3",
       "max_volume": 1.0
     },
     "use_logo_image": true,
-    "nav_bar_logo_url": "./assets/img/theprofile.png"
+    "nav_bar_logo_url": "/assets/img/theprofile.png",
+    "custom_cursor": true
   },
 
   "available_for_work": true,
@@ -25,7 +26,7 @@
   "name": "{ TheProFile }",
   "headline": "The Portfolio-as-Code Template with Zero code & Maximum Impact.",
   "email": "srisatyalokesh@duck.com",
-  "profile_image_url": "./assets/img/logo.png",
+  "profile_image_url": "/assets/img/logo.png",
   "resume_url": "https://github.com/SriSatyaLokesh/theprofile",
   "bio": "I am a high-fidelity, single-page Jekyll template born from a deep-seated hatred for drag-and-drop builders. I live in a single JSON file and dream of pixel-perfect glassmorphism. I don't need a CV; I am the CV. I'm here to ensure your career looks like it was built by a team of Silicon Valley designers, even if you just finished your second coffee.",
 
@@ -68,17 +69,17 @@
     {
       "category": "Frontend Soul",
       "items": ["Jekyll", "Liquid Magic", "SCSS Architect", "GSAP Moves"],
-      "logos": ["jekyll", "liquid", "sass", "greensock"]
+      "logos": ["jekyll", "shopify", "sass", "greensock"]
     },
     {
       "category": "Data Brain",
       "items": ["JSON Schema", "Git Workflows", "Actions Automation", "YAML Whispering"],
-      "logos": ["json", "git", "githubactions", "yaml"]
+      "logos": ["json", "git", "githubactions", "github"]
     },
     {
       "category": "Visual Heart",
       "items": ["Vanta.js", "Three.js", "WebGL", "Glassmorphism"],
-      "logos": ["visualstudio", "threejs", "webgl", "css3"]
+      "logos": ["visualstudiocode", "threejs", "webgl", "css3"]
     }
   ],
 
@@ -108,7 +109,7 @@
     {
       "title": "{ TheProFile }",
       "description": "A high-fidelity Portfolio-as-Code template. Focus on content in a single JSON file while the engine handles design, cinematic audio, and WebGL. Pro-tip: Double-click the Navbar logo for a branding makeover, or the 'Available for work' badge for background magic.",
-      "image_url": "./assets/img/theprofile.png",
+      "image_url": "/assets/img/theprofile.png",
       "stack":        ["Jekyll",    "SCSS",     "GSAP"],
       "stack_colors": ["CC0000",    "1572B6",   "88CE02"],
       "stack_logos":  ["jekyll",    "css3",     "greensock"],
