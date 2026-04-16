@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "ruby .github/hooks/scripts/posttool_profile_validate.rb",
+        "timeout": 60
+      }
+    ]
+  }
+}

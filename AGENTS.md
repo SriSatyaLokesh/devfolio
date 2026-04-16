@@ -1,205 +1,182 @@
-# Agent Instructions: TheProFile
+# Project Guidelines: TheProFile
 
-> **READ THIS FIRST.**  
-> This file is the single source of truth for any AI agent working on the TheProFile project.  
-> Before writing a single line of code, you must read and internalize everything in this file.
+This is the single workspace instruction source for this repository.
 
----
+## Scope
 
-## 1. What This Project Is
+TheProFile is a Jekyll 4.x Portfolio-as-Code project.
+Primary user workflow is editing [_data/profile.json](_data/profile.json) and deploying via GitHub Pages.
 
-**TheProFile** is a Jekyll-based, single-page developer portfolio template deployed on GitHub Pages. The core philosophy is **"Portfolio-as-Code"** — the end user should only ever need to edit one file: `_data/profile.json`. Every visual, every section, and every theme is driven entirely from that JSON file.
+## Source Of Truth
 
-### Reference Documents (Always Consult First)
+Read these in order before making significant changes:
 
-| Document | Path | Purpose |
-| :--- | :--- | :--- |
-| Product Requirements | [`docs/PRD.md`](./docs/PRD.md) | What we are building and why |
-| Technical Requirements | [`docs/TRD.md`](./docs/TRD.md) | How we are building it — schemas, templates, architecture |
+1. [AGENTS.md](AGENTS.md)
+2. [docs/PRD.md](docs/PRD.md)
+3. [docs/TRD.md](docs/TRD.md)
+4. [README.md](README.md)
+5. [CONTRIBUTING.md](CONTRIBUTING.md)
 
-> **Rule:** If a decision is not covered in this file, consult `docs/PRD.md` and `docs/TRD.md` in that order before making assumptions.
+## Technical Stack
 
----
+| Layer | Detail |
+| :--- | :--- |
+| **SSG** | Jekyll 4.x, Ruby, Liquid templates |
+| **Styles** | modular SCSS in `_sass` + CSS Custom Properties |
+| **Animations** | GSAP 3.12 + ScrollTrigger (CDN), Vanta.js + Three.js (CDN, conditional) |
+| **Tech icons** | Simple Icons CDN via `tech_chip.html` |
+| **Badges** | Shields.io via `badge_gen.html` |
+| **JS** | Vanilla JS only (`smooth-scroll.js`, `gsap-animations.js`) |
+| **Fonts** | Google Fonts: Space Grotesk (headings) + Archivo (body) |
+| **Deploy** | GitHub Actions → GitHub Pages |
 
-## 2. Skills System
 
-This project ships with curated skill files agents should load before implementing any feature. Skills contain distilled documentation, patterns, and gotchas specific to this stack.
+## Build And Test
 
-### Available Skills
+Use Ruby/Bundler only.
 
-| Skill | Path | Load When |
-| :--- | :--- | :--- |
-| **jekyll-development** | [`skills/jekyll-development/SKILL.md`](./skills/jekyll-development/SKILL.md) | Before writing ANY Liquid template, SCSS, `_config.yml`, `Gemfile`, or GitHub Actions workflow |
-| **frontend-design** | [`.agent/skills/frontend-design/SKILL.md`](./.agent/skills/frontend-design/SKILL.md) | Before styling components or refining UI/UX (UI/UX Pro Max) |
-| **test-driven-development** | [`.agent/skills/test-driven-development/SKILL.md`](./.agent/skills/test-driven-development/SKILL.md) | Before writing any logical code or fixing bugs |
-| **writing-plans** | [`.agent/skills/writing-plans/SKILL.md`](./.agent/skills/writing-plans/SKILL.md) | When creating implementation plans for complex features |
+1. Install dependencies: bundle install
+2. Run dev server: bundle exec jekyll serve --livereload
+3. Production build check (PowerShell): $env:JEKYLL_ENV="production"; bundle exec jekyll build
 
-### How to Use Skills
+Notes:
+- Current baseurl is /theprofile in [_config.yml](_config.yml); local URL is typically http://localhost:4000/theprofile/.
+- CI deploy builds _site and publishes with [.github/workflows/deploy.yml](.github/workflows/deploy.yml).
+- No formal automated test suite exists; use build + manual verification.
 
-1. Before starting any implementation task, identify which skill applies.
-2. Read the relevant `SKILL.md` file in full.
-3. Apply the patterns, avoid the listed common mistakes, and use the quick-reference tables.
-4. Treat skills as a living reference — if you discover a new gotcha, flag it to the user to update the skill.
+## Architecture & Directory Map
 
-> **Mandatory:** The `jekyll-development` skill is required reading before Phase 1 begins. It contains critical Jekyll 4.x patterns and SCSS rules specific to this project.
+Core boundaries and structural layout:
 
----
-
-## 3. Agent Identity & Role
-
-You are a **senior Jekyll developer and front-end engineer** working on the TheProFile project. Your role is to implement, refine, and maintain the codebase exactly as specified in the PRD and TRD. You are not a product manager — do not invent new features, change the scope, or deviate from the spec unless the user explicitly asks.
-
----
-
-## 3. Core Principles — Never Violate These
-
-These are absolute rules. They are not suggestions.
-
-| # | Principle | What It Means |
-| :--- | :--- | :--- |
-| **P1** | **JSON-only user experience** | The user should never need to touch any HTML, SCSS, or JS file. Everything configurable must map to a field in `_data/profile.json`. |
-| **P2** | **No new dependencies** | Do not introduce npm, Node.js, Webpack, Tailwind, React, or any JavaScript framework. The only runtime dependencies are Vanta.js and Three.js (CDN only). |
-| **P3** | **Local asset support** | Images (profile, project screenshots) can be external HTTPS URLs OR local files in `assets/img/`. |
-| **P4** | **6-project hard limit** | The Liquid template always uses `limit:6`. Do not add a way to override this. Do not make it configurable in JSON. |
-| **P5** | **Jekyll-native only** | Use only Jekyll 4.x built-in features: Liquid, `_data/`, `_includes/`, `_layouts/`, SCSS via `jekyll-sass-converter`. No extra gems unless approved by the user. |
-| **P6** | **No inline styles in templates** | All styling must use CSS Custom Properties defined in `main.scss`. Never write `style="..."` attributes in Liquid templates unless absolutely unavoidable for dynamic color values. |
-| **P7** | **Conditional Vanta loading** | Three.js and Vanta.js script tags must only be injected if `theme_config.vanta_effect` is set and non-empty in the JSON. |
-
----
-
-## 4. What You MUST Do
-
-- **Read `docs/TRD.md` before implementing any section.** It contains the exact Liquid templates, schema, and CSS patterns to use.
-- **Follow the directory structure defined in `docs/TRD.md` Section 2 exactly.** Do not create files outside that structure without user approval.
-- **Use `_data/profile.json` as the only data source.** Never hardcode user data (names, URLs, colors) anywhere in templates.
-- **Implement dark AND light theme support** using the `data-theme` attribute on `<html>` as defined in `docs/TRD.md` Section 4.
-- **Use the `badge_gen.html` Liquid include** for all Shields.io badge generation. Do not construct badge URLs inline in section templates.
-- **Write semantic HTML5.** Use `<section>`, `<article>`, `<blockquote>`, `<footer>`, `<nav>`, `<header>` correctly.
-- **Add `loading="lazy"` to all `<img>` tags** except the hero and above-the-fold profile image.
-- **Validate JSON structure** before writing templates that depend on it. If `profile.json` is missing a field, use Liquid defaults (e.g., `| default: 'net'`).
-- **Use SCSS, not plain CSS.** All styles go in `assets/css/main.scss`.
-- **Update `docs/TRD.md` or flag to the user** if you discover a gap or inconsistency in the spec during implementation.
-
----
-
-## 5. What You Must NOT Do
-
-- ❌ Do **not** add npm, `package.json`, `node_modules`, or any Node-based tooling.
-- ❌ Do **not** use Tailwind CSS, Bootstrap, or any CSS framework.
-- ❌ Do **not** commit any image files to the repository (`.jpg`, `.png`, `.gif`, `.webp`, `.svg` artwork).
-- ❌ Do **not** create more than 6 project cards, even if the JSON has more entries.
-- ❌ Do **not** add any section not listed in the PRD without asking the user first.
-- ❌ Do **not** hardcode the developer's personal data (name, GitHub URL, colors) anywhere in templates.
-- ❌ Do **not** modify `docs/PRD.md` or `docs/TRD.md` without being explicitly asked to.
-- ❌ Do **not** introduce blog/post functionality in v1. It is intentionally deferred to a future release.
-- ❌ Do **not** inline JavaScript logic in HTML templates. JS belongs in `assets/js/` or in a dedicated `_includes/` script file.
-- ❌ Do **not** load Vanta.js or Three.js unconditionally. Always wrap in conditionals.
-- ❌ Do **not** use `!important` in CSS unless fixing a documented third-party library conflict.
-- ❌ Do **not** write `<style>` blocks inside section includes. All component styles belong in `main.scss`.
-
----
-
-## 6. File Ownership Map
-
-This defines which files you are allowed to create or modify at each phase.
-
-| File / Directory | Owner | Rule |
-| :--- | :--- | :--- |
-| `_data/profile.json` | **User** | You create the schema and the example file. Never overwrite user data. |
-| `_data/profile.example.json` | **Agent** | You must keep this fully documented with every field explained. |
-| `_includes/sections/*.html` | **Agent** | Core implementation files. Follow TRD templates exactly. |
-| `_includes/head.html` | **Agent** | CSS variable injection. Handle both dark/light mode. |
-| `_includes/vanta_init.html` | **Agent** | Vanta initialization only. Conditional loading required. |
-| `_includes/badge_gen.html` | **Agent** | Badge URL construction only. No layout here. |
-| `_layouts/default.html` | **Agent** | Root layout. sections are included here in order. |
-| `assets/css/main.scss` | **Agent** | All styles. No other CSS files in v1. |
-| `assets/js/smooth-scroll.js` | **Agent** | Only smooth-scroll logic. No other JS in v1. |
-| `_config.yml` | **Agent** | Setup only — `baseurl`, `url`, markdown, sass config. |
-| `Gemfile` | **Agent** | Jekyll 4.x + `jekyll-sass-converter` only. |
-| `index.html` | **Agent** | Orchestrator only. Must use `layout: default`. |
-| `docs/PRD.md` | **User** | Do not edit without explicit instruction. |
-| `docs/TRD.md` | **User** | Do not edit without explicit instruction. |
-| `.github/workflows/deploy.yml` | **Agent** | GitHub Actions pipeline per TRD Section 11. |
-| `README.md` | **Agent** | Written for end users — how to fork, fill JSON, deploy. |
-| `CONTRIBUTING.md` | **Agent (Phase 5)** | Do not create until Phase 5 is explicitly started. |
-
----
-
-## 7. The `profile.json` Schema — Quick Reference
-
-Full schema is in `docs/TRD.md` Section 3. Key rules:
-
-- `theme_config.mode` → `"dark"` or `"light"` (default: `"dark"`)
-- `theme_config.vanta_effect` → one of: `"net"`, `"waves"`, `"rings"`, `"fog"`, `"birds"`, `"clouds"` (default: `"net"`)
-- `projects` → array, **maximum 6 items** (extras silently ignored)
-- `social[].color` → hex **without** `#` prefix (Shields.io format)
-- `stack`, `stack_colors`, `stack_logos` → parallel arrays, must be same length
-- `recommendations[].linkedin_url` → optional, but always render safely with `{% if rec.linkedin_url %}`
-
----
-
-## 8. CSS Architecture Rules
-
-```
-main.scss structure (in this order):
-  1. @import for fonts (Google Fonts)
-  2. CSS Custom Property declarations (:root — set defaults + light mode overrides)
-  3. Reset / base styles (*, body, html)
-  4. Typography (h1–h4, p, a)
-  5. Layout utilities (.container, .section-wrapper)
-  6. Component styles (nav, hero, profile, experience, education, projects, recommendations, contact, footer)
-  7. Animations / keyframes
-  8. Responsive breakpoints (mobile-first, min-width queries)
+```text
+TheProFile/
+├── _data/
+│   ├── profile.json          ← USER'S FILE — never overwrite
+│   └── profile.example.json  ← Keep fully documented, all fields
+├── _includes/
+│   ├── head.html             ← CSS var injection + theme init
+│   ├── nav.html              ← Pill nav, theme toggle, hamburger
+│   ├── badge_gen.html        ← ONLY place Shields.io URLs are built
+│   ├── tech_chip.html        ← Simple Icons chip component
+│   ├── vanta_init.html       ← Vanta.js init (conditional)
+│   └── sections/             ← Section templates (hero, profile, etc.)
+├── _layouts/
+│   ├── default.html          ← Portfolio root wrapper
+│   ├── blog-index.html       ← Blog listing layout
+│   └── post.html             ← Individual blog post layout
+├── _sass/                    ← Modular SCSS partials
+├── assets/
+│   ├── css/main.scss         ← Orchestrator (imports partials)
+│   └── js/
+│       ├── smooth-scroll.js  ← Scroll + theme + nav + scrollspy
+│       └── gsap-animations.js ← GSAP scroll reveals
+├── blog/                     ← Blog index page
+└── _posts/                   ← Markdown blog posts
 ```
 
-- Use `var(--color-primary)`, `var(--color-secondary)`, `var(--color-accent)` everywhere. Never hardcode hex values.
-- Glassmorphism nav: `backdrop-filter: blur(12px)` with `rgba()` fallback.
-- Smooth transitions on all interactive elements: `transition: all 0.2s ease`.
+### Component Boundaries
 
----
+1. Page orchestration: [index.html](index.html) + [_layouts/default.html](_layouts/default.html)
+2. Section templates: [_includes/sections](_includes/sections)
+3. Shared components: `badge_gen.html`, `tech_chip.html`, `vanta_init.html`, `audio_player.html`
+4. Styles: `assets/css/main.scss` imports modular partials from `_sass`
+5. Blog layer: [_layouts/blog-index.html](_layouts/blog-index.html), [_layouts/post.html](_layouts/post.html), [_posts/](_posts/)
 
-## 9. Build & Test Checklist
 
-Before declaring any phase complete, verify the following:
+## Data Contract: profile.json Schema
 
-- [ ] `bundle exec jekyll serve` runs without errors or warnings
-- [ ] Site renders correctly at `http://localhost:4000`
-- [ ] Switching `mode` from `"dark"` to `"light"` in `profile.json` changes the theme correctly
-- [ ] Switching `vanta_effect` to each of the 6 values renders the correct animation
-- [ ] Projects section shows **at most 6 cards** regardless of how many items are in the JSON
-- [ ] Recommendations render correctly with and without `linkedin_url`
-- [ ] All badge images load correctly in all sections
-- [ ] No layout breakage at 375px (mobile), 768px (tablet), 1280px (desktop)
-- [ ] No JavaScript console errors on page load
-- [ ] No FOUC (page should render with correct colors immediately, not flash white then dark)
-- [ ] GitHub Actions deploy pipeline completes successfully on push to `main`
+The primary user interface for content is `_data/profile.json`.
 
----
+```jsonc
+{
+  "theme_config": {
+    "mode": "dark",           // "dark" | "light"
+    "vanta_effect": "birds",  // "net"|"waves"|"rings"|"fog"|"birds"|"clouds" | ""=disabled
+    "colors": {
+      "primary": "#0d1117",   // page background
+      "secondary": "#161b22", // cards, nav
+      "accent": "#58a6ff"     // links, highlights, Vanta color
+    }
+  },
+  "name": "...",
+  "headline": "...",
+  "profile_image_url": "...",
+  "resume_url": "/assets/resume.pdf", // Link to PDF
+  "social": [{ "platform":"GitHub", "url":"...", "logo":"github", "color":"181717" }],
+  "experience": [{
+    "role": "...", "company": "...", "duration": "...",
+    "description": "string OR array of strings"
+  }],
+  "skills": [{ // Bento grid items
+    "category": "Frontend",
+    "items": ["React"],
+    "logos": ["react"]
+  }],
+  "projects": [{ // MAX 6 - HARD LIMIT
+    "title": "...", "description": "...", "image_url": "...",
+    "stack": [], "stack_logos": [],
+    "code_url": "...", "live_url": "..."
+  }]
+}
+```
 
-## 10. Phase Boundaries
+## Non-Negotiable Conventions
 
-Work is organized into 5 phases as defined in `docs/PRD.md` Section 6.  
-**Do not start a new phase until the user explicitly approves it.**
+1. Keep user-facing content JSON-driven; do not hardcode personal profile data into templates.
+2. Do not introduce Node.js/npm, JS frameworks, or CSS frameworks.
+3. Keep projects display hard-capped with limit:6 in [_includes/sections/projects.html](_includes/sections/projects.html).
+4. Load Vanta/Three only when theme_config.vanta_effect is set (see [_includes/vanta_init.html](_includes/vanta_init.html)).
+5. Generate Shields.io badge URLs only through [_includes/badge_gen.html](_includes/badge_gen.html).
+6. If schema changes, update [_data/profile.example.json](_data/profile.example.json) and [_data/README.md](_data/README.md).
+7. Prefer SCSS partial updates in [_sass](_sass) and keep [assets/css/main.scss](assets/css/main.scss) as orchestrator.
+8. Avoid inline styles in Liquid templates unless dynamic runtime values make it unavoidable.
 
-| Phase | Title | Key Deliverables |
-| :---: | :--- | :--- |
-| **1** | Foundation | `_config.yml`, `Gemfile`, `index.html`, `_layouts/default.html`, `_includes/head.html`, `_includes/nav.html`, `assets/css/main.scss` (skeleton), `_data/profile.json` (schema), dark/light theme system |
-| **2** | Data & Badges | `_data/profile.example.json`, `_includes/badge_gen.html`, social badge rendering in Contact section |
-| **3** | Design Layer | Full `main.scss` (all components styled), glassmorphism nav, `_includes/vanta_init.html`, hero section complete |
-| **4** | Section Refinement | All 7 section `_includes/sections/*.html` complete and styled, `assets/js/smooth-scroll.js`, responsive layout verified |
-| **5** | Open Source Release | `README.md` (user-facing setup guide), `CONTRIBUTING.md`, theme extension documentation, `profile.example.json` finalized |
+## Editing Guardrails
 
----
+1. Never overwrite user content in [_data/profile.json](_data/profile.json) unless explicitly requested.
+2. Keep docs unchanged unless user explicitly asks for doc edits, especially [docs/PRD.md](docs/PRD.md) and [docs/TRD.md](docs/TRD.md).
+3. Keep _site as generated output only; do not rely on editing built artifacts.
+4. Preserve existing accessibility and semantic HTML patterns in section templates.
+5. Use Liquid defaults for optional fields to prevent runtime/template errors.
 
-## 11. When In Doubt
+## Known Gotchas
 
-1. **Load `skills/jekyll-development/SKILL.md`** — Is this a Liquid, SCSS, or Jekyll config question?
-2. **Check `docs/PRD.md`** — Is this a product decision?
-3. **Check `docs/TRD.md`** — Is this an implementation detail that's already specced?
-4. **If still unclear — ask the user.** Do not guess. Do not improvise. Do not add a feature "because it would be nice."
+1. Naming/baseurl drift exists historically (TheProFile vs theprofile); follow current [_config.yml](_config.yml).
+2. Theme persistence key naming differs between files; do not rename storage keys casually without checking [_includes/head.html](_includes/head.html) and [assets/js/theme-controller.js](assets/js/theme-controller.js).
+3. Docs may lag implementation in some areas (e.g. modular Sass structure is now present in `_sass`).
 
-> The user's single instruction is: **build exactly what is in the docs, nothing more, nothing less.**
+## CSS & Design Rules
 
----
+1. **Tokens**: Never hardcode hex values in CSS. Use `var(--color-*)`.
+2. **Glassmorphism**: Use `color-mix(in srgb, var(--color-secondary) 60%, transparent)` + `backdrop-filter: blur(16px)`.
+3. **Hover lift**: `transform: translateY(-4px)` + border-color accent transition.
+4. **Z-Index**: Nav (1000) > Full-screen overlays (900) > Page content (1).
 
-*This file is maintained by the project owner. Agents must not modify it without explicit instruction.*
+## Scope Additions (Post-PRD)
+
+These features were implemented beyond the original PRD scope:
+- **Skills section**: Bento grid layout in `_includes/sections/skills.html`.
+- **GSAP Animations**: Scroll-triggered reveals in `assets/js/gsap-animations.js`.
+- **Resume CTA**: "View Resume" button in hero driven by `resume_url`.
+- **Scrollspy**: Navigation active-state indicator.
+
+## Technical Debt & Known Issues
+
+1. **Hardcoded Email**: `_includes/sections/contact.html` has a hardcoded email. Should be moved to `profile.json`.
+2. **Missing Schema Docs**: `profile.example.json` may lack latest `skills` or `resume_url` fields.
+3. **Hero CTA Fallback**: Hero button links to `#` if `resume_url` is missing instead of hiding.
+
+
+## Pre-Completion Checklist
+
+Before calling work complete:
+
+1. bundle exec jekyll build succeeds without new warnings/errors.
+2. Pages render across portfolio and blog routes.
+3. Theme toggle and navigation interactions still work.
+4. No regressions in responsive layout at mobile/tablet/desktop widths.
+5. Changes stay within existing conventions and file boundaries.
+
+## When Unclear
+
+Ask the user instead of guessing.

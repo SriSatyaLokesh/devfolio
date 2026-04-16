@@ -10,3 +10,5 @@ node_modules/
 *.lock
 adapters/
 .DS_Store
+__pycache__/
+*.pyc
