@@ -4,7 +4,7 @@
   This is the primary wrapper for the application. It handles the injection of
   head metadata, navigation, content, and global interaction scripts.
 -->
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" class="custom-cursor-active">
   
   <!-- 
   TheProFile — Head Metadata
@@ -249,34 +249,34 @@
           
           
             <article class="blog-card blog-card--span-4">
-              <a href="/theprofile/blog/vanta-performance/" class="blog-card__link">
-                <div class="blog-card__content interactive-glow">
-                  <div class="blog-card__image-wrap">
-                    <img src="https://www.bypeople.com/wp-content/uploads/2019/12/free-webgl-3d-background-tool.png" alt="Vanta.js Performance: Engineering Motion" class="blog-card__image" loading="lazy">
-                  </div>
-                  <h4 class="blog-card__title">Vanta.js Performance: Engineering Motion</h4>
-                </div>
-              </a>
-            </article>
-          
-            <article class="blog-card blog-card--span-4">
-              <a href="/theprofile/blog/foundational-design/" class="blog-card__link">
-                <div class="blog-card__content interactive-glow">
-                  <div class="blog-card__image-wrap">
-                    <img src="https://www.jainuniversity.ac.in/uploads/blog/UI_and_UX_Design.webp" alt="Foundational Design: Architecting for 2026" class="blog-card__image" loading="lazy">
-                  </div>
-                  <h4 class="blog-card__title">Foundational Design: Architecting for 2026</h4>
-                </div>
-              </a>
-            </article>
-          
-            <article class="blog-card blog-card--span-4">
               <a href="/theprofile/blog/mastering-portfolio-as-code-configuration-guide/" class="blog-card__link">
                 <div class="blog-card__content interactive-glow">
                   <div class="blog-card__image-wrap">
                     <img src="/theprofile/assets/img/theprofile.png" alt="The Master Guide to Portfolio-as-Code Configuration" class="blog-card__image" loading="lazy">
                   </div>
                   <h4 class="blog-card__title">The Master Guide to Portfolio-as-Code Configuration</h4>
+                </div>
+              </a>
+            </article>
+          
+            <article class="blog-card blog-card--span-4">
+              <a href="/theprofile/blog/introducing-theprofile/" class="blog-card__link">
+                <div class="blog-card__content interactive-glow">
+                  <div class="blog-card__image-wrap">
+                    <img src="/theprofile/assets/img/theprofile.png" alt="TheProFile: The Portfolio-as-Code Revolution" class="blog-card__image" loading="lazy">
+                  </div>
+                  <h4 class="blog-card__title">TheProFile: The Portfolio-as-Code Revolution</h4>
+                </div>
+              </a>
+            </article>
+          
+            <article class="blog-card blog-card--span-4">
+              <a href="/theprofile/blog/vanta-performance/" class="blog-card__link">
+                <div class="blog-card__content interactive-glow">
+                  <div class="blog-card__image-wrap">
+                    <img src="https://www.bypeople.com/wp-content/uploads/2019/12/free-webgl-3d-background-tool.png" alt="Vanta.js Performance: Engineering Motion" class="blog-card__image" loading="lazy">
+                  </div>
+                  <h4 class="blog-card__title">Vanta.js Performance: Engineering Motion</h4>
                 </div>
               </a>
             </article>
@@ -341,6 +341,12 @@
   </div>
 </footer>
 
+
+    <!-- Custom Cursor Markup -->
+    
+      <div class="cursor-dot"></div>
+      <div class="cursor-outline"></div>
+    
 
     <!-- Initialization of Cinematic Effects -->
     
@@ -408,5 +414,8 @@
     <script defer src="/theprofile/assets/js/smooth-scroll.js"></script>
     <script defer src="/theprofile/assets/js/gsap-animations.js"></script>
     <script defer src="/theprofile/assets/js/contact-scripts.js"></script>
+    
+      <script src="/theprofile/assets/js/cursor-controller.js" defer></script>
+    
   </body>
 </html>

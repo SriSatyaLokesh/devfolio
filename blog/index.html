@@ -4,7 +4,7 @@
   This is the primary wrapper for the application. It handles the injection of
   head metadata, navigation, content, and global interaction scripts.
 -->
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark" class="custom-cursor-active">
   
   <!-- 
   TheProFile — Head Metadata
@@ -388,6 +388,12 @@
 </footer>
 
 
+    <!-- Custom Cursor Markup -->
+    
+      <div class="cursor-dot"></div>
+      <div class="cursor-outline"></div>
+    
+
     <!-- Initialization of Cinematic Effects -->
     
     
@@ -454,5 +460,8 @@
     <script defer src="/theprofile/assets/js/smooth-scroll.js"></script>
     <script defer src="/theprofile/assets/js/gsap-animations.js"></script>
     <script defer src="/theprofile/assets/js/contact-scripts.js"></script>
+    
+      <script src="/theprofile/assets/js/cursor-controller.js" defer></script>
+    
   </body>
 </html>

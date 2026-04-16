@@ -17,6 +17,9 @@
   window.fadeAudio = function(toVolume, duration = 1.5) {
     if (!audio) return;
     
+    // Provide immediate UI feedback based on the target volume
+    updateSoundToggleUI(toVolume > 0);
+
     gsap.to(audio, {
       volume: toVolume,
       duration: duration,
@@ -27,8 +30,12 @@
         }
       },
       onComplete: () => {
-        if (toVolume === 0) audio.pause();
-        updateSoundToggleUI();
+        if (toVolume === 0) {
+          audio.pause();
+          updateSoundToggleUI(false);
+        } else {
+          updateSoundToggleUI(true);
+        }
       }
     });
   };
@@ -39,9 +46,9 @@
   window.toggleSound = function() {
     if (!audio) return;
     if (audio.paused || audio.volume === 0) {
-      window.fadeAudio(targetVolume, 2);
+      window.fadeAudio(targetVolume, 1.5);
     } else {
-      window.fadeAudio(0, 1);
+      window.fadeAudio(0, 0.8);
     }
   };
 
@@ -84,14 +91,19 @@
   /**
    * Synchronizes the navbar toggle button with the current audio state.
    */
-  function updateSoundToggleUI() {
+  function updateSoundToggleUI(isPlaying) {
     const btn = document.getElementById('sound-toggle');
     if (!btn) return;
     
-    if (audio.paused || audio.volume === 0) {
-      btn.classList.add('is-muted');
-    } else {
+    // Use manual state if provided, otherwise detect from audio element
+    const playing = (typeof isPlaying === 'boolean') 
+      ? isPlaying 
+      : (!audio.paused && audio.volume > 0);
+
+    if (playing) {
       btn.classList.remove('is-muted');
+    } else {
+      btn.classList.add('is-muted');
     }
   }
 
