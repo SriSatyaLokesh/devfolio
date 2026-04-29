@@ -23,12 +23,12 @@
     "enabled": true
   },
 
-  "name": "{ TheProFile }",
-  "headline": "The Portfolio-as-Code Template with Zero code & Maximum Impact.",
-  "email": "srisatyalokesh@duck.com",
+  "name": "Bokkisam Venkata Sai Nivas (B. V. S. Nivas Chowdary)",
+  "headline": "CS Student — Python, C++, JavaScript | AI/ML & DevOps",
+  "email": "bvsnivaschowdary45@gmail.com",
   "profile_image_url": "/assets/img/logo.png",
-  "resume_url": "https://github.com/SriSatyaLokesh/theprofile",
-  "bio": "I am a high-fidelity, single-page Jekyll template born from a deep-seated hatred for drag-and-drop builders. I live in a single JSON file and dream of pixel-perfect glassmorphism. I don't need a CV; I am the CV. I'm here to ensure your career looks like it was built by a team of Silicon Valley designers, even if you just finished your second coffee.",
+  "resume_url": "/Nivas.pdf",
+  "bio": "Computer Science student building scalable, containerized, data-driven systems. Proficient in Python, C++, JavaScript, Docker, and Git; experienced in data structures, algorithms, and system design. Seeking internships and SWE roles in AI infrastructure and production systems.",
 
   "social": [
     { "platform": "GitHub",    "url": "https://github.com/SriSatyaLokesh/theprofile",       "logo": "github",       "color": "181717" },
