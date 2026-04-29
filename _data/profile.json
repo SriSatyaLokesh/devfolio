@@ -23,18 +23,16 @@
     "enabled": true
   },
 
-  "name": "{ TheProFile }",
-  "headline": "The Portfolio-as-Code Template with Zero code & Maximum Impact.",
-  "email": "srisatyalokesh@duck.com",
+  "name": "Bokkisam Venkata Sai Nivas (B. V. S. Nivas Chowdary)",
+  "headline": "CS Student — Python, C++, JavaScript | AI/ML & DevOps",
+  "email": "bvsnivaschowdary45@gmail.com",
   "profile_image_url": "/assets/img/logo.png",
-  "resume_url": "https://github.com/SriSatyaLokesh/theprofile",
-  "bio": "I am a high-fidelity, single-page Jekyll template born from a deep-seated hatred for drag-and-drop builders. I live in a single JSON file and dream of pixel-perfect glassmorphism. I don't need a CV; I am the CV. I'm here to ensure your career looks like it was built by a team of Silicon Valley designers, even if you just finished your second coffee.",
+  "resume_url": "/Nivas.pdf",
+  "bio": "Computer Science student building scalable, containerized, data-driven systems. Proficient in Python, C++, JavaScript, Docker, and Git; experienced in data structures, algorithms, and system design. Seeking internships and SWE roles in AI infrastructure and production systems.",
 
   "social": [
-    { "platform": "GitHub",    "url": "https://github.com/SriSatyaLokesh/theprofile",       "logo": "github",       "color": "181717" },
-    { "platform": "Twitter",   "url": "https://twitter.com",                          "logo": "twitter",      "color": "1DA1F2" },
-    { "platform": "LinkedIn",  "url": "https://linkedin.com",                         "logo": "linkedin",     "color": "0A66C2" },
-    { "platform": "Dev.to",    "url": "https://dev.to",                               "logo": "devdotto",     "color": "0A0A0A" }
+    { "platform": "GitHub",    "url": "https://github.com/nivas4506",       "logo": "github",       "color": "181717" },
+    { "platform": "LinkedIn",  "url": "https://www.linkedin.com/in/bvsnivaschowdary",                         "logo": "linkedin",     "color": "0A66C2" }
   ],
 
   "experience": [
@@ -67,74 +65,55 @@
 
   "skills": [
     {
-      "category": "Frontend Soul",
-      "items": ["Jekyll", "Liquid Magic", "SCSS Architect", "GSAP Moves"],
-      "logos": ["jekyll", "shopify", "sass", "greensock"]
+      "category": "Languages",
+      "items": ["Python", "C++", "JavaScript", "Go (familiar)"]
     },
     {
-      "category": "Data Brain",
-      "items": ["JSON Schema", "Git Workflows", "Actions Automation", "YAML Whispering"],
-      "logos": ["json", "git", "githubactions", "github"]
+      "category": "AI / ML",
+      "items": ["PyTorch", "TensorFlow", "Hugging Face", "LLM fine-tuning (learning)"]
     },
     {
-      "category": "Visual Heart",
-      "items": ["Vanta.js", "Three.js", "WebGL", "Glassmorphism"],
-      "logos": ["visualstudiocode", "threejs", "webgl", "css3"]
+      "category": "Infrastructure",
+      "items": ["Docker", "AWS", "Git", "Containerization"]
     }
   ],
 
   "education": [
     {
-      "degree": "PhD in Zero-Code Architecture",
-      "institution": "University of Open Source",
-      "year": "2026",
-      "description": [
-        "Defended a groundbreaking thesis on why developers should spend time coding features, not fighting with HTML boilerplate.",
-        "Minor in 'Monochromatic Theme Synchronization' — proving that any website looks elite with the right accent color.",
-        "Dean's List for 'Most Optimized Jekyll Build Time' (2025)."
-      ]
+      "degree": "B.Tech in Computer Science and Engineering",
+      "institution": "KL University, Vaddeswaram",
+      "year": "2025 – Present",
+      "description": ["Currently pursuing (expected graduation 2029)"]
     },
     {
-      "degree": "Master of Portfolio Automation",
-      "institution": "Self-Taught via SriSatyaLokesh",
-      "year": "2025",
-      "description": [
-        "Mastered the art of JSON-to-Elite-Portfolio transformation.",
-        "Learned to orchestrate GSAP and Vanta.js for maximum cinematic impact."
-      ]
+      "degree": "Intermediate (MPC)",
+      "institution": "Sri Chaitanya Jr. College",
+      "year": "2023 – 2025",
+      "description": ["Scored 91.6%"]
     }
   ],
 
   "projects": [
     {
-      "title": "{ TheProFile }",
-      "description": "A high-fidelity Portfolio-as-Code template. Focus on content in a single JSON file while the engine handles design, cinematic audio, and WebGL. Pro-tip: Double-click the Navbar logo for a branding makeover, or the 'Available for work' badge for background magic.",
+      "title": "Warehouse Inventory Handling System",
+      "description": "High-performance, containerized stock tracking system with O(log n) lookup across 10,000+ records and alerting pipelines.",
       "image_url": "/assets/img/theprofile.png",
-      "stack":        ["Jekyll",    "SCSS",     "GSAP"],
-      "stack_colors": ["CC0000",    "1572B6",   "88CE02"],
-      "stack_logos":  ["jekyll",    "css3",     "greensock"],
-      "code_url": "https://github.com/SriSatyaLokesh/theprofile",
-      "live_url": "https://srisatyalokesh.github.io/theprofile/"
+      "stack": ["Python", "Docker", "SQL"],
+      "code_url": "https://github.com/nivas4506"
     },
     {
-      "title": "Open Certificate Generator",
-      "description": "An automated bulk certificate generation engine. Designed for hackathons and organizations to generate branded, professional certificates from raw data in seconds.",
-      "image_url": "https://srisatyalokesh.github.io/open-certificate-generator/assets/img/og-default.jpg",
-      "stack":        ["React",     "Canvas API", "Node.js"],
-      "stack_colors": ["61DAFB",    "000000",     "339933"],
-      "stack_logos":  ["react",     "html5",      "nodedotjs"],
-      "code_url": "https://github.com/SriSatyaLokesh/open-certificate-generator",
-      "live_url": "https://srisatyalokesh.github.io/open-certificate-generator/"
+      "title": "Student Grievance Redressal System",
+      "description": "Full-stack platform with RESTful APIs and role-based access control, deployed via Docker with MVC architecture.",
+      "image_url": "/assets/img/theprofile.png",
+      "stack": ["JavaScript", "Node.js", "Docker"],
+      "code_url": "https://github.com/nivas4506"
     },
     {
-      "title": "Copilot Team Workflow",
-      "description": "A comprehensive framework of standards and workflows for maximizing team velocity with GitHub Copilot. Includes optimized prompts and pair-programming patterns for elite teams.",
-      "image_url": "https://images.ctfassets.net/8aevphvgewt8/2Zamxo7a7F9K9jsTAl2EGA/bce1f04a40536e89ef543cb311f2968b/github-copilot-cli.png",
-      "stack":        ["AI Prompts", "Workflows", "Git"],
-      "stack_colors": ["4F46E5",     "000000",    "F05032"],
-      "stack_logos":  ["openai",     "github",    "git"],
-      "code_url": "https://github.com/SriSatyaLokesh/copilot-team-workflow",
-      "live_url": "https://srisatyalokesh.github.io/copilot-team-workflow/"
+      "title": "LIQUID-MORPHISM UI/UX Library",
+      "description": "Modular CSS and JS component library focused on performance and cross-environment compatibility.",
+      "image_url": "/assets/img/theprofile.png",
+      "stack": ["CSS3", "JavaScript"],
+      "code_url": "https://github.com/nivas4506"
     }
   ],
 

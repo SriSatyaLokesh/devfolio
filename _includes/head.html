@@ -5,12 +5,12 @@
 -->
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="{{ site.description | default: site.data.profile.headline }}" />
+<meta name="description" content="{{ site.description | default: site.data.profile.bio }}" />
 <meta name="author" content="{{ site.data.profile.name }}" />
 
 <!-- SEO & Social Sharing (Open Graph) -->
-<meta property="og:title" content="{{ site.data.profile.name }} | Portfolio" />
-<meta property="og:description" content="{{ site.description | default: site.data.profile.headline }}" />
+<meta property="og:title" content="{{ site.data.profile.name }} — {{ site.data.profile.headline }}" />
+<meta property="og:description" content="{{ site.description | default: site.data.profile.bio }}" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}/" />
 {% if site.data.profile.image_url %}
@@ -19,13 +19,13 @@
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="{{ site.data.profile.name }} | Portfolio" />
-<meta name="twitter:description" content="{{ site.description | default: site.data.profile.headline }}" />
+<meta name="twitter:title" content="{{ site.data.profile.name }} — {{ site.data.profile.headline }}" />
+<meta name="twitter:description" content="{{ site.description | default: site.data.profile.bio }}" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href="{{ site.url }}{{ site.baseurl }}/" />
 
-<title>{{ site.data.profile.name }} | Portfolio</title>
+<title>{{ site.data.profile.name }} — {{ site.data.profile.headline }}</title>
 
 <!-- Favicons -->
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/assets/img/favicon/apple-touch-icon.png' | relative_url }}">
